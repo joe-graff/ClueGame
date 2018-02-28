@@ -9,8 +9,7 @@ public class IntBoard {
 	private Set<BoardCell> moveOptions;
 	private BoardCell[][] grid;
 	
-	public IntBoard(Map<BoardCell, Set<BoardCell>> adjCells, Set<BoardCell> visitedCells, Set<BoardCell> moveOptions,
-			BoardCell[][] grid) {}
+	public IntBoard() {}
 	
 	public void calcAdjacencies() {return;}
 	
