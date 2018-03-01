@@ -1,38 +1,38 @@
 package expreriment;
-
+import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class IntBoard {
 	
-	private Map<BoardCell, Set<BoardCell>> adjCells;
-	private Set<BoardCell> visitedCells;
-	private Set<BoardCell> moveOptions;
+	private Map<BoardCell, HashSet<BoardCell>> adjCells;
+	private HashSet<BoardCell> visitedCells;
+	private HashSet<BoardCell> moveOptions;
 	private BoardCell[][] grid;
+	private static int boardWidth = 4;
+	private static int boardHeight = 4;
 	
-	public IntBoard() {}
+	public IntBoard() {
+		calcAdjacencies();
+	}
 	
 	public void calcAdjacencies() {
 		return;
 	}
 	
-	public Set<BoardCell> getAdjList() {
+	public HashSet<BoardCell> getAdjList(BoardCell cell){
 		return null;
-	}
+	}	
 	
 	public void calcTargets(int startCell, int pathLength) {
 		return;
 	}
 	
-	public Set<BoardCell> getTargets() {
+	public HashSet<BoardCell> getTargets() {
 		return null;
 	}
 	
 	public BoardCell getCell(int row, int col) {
 		return null;
 	}
-	
-	public Set<BoardCell> getAdjList(BoardCell cell){
-		return null;
-	}
+
 }
