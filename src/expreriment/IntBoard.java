@@ -19,4 +19,7 @@ public class IntBoard {
 	
 	public Set<BoardCell> getTargets(){return null;}
 	
+	public BoardCell getCell(int row, int col) {return null;}
+	
+	public Set<BoardCell> getAdjList(BoardCell cell){return null;}
 }
