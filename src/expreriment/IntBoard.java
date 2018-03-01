@@ -32,13 +32,8 @@ public class IntBoard {
 	public Set<BoardCell> getTargets() {
 		return null;
 	}
-	
-<<<<<<< HEAD
-	public Set<BoardCell> getAdjList(BoardCell cell){return null;}
-	
-=======
+
 	public BoardCell getCell(int row, int col) {
 		return null;
 	}
->>>>>>> bf8565b34dfd1e908a814930fe03d3b0b541c8ce
 }
