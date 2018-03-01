@@ -22,4 +22,5 @@ public class IntBoard {
 	public BoardCell getCell(int row, int col) {return null;}
 	
 	public Set<BoardCell> getAdjList(BoardCell cell){return null;}
+	
 }
