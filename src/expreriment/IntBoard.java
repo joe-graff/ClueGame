@@ -79,7 +79,7 @@ public class IntBoard {
 	public Set<BoardCell> getTargets() { // finish lter
 		return targetCells;
 	}
-	
+
 	public BoardCell getCell(int row, int col) {
 		return board[row][col];
 	}
