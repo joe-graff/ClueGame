@@ -122,36 +122,57 @@ public class IntBoardTests {
 			BoardCell cell = new BoardCell(0,1);
 			testBoard.calcTargets(cell, 3);
 			Set<BoardCell> testList = testBoard.getTargets();
-			//cell = new BoardCell(0,0); TEST BY HAND
+			cell = new BoardCell(0,0);
 			assertTrue(testList.contains(cell));
-			assertEquals(2, testList.size());
+			cell = new BoardCell(0,2);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(1,1);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(2,0);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(2,2);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(3,1);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(1,3);
+			assertTrue(testList.contains(cell));
+			assertEquals(7, testList.size());
 		}
 		
 		@Test	
-		public void testTargets22Move6() {
-			BoardCell cell = new BoardCell(0,0);
+		public void testTargets22Move1() {
+			BoardCell cell = new BoardCell(2,2);
 			testBoard.calcTargets(cell, 1);
 			Set<BoardCell> testList = testBoard.getTargets();
-			cell = new BoardCell(0,1);
+			cell = new BoardCell(1,2);
 			assertTrue(testList.contains(cell));
-			cell = new BoardCell(1,0);
+			cell = new BoardCell(2,1);
 			assertTrue(testList.contains(cell));
-			assertEquals(2, testList.size());
+			cell = new BoardCell(3,2);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(2,3);
+			assertTrue(testList.contains(cell));
+			assertEquals(4, testList.size());
 		}
 		
-		/**
-		 * Only possible 
-		 */
 		@Test	
 		public void testTargets22Move2() {
 			BoardCell cell = new BoardCell(2,2);
 			testBoard.calcTargets(cell, 2);
 			Set<BoardCell> testList = testBoard.getTargets();
-			cell = new BoardCell(0,1);
+			cell = new BoardCell(0,2);
 			assertTrue(testList.contains(cell));
-			cell = new BoardCell(1,0);
+			cell = new BoardCell(1,1);
 			assertTrue(testList.contains(cell));
-			assertEquals(2, testList.size());
+			cell = new BoardCell(2,0);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(3,1);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(3,3);
+			assertTrue(testList.contains(cell));
+			cell = new BoardCell(1,3);
+			assertTrue(testList.contains(cell));
+			assertEquals(6, testList.size());
 		}
 		
 		/**

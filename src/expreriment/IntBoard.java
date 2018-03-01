@@ -1,15 +1,17 @@
 package expreriment;
-import java.util.HashSet;
+import java.util.Set;
 import java.util.Map;
 
 public class IntBoard {
 	
-	private Map<BoardCell, HashSet<BoardCell>> adjCells;
-	private HashSet<BoardCell> visitedCells;
-	private HashSet<BoardCell> moveOptions;
-	private BoardCell[][] grid;
+	private Map<BoardCell, Set<BoardCell>> adjCells;
+	private Set<BoardCell> targetCells;
 	private static int boardWidth = 4;
 	private static int boardHeight = 4;
+	
+	public void setCurrentCell(BoardCell cell) {
+		
+	}
 	
 	public IntBoard() {
 		calcAdjacencies();
@@ -19,20 +21,19 @@ public class IntBoard {
 		return;
 	}
 	
-	public HashSet<BoardCell> getAdjList(BoardCell cell){
+	public Set<BoardCell> getAdjList(BoardCell cell){
 		return null;
 	}	
 	
-	public void calcTargets(int startCell, int pathLength) {
+	public void calcTargets(BoardCell startCell, int pathLength) {
 		return;
 	}
 	
-	public HashSet<BoardCell> getTargets() {
+	public Set<BoardCell> getTargets() {
 		return null;
 	}
 	
 	public BoardCell getCell(int row, int col) {
 		return null;
 	}
-
 }
