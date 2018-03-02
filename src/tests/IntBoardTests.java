@@ -12,186 +12,138 @@ public class IntBoardTests {
 	public IntBoard testBoard;
 	@Before
 	public void before() {
-		IntBoard testBoard = new IntBoard();
+		testBoard = new IntBoard();
 	}
 	
 	@Test
-	public void testAdjacency() {
-		assertEquals(1,1);
-		for (BoardCell cell1 : testBoard.getAdjList(testBoard.getCell(2,2))) {
-			System.out.println(cell1.getRow() + cell1.getColumn());
-		}
-	}
-	
-	
-/*	@Test
 	public void testAdjacency00() {
-		BoardCell cell = new BoardCell(0,0);
+		BoardCell cell = testBoard.getCell(0,0);
 		Set<BoardCell> testList = testBoard.getAdjList(cell);
-		cell = new BoardCell(0,1);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(1,0);
-		assertTrue(testList.contains(cell));
+		assertTrue(testList.contains(testBoard.getCell(1,0)));
+		assertTrue(testList.contains(testBoard.getCell(0,1)));
 		assertEquals(2, testList.size());
 	}
-/*
+
 	@Test
 	public void testAdjacency33() {
-		BoardCell cell = new BoardCell(3,3);
+		BoardCell cell = testBoard.getCell(3,3);
 		Set<BoardCell> testList = testBoard.getAdjList(cell);
-		cell = new BoardCell(2,3);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(3,2);
-		assertTrue(testList.contains(cell));
+		assertTrue(testList.contains(testBoard.getCell(2, 3)));
+		assertTrue(testList.contains(testBoard.getCell(3,2)));
 		assertEquals(2, testList.size());
 	}
 
 	@Test
 	public void testAdjacency13() {
-		BoardCell cell = new BoardCell(1,3);
+		BoardCell cell = testBoard.getCell(1,3);
 		Set<BoardCell> testList = testBoard.getAdjList(cell);
-		cell = new BoardCell(0,3);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(1,2);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(2,3);
-		assertTrue(testList.contains(cell));
+		assertTrue(testList.contains(testBoard.getCell(0,3)));
+		assertTrue(testList.contains(testBoard.getCell(1,2)));
+		assertTrue(testList.contains(testBoard.getCell(2,3)));
 		assertEquals(3, testList.size());
 	}
 
 	@Test
 	public void testAdjacency30() {
-	BoardCell cell = new BoardCell(3,0);
+	BoardCell cell = testBoard.getCell(3,0);
 	Set<BoardCell> testList = testBoard.getAdjList(cell);
-	cell = new BoardCell(3,1);
-	assertTrue(testList.contains(cell));
-	cell = new BoardCell(2,0);
-	assertTrue(testList.contains(cell));
+	assertTrue(testList.contains(testBoard.getCell(3,1)));
+	assertTrue(testList.contains(testBoard.getCell(2,0)));
 	assertEquals(2, testList.size());
 	}
 	
 	@Test
 	public void testAdjacency11() {
-		BoardCell cell = new BoardCell(1,1);
+		BoardCell cell = testBoard.getCell(1,1);
 		Set<BoardCell> testList = testBoard.getAdjList(cell);
-		cell = new BoardCell(2,1);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(1,2);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(0,1);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(1,0);
-		assertTrue(testList.contains(cell));
+		assertTrue(testList.contains(testBoard.getCell(2,1)));
+		assertTrue(testList.contains(testBoard.getCell(2,1)));
+		assertTrue(testList.contains(testBoard.getCell(0,1)));
+		assertTrue(testList.contains(testBoard.getCell(1,0)));
 		assertEquals(4, testList.size());
 	}
 	
 	@Test
 	public void testAdjacency22() {
-		BoardCell cell = new BoardCell(2,2);
+		BoardCell cell = testBoard.getCell(2,2);
 		Set<BoardCell> testList = testBoard.getAdjList(cell);
-		cell = new BoardCell(2,1);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(1,2);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(2,3);
-		assertTrue(testList.contains(cell));
-		cell = new BoardCell(3,2);
-		assertTrue(testList.contains(cell));
+		assertTrue(testList.contains(testBoard.getCell(2,1)));
+		assertTrue(testList.contains(testBoard.getCell(1,2)));
+		assertTrue(testList.contains(testBoard.getCell(2,3)));
+		assertTrue(testList.contains(testBoard.getCell(3,2)));
 		assertEquals(4, testList.size());
 	}
-	
+/*
 		@Test	
 		public void testTargets00Move1() {
-			BoardCell cell = new BoardCell(0,0);
+			BoardCell cell = testBoard.getCell(0,0);
 			testBoard.calcTargets(cell, 1);
 			Set<BoardCell> testList = testBoard.getTargets();
-			cell = new BoardCell(0,1);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(1,0);
-			assertTrue(testList.contains(cell));
+			assertTrue(testList.contains(testBoard.getCell(0,1)));
+			assertTrue(testList.contains(testBoard.getCell(1,0)));
 			assertEquals(2, testList.size());
 		}
 		
 		@Test	
 		public void testTargets00Move2() {
-			BoardCell cell = new BoardCell(0,0);
+			BoardCell cell = testBoard.getCell(0,0);
 			testBoard.calcTargets(cell, 2);
 			Set<BoardCell> testList = testBoard.getTargets();
-			cell = new BoardCell(0,2);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(1,1);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(2,0);
-			assertTrue(testList.contains(cell));
+			assertTrue(testList.contains(testBoard.getCell(0,2)));
+			assertTrue(testList.contains(testBoard.getCell(1,1)));
+			assertTrue(testList.contains(testBoard.getCell(2,0)));
 			assertEquals(3, testList.size());
 		}
 		
 		@Test	
 		public void testTargets01Move3() {
-			BoardCell cell = new BoardCell(0,1);
+			BoardCell cell = testBoard.getCell(0,1);
 			testBoard.calcTargets(cell, 3);
 			Set<BoardCell> testList = testBoard.getTargets();
-			cell = new BoardCell(0,0);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(0,2);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(1,1);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(2,0);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(2,2);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(3,1);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(1,3);
-			assertTrue(testList.contains(cell));
+			assertTrue(testList.contains(testBoard.getCell(0,0)));
+			assertTrue(testList.contains(testBoard.getCell(0,2)));
+			assertTrue(testList.contains(testBoard.getCell(1,1)));
+			assertTrue(testList.contains(testBoard.getCell(2,0)));
+			assertTrue(testList.contains(testBoard.getCell(2,2)));
+			assertTrue(testList.contains(testBoard.getCell(3,1)));
+			assertTrue(testList.contains(testBoard.getCell(1,3)));
 			assertEquals(7, testList.size());
 		}
 		
 		@Test	
 		public void testTargets22Move1() {
-			BoardCell cell = new BoardCell(2,2);
+			BoardCell cell = testBoard.getCell(2,2);
 			testBoard.calcTargets(cell, 1);
 			Set<BoardCell> testList = testBoard.getTargets();
-			cell = new BoardCell(1,2);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(2,1);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(3,2);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(2,3);
-			assertTrue(testList.contains(cell));
+			assertTrue(testList.contains(testBoard.getCell(1,2)));
+			assertTrue(testList.contains(testBoard.getCell(2,1)));
+			assertTrue(testList.contains(testBoard.getCell(3,2)));
+			assertTrue(testList.contains(testBoard.getCell(2,3)));
 			assertEquals(4, testList.size());
 		}
 		
 		@Test	
 		public void testTargets22Move2() {
-			BoardCell cell = new BoardCell(2,2);
-			testBoard.calcTargets(cell, 2);
+			BoardCell cell = testBoard.getCell(2,2);
 			Set<BoardCell> testList = testBoard.getTargets();
-			cell = new BoardCell(0,2);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(1,1);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(2,0);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(3,1);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(3,3);
-			assertTrue(testList.contains(cell));
-			cell = new BoardCell(1,3);
-			assertTrue(testList.contains(cell));
+			assertTrue(testList.contains(testBoard.getCell(0,2)));
+			assertTrue(testList.contains(testBoard.getCell(1,1)));
+			assertTrue(testList.contains(testBoard.getCell(2,0)));
+			assertTrue(testList.contains(testBoard.getCell(3,1)));
+			assertTrue(testList.contains(testBoard.getCell(3,3)));
+			assertTrue(testList.contains(testBoard.getCell(1,3)));
 			assertEquals(6, testList.size());
 		}
 		
-		/**
+		/*
 		 * No move possible, getTargets should return an empty set
-		 */
-		/*@Test	
+		 
+		@Test	
 		public void testTargets00Move16() {
 			BoardCell cell = new BoardCell(0,0);
 			testBoard.calcTargets(cell, 16);
 			Set<BoardCell> testList = testBoard.getTargets();
 			assertEquals(0, testList.size());
-		}*/
+		}
+		*/
 }

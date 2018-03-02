@@ -11,59 +11,38 @@ public class IntBoard {
 	private static int BOARD_WIDTH = 4;
 	private static int BOARD_HEIGHT = 4;
 	private BoardCell[][] board;
+	private Set<BoardCell> visited;
 	
-	public IntBoard() {
+public IntBoard() {
 		
 		board = new BoardCell[BOARD_HEIGHT][BOARD_WIDTH];
-
+		adjCells = new HashMap<BoardCell, Set<BoardCell>>();
 		for (int i = 0; i < BOARD_HEIGHT; i++) {
 			for (int j = 0; j < BOARD_WIDTH; j++) {
 				board[i][j] = new BoardCell(i,j);
 			}
 		}
-		
 		calcAdjacencies();
 	}
 	
 	public void calcAdjacencies() {
 		for (int i = 0; i < BOARD_HEIGHT; i++) {
 			for (int j = 0; j < BOARD_WIDTH; j++) {
-				
-				if (i - 1 >= 0) {
-					Set<BoardCell> newAdjCells = new HashSet<BoardCell>();
-					if (adjCells.get(board[i][j]) != null) {
-						newAdjCells = adjCells.get(board[i][j]);
-					}
-					newAdjCells.add(board[i - 1][j]);
-					adjCells.put(board[i][j], newAdjCells);
+				BoardCell a = board[i][j];
+				Set<BoardCell> temp = new HashSet<BoardCell>();
+				if(i != 0) {
+					temp.add(board[i-1][j]);
 				}
-				
-				if (i + 1 < BOARD_HEIGHT) {
-					Set<BoardCell> newAdjCells = new HashSet<BoardCell>();
-					if (adjCells.get(board[i][j]) != null) {
-						newAdjCells = adjCells.get(board[i][j]);
-					}
-					newAdjCells.add(board[i + 1][j]);
-					adjCells.put(board[i][j], newAdjCells);
+				if(i != BOARD_WIDTH -1) {
+					temp.add(board[i+1][j]);
 				}
-				
-				if (j - 1 >= 0) {
-					Set<BoardCell> newAdjCells = new HashSet<BoardCell>();
-					if (adjCells.get(board[i][j]) != null) {
-						newAdjCells = adjCells.get(board[i][j]);
-					}
-					newAdjCells.add(board[i][j - 1]);
-					adjCells.put(board[i][j], newAdjCells);
+				if(j != 0) {
+					temp.add(board[i][j-1]);
 				}
-				
-				if (j + 1 < BOARD_WIDTH) {
-					Set<BoardCell> newAdjCells = new HashSet<BoardCell>();
-					if (adjCells.get(board[i][j]) != null) {
-						newAdjCells = adjCells.get(board[i][j]);
-					}
-					newAdjCells.add(board[i][j + 1]);
-					adjCells.put(board[i][j], newAdjCells);
+				if(j != BOARD_HEIGHT-1) {
+					temp.add(board[i][j+1]);
 				}
+				adjCells.put(a, temp);
 			}
 		}
 	}
@@ -72,8 +51,18 @@ public class IntBoard {
 		return adjCells.get(cell);
 	}	
 	
-	public void calcTargets(BoardCell startCell, int pathLength) { // finish later
-		return;
+	public void calcTargets(BoardCell startCell, int pathLength) { 
+		Set<BoardCell> adj = getAdjList(startCell);
+		for(BoardCell a: adj) {
+			if(visited.contains(a))
+				continue;
+			visited.add(a);
+			if(pathLength == 1)
+				targetCells.add(a);
+			else
+				calcTargets(a, pathLength-1);
+			visited.remove(a);
+		}
 	}
 	
 	public Set<BoardCell> getTargets() { // finish lter
