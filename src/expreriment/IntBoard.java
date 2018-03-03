@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 
  * @author Lewis Setter
- * @author Joe Graffs
+ * @author Joe Graff
  *
  */
 public class IntBoard {
