@@ -9,6 +9,7 @@ package clueGame;
 public class BoardCell {
 	private int row;
 	private int column;
+	private char intial;
 	
 	/**
 	 * constructor: creates a cell on the board given a row and a column
@@ -19,4 +20,8 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 	}
+	
+	public boolean isWalkway() {return false;}
+	public boolean isRoom() {return false;}
+	public boolean isDoorway() {return false;}
 }
