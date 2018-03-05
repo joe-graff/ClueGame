@@ -41,5 +41,4 @@ public class Board {
 	public int getColumns() {
 		return (Integer) null;
 	}
-	
 }

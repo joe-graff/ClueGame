@@ -13,9 +13,9 @@ import clueGame.BoardCell;
 import clueGame.DoorDirection;
 
 class BoardTests {
-	public static final int LEGEND_LENGTH = 1;
-	public static final int NUM_ROWS = 1;
-	public static final int NUM_COLUMNS = 1;
+	public static final int LEGEND_LENGTH = 11;
+	public static final int NUM_ROWS = 25;
+	public static final int NUM_COLUMNS = 22;
 	public static Board board;
 	
 	Map<Character, String> legend = new HashMap<Character, String>();
@@ -23,8 +23,8 @@ class BoardTests {
 	@Before	
 	public static void Start() {
 		board = Board.getInstance();
-		board.setBoardConfigFile("CTest_ClueLayout.csv");	
-		board.setLegendConfigFile("CTest_ClueLegend.txt");
+		board.setBoardConfigFile("ClueRooms.csv");	
+		board.setLegendConfigFile("ClueRooms.txt");
 		board.initialize();
 	}
 	
@@ -32,11 +32,11 @@ class BoardTests {
 	public void testRooms() {
 		legend = board.getLegend();
 		assertEquals(LEGEND_LENGTH, legend.size());
-		assertEquals("", legend.get(""));
-		assertEquals("", legend.get(""));
-		assertEquals("", legend.get(""));
-		assertEquals("", legend.get(""));
-		assertEquals("", legend.get(""));
+		assertEquals("M", legend.get("Marquez"));
+		assertEquals("T", legend.get("Coors Tek"));
+		assertEquals("A", legend.get("Alderson"));
+		assertEquals("C", legend.get("CTLM"));
+		assertEquals("W", legend.get("Walkway"));
 	}
 	
 	@Test
@@ -47,21 +47,21 @@ class BoardTests {
 	
 	@Test
 	public void testDoorDirection() {
-		BoardCell room = board.getCellAt(0,0);
+		BoardCell room = board.getCellAt(11,7);
 		assertTrue(room.isDoorway());
-		//assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
-		room = board.getCellAt(0,0);
+		assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
+		room = board.getCellAt(22,15);
 		assertTrue(room.isDoorway());
-		//assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
-		room = board.getCellAt(0,0);
+		assertEquals(DoorDirection.LEFT, room.getDoorDirection());
+		room = board.getCellAt(20,5);
 		assertTrue(room.isDoorway());
-		//assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
-		room = board.getCellAt(0,0);
+		assertEquals(DoorDirection.UP, room.getDoorDirection());
+		room = board.getCellAt(10,20);
 		assertTrue(room.isDoorway());
-		//assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
-		room = board.getCellAt(0,0);
+		assertEquals(DoorDirection.DOWN, room.getDoorDirection());
+		room = board.getCellAt(13,9);
 		assertFalse(room.isDoorway());
-		room = board.getCellAt(0,0);
+		room = board.getCellAt(12,12);
 		assertFalse(room.isDoorway());
 	}
 	
@@ -75,15 +75,15 @@ class BoardTests {
 					numDoors++;
 			}
 		}
-		assertEquals(1, numDoors);
+		assertEquals(12, numDoors);
 	}
 	
 	@Test
 	public void testRoomInitials() {
-		//assertEquals('A', board.getCellAt(1,1).getInital());
-		//assertEquals('A', board.getCellAt(1,1).getInital());
-		//assertEquals('A', board.getCellAt(1,1).getInital());
-		//assertEquals('A', board.getCellAt(1,1).getInital());
+		assertEquals('H', board.getCellAt(24,0).getInitial());
+		assertEquals('C', board.getCellAt(23,4).getInitial());
+		assertEquals('W', board.getCellAt(13,10).getInitial());
+		assertEquals('K', board.getCellAt(13,13).getInitial());
 	}
 
 }
