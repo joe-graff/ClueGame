@@ -1,0 +1,11 @@
+M, Marquez, Card
+T, Coors Tek, Card
+E, Berthoud, Card
+S, Stratton, Card
+G, Green Center, Card
+A, Alderson, Card
+B, Brown, Card
+H, Hill, Card
+C, CTLM, Card
+K, Kafadar, Other
+W, Walkway, Other
