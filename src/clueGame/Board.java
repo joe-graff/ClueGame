@@ -22,42 +22,24 @@ public class Board {
 	public void loadBoardConfig() {}
 	public void calcAdjacencies() {}
 	public void calcTargets(BoardCell cell, int pathLength) {}
-	
-	public String getBoardConfigFile() {
-		return boardConfigFile;
-	}
-	
-	public void setBoardConfigFile(String boardConfigFile) {
-		this.boardConfigFile = boardConfigFile;
-	}
-	
-	public String getRoomConfigFile() {
-		return legendConfigFile;
-	}
-	
-	public void setLegendConfigFile(String legendConfigFile) {
-		this.legendConfigFile = legendConfigFile;
-	}
-	
+	public String getBoardConfigFile() {return null;}
+	public void setBoardConfigFile(String boardConfigFile) {}
+	public String getRoomConfigFile() {return null;}
+	public void setLegendConfigFile(String legendConfigFile) {}
 	public Map<Character, String> getLegend(){
-		return legend;
+		Map<Character,String> temp = null;
+		return temp;
 	}
-	
-	public void setLegend(Map<Character, String> legend) {
-		this.legend = legend;
-	}
-	
+	public void setLegend(Map<Character, String> legend) {}
 	public BoardCell getCellAt(int row, int col) {
-		BoardCell b = board[row][col];
+		BoardCell b = null;
 		return b;
 	}
-	
 	public int getRows() {
-		return NUM_ROWS;
+		return (Integer) null;
 	}
-	
 	public int getColumns() {
-		return NUM_COLUMNS;
+		return (Integer) null;
 	}
 	
 }
