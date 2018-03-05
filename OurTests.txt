@@ -1,0 +1,13 @@
+Authors: Joseph Graff and Lewis Setter
+
+There are 25 Rows
+There are 22 Columns
+Marquez is represented as M
+CTLM is represented as C
+Stratton has a door that opens RIGHT
+Green Center has a door that opens LEFT
+CTLM has a door that opens DOWN
+(13,9) is a walkway
+There are 12 total doors
+H is the initial at (24,0)
+W is the initial at (13,10)

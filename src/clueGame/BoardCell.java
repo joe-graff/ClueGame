@@ -21,9 +21,9 @@ public class BoardCell {
 		this.column = column;
 	}
 	
-	public boolean isWalkway() {return false;}
-	public boolean isRoom() {return false;}
-	public boolean isDoorway() {return false;}
-	public DoorDirection getDoorDirection() {return null;}
-	public char getInitial() {return (Character) null;}
+	public boolean isWalkway() {return false;} // Tests if a cell is a walkway
+	public boolean isRoom() {return false;} // Tests if a cell is a room
+	public boolean isDoorway() {return false;} //Tests if a cell is a doorway
+	public DoorDirection getDoorDirection() {return null;} // Gets the direction of the door (enum)
+	public char getInitial() {return (Character) null;} //Gets the initial of the cell
 }
