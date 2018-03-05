@@ -34,14 +34,15 @@ public class Board {
 	 * @return Map<Character, String>
 	 */
 	public Map<Character, String> getLegend(){
-		Map<Character,String> temp = null;
-		return temp;
+		return legend;
 	}
 	/**
 	 * sets the legend
 	 * @param legend
 	 */
-	public void setLegend(Map<Character, String> legend) {}
+	public void setLegend(Map<Character, String> legend) {
+		this.legend=legend;
+	}
 	/**
 	 * returns a BoardCell based of the given row and column
 	 * @param row
@@ -49,7 +50,7 @@ public class Board {
 	 * @return BoardCell
 	 */
 	public BoardCell getCellAt(int row, int col) {
-		BoardCell b = null;
+		BoardCell b = board[row][col];
 		return b;
 	}
 	/**
@@ -57,13 +58,13 @@ public class Board {
 	 * @return
 	 */
 	public int getRows() {
-		return (Integer) null;
+		return NUM_ROWS;
 	}
 	/**
 	 * gets the Column
 	 * @return
 	 */
 	public int getColumns() {
-		return (Integer) null;
+		return NUM_COLUMNS;
 	}
 }
