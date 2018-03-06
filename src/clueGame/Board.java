@@ -187,24 +187,16 @@ public class Board {
 				BoardCell a = board[i][j];
 				Set<BoardCell> temp = new HashSet<BoardCell>();
 				if(i != 0) {
-					if(thisIsAdjacent(board[i][j],board[i-1][j])) {
-						temp.add(board[i-1][j]);
-					}
+					temp.add(board[i-1][j]);
 				}
 				if(i != NUM_COLUMNS - 2) {
-					if(thisIsAdjacent(board[i][j],board[i+1][j])) {
-						temp.add(board[i+1][j]);
-					}
+					temp.add(board[i+1][j]);
 				}
 				if(j != 0) { 
-					if(thisIsAdjacent(board[i][j],board[i][j-1])) {
-						temp.add(board[i][j-1]);
-					}
+					temp.add(board[i][j-1]);
 				}
 				if(j != NUM_ROWS - 2) { 
-					if(thisIsAdjacent(board[i][j],board[i][j+1])) {
-						temp.add(board[i][j+1]);
-					}
+					temp.add(board[i][j+1]);
 				}
 				adjCells.put(a, temp);
 			}
@@ -278,17 +270,4 @@ public class Board {
 		roomConfigFile = roomConfig;
 		
 	}
-	
-
-	boolean thisIsAdjacent(BoardCell currentCell, BoardCell otherCell) {
-		if (otherCell.isDoorway()) {
-			return true;
-		}
-		else if (currentCell.getInitial() == otherCell.getInitial()) {
-			return true;
-		}
-		return false;
-	}
-	
 }
-
