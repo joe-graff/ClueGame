@@ -1,13 +1,14 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.DoorDirection;
