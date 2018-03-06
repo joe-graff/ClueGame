@@ -213,7 +213,7 @@ public class Board {
 		for(BoardCell a : adjCells.get(startCell)) {
 			if(!visited.contains(a)) {
 				visited.add(a);
-				if(pathLength == 1)
+				if(pathLength == 1 || a.isDoorway())
 					targetCells.add(a);
 				else
 					calcTargets(a, pathLength - 1);
