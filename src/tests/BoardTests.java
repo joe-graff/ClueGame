@@ -112,5 +112,31 @@ public class BoardTests {
 		assertEquals('W', board.getCellAt(13,10).getInitial());
 		assertEquals('K', board.getCellAt(13,13).getInitial());
 	}
-
+	
+	/**
+	 * test adjacency list of a cell within a room
+	 */
+	@Test
+	public void adjTestInRoom() {
+		assertEquals(0, board.getAdjCells(3,20).size()); // mid room
+		assertEquals(0, board.getAdjCells(0,0).size()); // corner of board
+		assertEquals(0, board.getAdjCells(6,0).size()); // by walkway
+		assertEquals(0, board.getAdjCells(5,4).size()); // by walkway and door
+		assertEquals(0, board.getAdjCells(12,6).size()); // by door
+	}
+	
+	/**
+	 * test adjacency list of a cell within a room
+	 */
+	@Test
+	public void adjTestByDoor() {
+		assertEquals(3, board.getAdjCells(5,13).size()); // by room and door
+		assertEquals(4, board.getAdjCells(4,14).size()); // by door
+	}
+	
+	@Test
+	public void adjTestInDoor() {
+		assertTrue(board.getAdjCells(6,4).size() == 1);
+		assertTrue(board.getAdjCells(6,4).size().contains(board[6][5]));
+	}
 }
