@@ -202,6 +202,13 @@ public class Board {
 			}
 		}
 	}
+	/**
+	 * returns the list of adjacent cells
+	 * @return
+	 */
+	public Set<BoardCell> getAdjCells(BoardCell a){
+		return adjCells.get(a);
+	}
 	
 	/**
 	 * calculate all possible moves

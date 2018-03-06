@@ -112,5 +112,29 @@ public class BoardTests {
 		assertEquals('W', board.getCellAt(13,10).getInitial());
 		assertEquals('K', board.getCellAt(13,13).getInitial());
 	}
+	
+	/**
+	 * test a cell with only walkways as adjacent cells
+	 */
+	@Test
+	public void testOnlyWalkwaysAdjacent() {
+		BoardCell walkway = board.getCellAt(17,9);
+		assertTrue(walkway.isWalkway());
+		Set<BoardCell> temp = board.getAdjCells(walkway);
+		for(BoardCell a: temp) {
+			assertTrue(a.isWalkway());
+		}
+	}
+	
+	@Test
+	public void testEdgeOfBoard() {
+		BoardCell edge = board.getCellAt(8, 0);
+		Set<BoardCell> testList = board.getAdjCells(edge);
+		assertEquals(2, testList.size());
+		assertTrue(testList.contains(board.getCellAt(7,0)));
+		assertTrue(testList.contains(board.getCellAt(8,1)));
+		edge = board.getCellAt(0, 6);
+	}
+	
 
 }
