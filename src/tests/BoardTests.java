@@ -9,6 +9,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import clueGame.BadConfigFormatException;
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.DoorDirection;
@@ -27,14 +28,17 @@ class BoardTests {
 	public static Board board;
 	
 	Map<Character, String> legend = new HashMap<Character, String>();
+	
 	/**
 	 * loads in the files to begin testing
+	 * @throws BadConfigFormatException 
 	 */
 	@Before	
-	public static void Start() {
+	public static void Start() throws BadConfigFormatException {
 		board = Board.getInstance();
-		board.loadBoardConfig("ClueRooms.csv");	
-		board.loadLegendConfig("ClueRooms.txt");
+		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt");
+		board.loadBoardConfig();	
+		board.loadRoomConfig();
 		board.initialize();
 	}
 	
@@ -57,8 +61,8 @@ class BoardTests {
 	 */
 	@Test
 	public void testDimensions() {
-		assertEquals(NUM_ROWS, board.getRows());
-		assertEquals(NUM_COLUMNS, board.getColumns());
+		assertEquals(NUM_ROWS, board.getNumRows());
+		assertEquals(NUM_COLUMNS, board.getNumColumns());
 	}
 	
 	/**

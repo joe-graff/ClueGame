@@ -12,6 +12,12 @@ package clueGame;
  */
 public class BadConfigFormatException extends Exception{
 	
+	// default constructor
+	public BadConfigFormatException() {
+		System.out.println("Error of with configuration files");
+	}
 	
-	public BadConfigFormatException() {} //default constructor
+	public BadConfigFormatException(String message) {
+		System.out.println(message);
+	}
 }
