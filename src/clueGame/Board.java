@@ -1,9 +1,7 @@
 package clueGame;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -30,13 +28,15 @@ public class Board {
 	private BoardCell board[][];
 	private Map<Character, String> legend;
 	private String boardConfigFile;
-	private String roomConfigFile;
-	private static Board instance = new Board();
+	private String roomConfigFile; 
+	private static Board instance = new Board(); // the only instance of the board
 	private Map<BoardCell, Set<BoardCell>> adjCells; // list of all cells adjacent cells for each cell on the board.
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
 	
-	// constructor returns the only board
+	/**
+	 * constructor returns the only board
+	 */
 	private Board() { 
 		adjCells = new HashMap<BoardCell, Set<BoardCell>>();
 		visited = new HashSet<BoardCell>();
@@ -44,12 +44,17 @@ public class Board {
 		legend = new HashMap<Character, String>();
 	}
 	
-	//gets an instance of the board
+	/**
+	 * gets an instance of the board
+	 * @return
+	 */
 	public static Board getInstance() {
 		return instance;
 	} 
 	
-	//initializes the board
+	/**
+	 * initializes the board
+	 */
 	public void initialize() {
 		try {
 			loadRoomConfig();
@@ -64,47 +69,52 @@ public class Board {
 		calcAdjacencies();
 	} 
 	
-	// loads the board
+	/**
+	 *  loads the board
+	 * @throws BadConfigFormatException
+	 */
 	public void loadBoardConfig() throws BadConfigFormatException {
-		// opens file
-		FileReader iFS;
+		
+		// opens and read file
+		FileReader reader;
 		ArrayList<String> input = new ArrayList<String>();
 		try {
-			iFS = new FileReader(boardConfigFile);
-			Scanner scan = new Scanner(iFS);
-			// read in rows
+			reader = new FileReader(boardConfigFile);
+			Scanner scan = new Scanner(reader);
 			while (scan.hasNextLine()) {
 				input.add(scan.nextLine());
 			}
 			scan.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(boardConfigFile + " does not exist");
 		}
-		//set rows
+		
+		// set rows
 		NUM_ROWS = input.size();
 		board = new BoardCell[input.size()][];
-		//allocate columns
+		
+		// create columns
 		for (int i = 0; i < input.size(); i++) {
 			String[] split = input.get(i).split(",");
 			board[i] = new BoardCell[split.length];
 			if (i == 0) {
 				NUM_COLUMNS = split.length;
 			}
-			//throws exception if columns are not consistent
+			// throws exception if columns are not consistent
 			if (i > 0) {
 				if (split.length != NUM_COLUMNS) {
-					throw new BadConfigFormatException("Row " + i + " doesnt have the same number of columns.");
+					throw new BadConfigFormatException("column length issue in row " + i);
 				}
 			}
-			// puts board together
+			// build the array of BoardCells
 			for (int j = 0; j < split.length; j++) {
 				if (legend.containsKey(split[j].charAt(0))){
 					board[i][j] = new BoardCell(i,j,split[j].charAt(0));
 				}
 				else {
-					throw new BadConfigFormatException("The letter " + split[j].charAt(0) + " is not in the legend");
+					throw new BadConfigFormatException(split[j].charAt(0) + " is not in the legend");
 				}
-				// determines if location is a door
+				// determines if the cell is a door
 				if (split[j].length() > 1) {
 					if (split[j].charAt(1) == 'R' || split[j].charAt(1) == 'U' || split[j].charAt(1) == 'L' || split[j].charAt(1) == 'D') {
 						board[i][j].setisDoorway(true);
@@ -129,30 +139,36 @@ public class Board {
 		}
 	}
 	
-	// loads the legend
+	/**
+	 *  loads the legend
+	 * @throws BadConfigFormatException
+	 */
 	public void loadRoomConfig() throws BadConfigFormatException {
+		
 		//opens file
-		FileReader iFS;
+		FileReader reader;
 		Scanner scan = null;
 		try {
-			iFS = new FileReader(roomConfigFile);
-			scan = new Scanner(iFS);
+			reader = new FileReader(roomConfigFile);
+			scan = new Scanner(reader);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(roomConfigFile + " does not exist");
 		}
 		//reads in the lines of the file
 		while (scan.hasNextLine()) {
 			String input = scan.nextLine();
 			String[] split = input.split(", ");
+			
 			//throws exception if not all contents are available
 			if (split.length < 3) {
 				throw new BadConfigFormatException("There are not 3 entries for this line" + split[0]);
 			}
 			String str = split[2];
+			
 			// throws exception if room is not of type card or other
 			if (!str.equalsIgnoreCase("Card")) {
 				if (!str.equalsIgnoreCase("Other")) {
-					throw new BadConfigFormatException("Type set Error: " + split[1] + " " + split[2]);
+					throw new BadConfigFormatException(split[2] + " is not a legal type");
 				}
 			}
 			// puts legend together
@@ -161,6 +177,10 @@ public class Board {
 		scan.close();
 	}
 	
+	
+	/**
+	 * calculate all adjacencies
+	 */
 	public void calcAdjacencies() {
 		for (int i = 0; i < NUM_ROWS - 1; i++) {
 			for (int j = 0; j < NUM_COLUMNS - 1; j++) {
@@ -183,7 +203,11 @@ public class Board {
 		}
 	}
 	
-	//calculates the possible moves
+	/**
+	 * calculate all possible moves
+	 * @param startCell
+	 * @param pathLength
+	 */
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		visited.add(startCell);
 		for(BoardCell a : adjCells.get(startCell)) {
