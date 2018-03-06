@@ -61,45 +61,54 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
-		calcAdjacencies();
+		//calcAdjacencies();
 	} 
 	
 	// loads the board
 	public void loadBoardConfig() throws BadConfigFormatException {
-		ArrayList<String> lines = new ArrayList<String>();
+		// opens file
+		FileReader iFS;
+		ArrayList<String> input = new ArrayList<String>();
 		try {
-			FileReader input = new FileReader(boardConfigFile);
-			Scanner reader = new Scanner(input);
-			while(reader.hasNextLine()) {
-				lines.add(reader.nextLine());
+			iFS = new FileReader(boardConfigFile);
+			Scanner scan = new Scanner(iFS);
+			// read in rows
+			while (scan.hasNextLine()) {
+				input.add(scan.nextLine());
 			}
-			reader.close();
-		} 
-		catch (FileNotFoundException e) {
-				System.out.println(boardConfigFile + " not found");
+			scan.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		board = new BoardCell[lines.size()][];
-		for (int i = 0; i < lines.size(); i++) {
-			String[] split = lines.get(i).split(",");
+		//set rows
+		NUM_ROWS = input.size();
+		board = new BoardCell[input.size()][];
+		//allocate columns
+		for (int i = 0; i < input.size(); i++) {
+			String[] split = input.get(i).split(",");
 			board[i] = new BoardCell[split.length];
 			if (i == 0) {
 				NUM_COLUMNS = split.length;
 			}
-			else {
+			//throws exception if columns are not consistent
+			if (i > 0) {
 				if (split.length != NUM_COLUMNS) {
-					throw new BadConfigFormatException("Row " + i + " is a different length than the previous row");
+					throw new BadConfigFormatException("Row " + i + " doesnt have the same number of columns.");
 				}
-				for (int j = 0; j < split.length; j++) {
-					if (legend.containsKey(split[j].charAt(0))){
-						board[i][j] = new BoardCell(i,j,split[j].charAt(0));
-					}
-					else {
-						throw new BadConfigFormatException(split[j].charAt(0) + " is not in the legend");
-					}
-					if (split[j].length() > 1) {
-						if (split[j].charAt(1) == 'R' || split[j].charAt(1) == 'U' || split[j].charAt(1) == 'L' || split[j].charAt(1) == 'D') {
-							board[i][j].setIsDoor(true);
-							switch(split[j].charAt(1)) {
+			}
+			// puts board together
+			for (int j = 0; j < split.length; j++) {
+				if (legend.containsKey(split[j].charAt(0))){
+					board[i][j] = new BoardCell(i,j,split[j].charAt(0));
+				}
+				else {
+					throw new BadConfigFormatException("The letter " + split[j].charAt(0) + " is not in the legend");
+				}
+				// determines if location is a door
+				if (split[j].length() > 1) {
+					if (split[j].charAt(1) == 'R' || split[j].charAt(1) == 'U' || split[j].charAt(1) == 'L' || split[j].charAt(1) == 'D') {
+						board[i][j].setisDoorway(true);
+						switch(split[j].charAt(1)) {
 							case 'D':
 								board[i][j].setDoorDirection(DoorDirection.DOWN);
 								break;
@@ -112,42 +121,45 @@ public class Board {
 							case 'R':
 								board[i][j].setDoorDirection(DoorDirection.RIGHT);
 								break;
-							}
-
 						}
+
 					}
 				}
 			}
-
 		}
 	}
 	
 	// loads the legend
 	public void loadRoomConfig() throws BadConfigFormatException {
+		//opens file
+		FileReader iFS;
+		Scanner scan = null;
 		try {
-			FileReader reader = new FileReader(roomConfigFile);
-			Scanner legendInfo = new Scanner(reader);
-			while (legendInfo.hasNextLine()) {
-				String input = legendInfo.nextLine();
-				String[] split = input.split(", ");
-				if (split.length != 2) {
-					throw new BadConfigFormatException("There are not 2 entries for one of the lines in the file");
-				}
-				if (split[0].length() > 2) {
-					throw new BadConfigFormatException("The symbol " + split[0] + " is too long");
-				}
-				String str = split[2];
-				if (!str.equalsIgnoreCase("Card")) {
-					if (!str.equalsIgnoreCase("Other")) {
-						throw new BadConfigFormatException("One of the cell types in the file is not legal");
-					}
-				}
-				legend.put(split[0].charAt(0), split[1]);
-				legendInfo.close(); 
-			}
+			iFS = new FileReader(roomConfigFile);
+			scan = new Scanner(iFS);
 		} catch (FileNotFoundException e) {
-			System.out.println(roomConfigFile + " not found");
+			e.printStackTrace();
 		}
+		//reads in the lines of the file
+		while (scan.hasNextLine()) {
+			String input = scan.nextLine();
+			String[] split = input.split(", ");
+			//throws exception if not all contents are available
+			if (split.length < 3) {
+				throw new BadConfigFormatException("There are not 3 entries for this line" + split[0]);
+			}
+			String str = split[2];
+			// throws exception if room is not of type card or other
+			if (!str.equalsIgnoreCase("Card")) {
+				if (!str.equalsIgnoreCase("Other")) {
+					throw new BadConfigFormatException("Type set Error: " + split[1] + " " + split[2]);
+				}
+			}
+			// puts legend together
+			legend.put(split[0].charAt(0), split[1]);
+		}
+		scan.close();
+
 	}
 	
 	public void calcAdjacencies() {

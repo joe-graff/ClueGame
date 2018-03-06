@@ -21,7 +21,7 @@ import clueGame.DoorDirection;
  *
  */
 
-class BoardTests {
+public class BoardTests {
 	public static final int LEGEND_LENGTH = 11;
 	public static final int NUM_ROWS = 25;
 	public static final int NUM_COLUMNS = 22;
@@ -34,11 +34,11 @@ class BoardTests {
 	 * @throws BadConfigFormatException 
 	 */
 	@Before	
-	public static void Start() throws BadConfigFormatException {
+	public void Start() throws BadConfigFormatException {
 		board = Board.getInstance();
 		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt");
-		board.loadBoardConfig();	
 		board.loadRoomConfig();
+		board.loadBoardConfig();	
 		board.initialize();
 	}
 	

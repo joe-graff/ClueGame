@@ -10,7 +10,7 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private char initial;
-	private Boolean isDoor;
+	private Boolean isDoorway;
 	private DoorDirection doorDirection;
 	
 	/**
@@ -22,6 +22,7 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 		this.initial = initial;
+		isDoorway = new Boolean(false);
 	}
 	// Tests if a cell is a walkway
 	public boolean isWalkway() {
@@ -35,26 +36,22 @@ public class BoardCell {
 	}
 	//Tests if a cell is a doorway
 	public boolean isDoorway() {
-		return false;
+		return isDoorway;
 	} 
 	// Gets the direction of the door (enum)
 	public DoorDirection getDoorDirection() {
-		return getDoorDirection();
+		return doorDirection;
 	} 
 	//Gets the initial of the cell
 	public char getInitial() {
 		return initial;
 	}
 	
-	public void setIsDoor(boolean b) {
-		isDoor = b;
+	public void setisDoorway(boolean b) {
+		isDoorway = b;
 	}
 	
 	public void setDoorDirection(DoorDirection dir) {
 		doorDirection = dir;
-	}
-	
-
-		
 	}
 }
