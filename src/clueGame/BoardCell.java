@@ -32,6 +32,8 @@ public class BoardCell {
 	} 
 	// Tests if a cell is a room
 	public boolean isRoom() {
+		if(getInitial() != 'W')
+			return true;
 		return false;
 	}
 	//Tests if a cell is a doorway
@@ -54,4 +56,6 @@ public class BoardCell {
 	public void setDoorDirection(DoorDirection dir) {
 		doorDirection = dir;
 	}
+	
+
 }
