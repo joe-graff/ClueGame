@@ -27,8 +27,6 @@ public class BoardTests {
 	public static final int NUM_COLUMNS = 22;
 	public static Board board;
 	
-	Map<Character, String> legend = new HashMap<Character, String>();
-	
 	/**
 	 * loads in the files to begin testing
 	 * @throws BadConfigFormatException 
@@ -47,13 +45,12 @@ public class BoardTests {
 	 */
 	@Test
 	public void testRooms() {
-		legend = board.getLegend();
-		assertEquals(LEGEND_LENGTH, legend.size());
-		assertEquals("M", legend.get("Marquez"));
-		assertEquals("T", legend.get("Coors Tek"));
-		assertEquals("A", legend.get("Alderson"));
-		assertEquals("C", legend.get("CTLM"));
-		assertEquals("W", legend.get("Walkway"));
+		assertEquals(LEGEND_LENGTH, board.getLegend().size());
+		assertEquals("Kafadar", board.getLegend().get('K'));
+		assertEquals("Coors Tek", board.getLegend().get('T'));
+		assertEquals("Alderson", board.getLegend().get('A'));
+		assertEquals("CTLM", board.getLegend().get('C'));
+		assertEquals("Walkway", board.getLegend().get('W'));
 	}
 	
 	/**
@@ -73,16 +70,16 @@ public class BoardTests {
 	public void testDoorDirection() {
 		BoardCell room = board.getCellAt(22,9);
 		assertTrue(room.isDoorway());
-		assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
+		assertEquals(DoorDirection.LEFT, room.getDoorDirection());
 		room = board.getCellAt(22,15);
 		assertTrue(room.isDoorway());
-		assertEquals(DoorDirection.LEFT, room.getDoorDirection());
+		assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
 		room = board.getCellAt(10,20);
 		assertTrue(room.isDoorway());
-		assertEquals(DoorDirection.UP, room.getDoorDirection());
+		assertEquals(DoorDirection.DOWN, room.getDoorDirection());
 		room = board.getCellAt(20,5);
 		assertTrue(room.isDoorway());
-		assertEquals(DoorDirection.DOWN, room.getDoorDirection());
+		assertEquals(DoorDirection.UP, room.getDoorDirection());
 		room = board.getCellAt(13,9);
 		assertFalse(room.isDoorway());
 		room = board.getCellAt(12,12);

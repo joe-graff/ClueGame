@@ -61,7 +61,7 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
-		//calcAdjacencies();
+		calcAdjacencies();
 	} 
 	
 	// loads the board
@@ -159,24 +159,23 @@ public class Board {
 			legend.put(split[0].charAt(0), split[1]);
 		}
 		scan.close();
-
 	}
 	
 	public void calcAdjacencies() {
-		for (int i = 0; i < NUM_ROWS; i++) {
-			for (int j = 0; j < NUM_COLUMNS; j++) {
+		for (int i = 0; i < NUM_ROWS - 1; i++) {
+			for (int j = 0; j < NUM_COLUMNS - 1; j++) {
 				BoardCell a = board[i][j];
 				Set<BoardCell> temp = new HashSet<BoardCell>();
 				if(i != 0) {
 					temp.add(board[i-1][j]);
 				}
-				if(i != NUM_COLUMNS -1) {
+				if(i != NUM_COLUMNS - 2) {
 					temp.add(board[i+1][j]);
 				}
 				if(j != 0) { 
 					temp.add(board[i][j-1]);
 				}
-				if(j != NUM_ROWS-1) { 
+				if(j != NUM_ROWS - 2) { 
 					temp.add(board[i][j+1]);
 				}
 				adjCells.put(a, temp);

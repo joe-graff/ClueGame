@@ -1,3 +1,4 @@
+B, Brown, Card
 M, Marquez, Card
 T, Coors Tek, Card
 E, Berthoud, Card
@@ -6,6 +7,5 @@ G, Green Center, Card
 A, Alderson, Card
 H, Hill, Card
 C, CTLM, Card
-Z, Brown, Card
 K, Kafadar, Other
 W, Walkway, Other
