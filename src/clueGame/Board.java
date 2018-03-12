@@ -251,6 +251,15 @@ public class Board {
 	public Set<BoardCell> getTargets(){
 		return targetCells;
 	}
+	
+	/**
+	 * returns the list of adjacent cells for one cell on the board
+	 * @return
+	 */
+	public Set<BoardCell> getAdjacencies(BoardCell cell){
+		return adjCells.get(cell);
+	}
+	
 	/**
 	 * gets the legend
 	 * @return Map<Character, String>
@@ -288,4 +297,5 @@ public class Board {
 		roomConfigFile = roomConfig;
 		
 	}
+
 }
