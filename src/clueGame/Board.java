@@ -202,12 +202,24 @@ public class Board {
 			}
 		}
 	}
+	
+	/**
+	 * returns a BoardCell based of the given row and column
+	 * @param row
+	 * @param col
+	 * @return BoardCell
+	 */
+	public BoardCell getCellAt(int row, int col) {
+		BoardCell b = board[row][col];
+		return b;
+	}
+	
 	/**
 	 * returns the list of adjacent cells
 	 * @return
 	 */
-	public Set<BoardCell> getAdjCells(BoardCell a){
-		return adjCells.get(a);
+	public Set<BoardCell> getAdjList(int row, int col){
+		return adjCells.get(getCellAt(row,col));
 	}
 	
 	/**
@@ -215,7 +227,8 @@ public class Board {
 	 * @param startCell
 	 * @param pathLength
 	 */
-	public void calcTargets(BoardCell startCell, int pathLength) {
+	public void calcTargets(int row, int column, int pathLength) {
+		BoardCell startCell = board[row][column];
 		visited.add(startCell);
 		for(BoardCell a : adjCells.get(startCell)) {
 			if(!visited.contains(a)) {
@@ -223,7 +236,7 @@ public class Board {
 				if(pathLength == 1)
 					targetCells.add(a);
 				else
-					calcTargets(a, pathLength - 1);
+					calcTargets(row, column , pathLength - 1);
 				visited.remove(a);
 			}
 		}
@@ -244,17 +257,6 @@ public class Board {
 	
 	public void setLegend(Map<Character, String> legend) {
 		this.legend = legend;
-	}
-	
-	/**
-	 * returns a BoardCell based of the given row and column
-	 * @param row
-	 * @param col
-	 * @return BoardCell
-	 */
-	public BoardCell getCellAt(int row, int col) {
-		BoardCell b = board[row][col];
-		return b;
 	}
 	
 	/**

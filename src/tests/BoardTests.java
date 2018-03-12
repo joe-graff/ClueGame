@@ -120,7 +120,7 @@ public class BoardTests {
 	public void testOnlyWalkwaysAdjacent() {
 		BoardCell walkway = board.getCellAt(17,9);
 		assertTrue(walkway.isWalkway());
-		Set<BoardCell> temp = board.getAdjCells(walkway);
+		Set<BoardCell> temp = board.getAdjList(walkway);
 		for(BoardCell a: temp) {
 			assertTrue(a.isWalkway());
 		}
@@ -132,23 +132,23 @@ public class BoardTests {
 	@Test
 	public void testEdgeOfBoard() {
 		BoardCell edge = board.getCellAt(8, 0);
-		Set<BoardCell> testList = board.getAdjCells(edge);
+		Set<BoardCell> testList = board.getAdjList(edge);
 		assertEquals(2, testList.size());
 		assertTrue(testList.contains(board.getCellAt(7,0)));
 		assertTrue(testList.contains(board.getCellAt(8,1)));
 		edge = board.getCellAt(0, 6);
-		testList = board.getAdjCells(edge);
+		testList = board.getAdjList(edge);
 		assertEquals(3, testList.size());
 		assertTrue(testList.contains(board.getCellAt(0,5)));
 		assertTrue(testList.contains(board.getCellAt(0,7)));
 		assertTrue(testList.contains(board.getCellAt(1,6)));
 		edge = board.getCellAt(11,21);
-		testList = board.getAdjCells(edge);
+		testList = board.getAdjList(edge);
 		assertEquals(2,testList.size());
 		assertTrue(testList.contains(board.getCellAt(12,21)));
 		assertTrue(testList.contains(board.getCellAt(11,20)));
 		edge = board.getCellAt(24,12);
-		testList = board.getAdjCells(edge);
+		testList = board.getAdjList(edge);
 		assertEquals(1,testList.size());
 		assertTrue(testList.contains(board.getCellAt(23,12)));
 	}
@@ -159,14 +159,14 @@ public class BoardTests {
 	@Test
 	public void testAdjToDoor() {
 		BoardCell walkway = board.getCellAt(12,8);
-		Set<BoardCell> testList = board.getAdjCells(walkway);
+		Set<BoardCell> testList = board.getAdjList(walkway);
 		assertEquals(4, testList.size());
 		assertTrue(testList.contains(board.getCellAt(13,8)));
 		assertTrue(testList.contains(board.getCellAt(11,8)));
 		assertTrue(testList.contains(board.getCellAt(12,7)));
 		assertTrue(testList.contains(board.getCellAt(12,9)));
 		walkway = board.getCellAt(19,2);
-		testList = board.getAdjCells(walkway);
+		testList = board.getAdjList(walkway);
 		assertEquals(3, testList.size());
 		assertTrue(testList.contains(board.getCellAt(19,1)));
 		assertTrue(testList.contains(board.getCellAt(19,3)));
@@ -175,11 +175,11 @@ public class BoardTests {
 	
 	@Test
 	public void adjTestInRoom() {
-		assertEquals(0, board.getAdjCells(board.getCellAt(3,20)).size()); // mid room
-		assertEquals(0, board.getAdjCells(board.getCellAt(0,0)).size()); // corner of board
-		assertEquals(0, board.getAdjCells(board.getCellAt(6,0)).size()); // by walkway
-		assertEquals(0, board.getAdjCells(board.getCellAt(5,4)).size()); // by walkway and door
-		assertEquals(0, board.getAdjCells(board.getCellAt(12,6)).size()); // by door
+		assertEquals(0, board.getAdjList(board.getCellAt(3,20)).size()); // mid room
+		assertEquals(0, board.getAdjList(board.getCellAt(0,0)).size()); // corner of board
+		assertEquals(0, board.getAdjList(board.getCellAt(6,0)).size()); // by walkway
+		assertEquals(0, board.getAdjList(board.getCellAt(5,4)).size()); // by walkway and door
+		assertEquals(0, board.getAdjList(board.getCellAt(12,6)).size()); // by door
 	}
 	
 	/**
@@ -187,8 +187,8 @@ public class BoardTests {
 	 */
 	@Test
 	public void adjTestByDoor() {
-		assertEquals(3, board.getAdjCells(board.getCellAt(5,13)).size()); // by room and door
-		assertEquals(4, board.getAdjCells(board.getCellAt(4,14)).size()); // by door
+		assertEquals(3, board.getAdjList(board.getCellAt(5,13)).size()); // by room and door
+		assertEquals(4, board.getAdjList(board.getCellAt(4,14)).size()); // by door
 	}
 	
 	/**
@@ -196,18 +196,17 @@ public class BoardTests {
 	 */
 	@Test
 	public void adjTestInDoor() {
-		assertTrue(board.getAdjCells(board.getCellAt(6,4)).size() == 1);
-		assertTrue(board.getAdjCells(board.getCellAt(6,4)).contains(board.getCellAt(6,5))); // adjacent cell to right
-		assertTrue(board.getAdjCells(board.getCellAt(22,9)).size() == 1);
-		assertTrue(board.getAdjCells(board.getCellAt(22,9)).contains(board.getCellAt(22,8))); // adjacent cell to left
-		assertTrue(board.getAdjCells(board.getCellAt(4,13)).size() == 1);
-		assertTrue(board.getAdjCells(board.getCellAt(4,13)).contains(board.getCellAt(5,13))); // adjacent cell to below
-		assertTrue(board.getAdjCells(board.getCellAt(20,5)).size() == 1);
-		assertTrue(board.getAdjCells(board.getCellAt(20,5)).contains(board.getCellAt(19,5))); // adjacent cell to above
+		assertTrue(board.getAdjList(board.getCellAt(6,4)).size() == 1);
+		assertTrue(board.getAdjList(board.getCellAt(6,4)).contains(board.getCellAt(6,5))); // adjacent cell to right
+		assertTrue(board.getAdjList(board.getCellAt(22,9)).size() == 1);
+		assertTrue(board.getAdjList(board.getCellAt(22,9)).contains(board.getCellAt(22,8))); // adjacent cell to left
+		assertTrue(board.getAdjList(board.getCellAt(4,13)).size() == 1);
+		assertTrue(board.getAdjList(board.getCellAt(4,13)).contains(board.getCellAt(5,13))); // adjacent cell to below
+		assertTrue(board.getAdjList(board.getCellAt(20,5)).size() == 1);
+		assertTrue(board.getAdjList(board.getCellAt(20,5)).contains(board.getCellAt(19,5))); // adjacent cell to above
 	}
 	
-	/**
-	 * test target list when a player can enter a room
+	//test target list when a player can enter a room
 	@Test
 	public void testRoomEntry() {
 		board.calcTargets(board.getCellAt(11, 20), 3);
@@ -221,6 +220,5 @@ public class BoardTests {
 		assertTrue(board.getTargets().contains(board.getCellAt(10, 20)));
 		assertTrue(board.getTargets().contains(board.getCellAt(13, 20)));
 	}
-	*/
 
 }
