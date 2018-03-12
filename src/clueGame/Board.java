@@ -243,6 +243,12 @@ public class Board {
 	}
 	
 	/**
+	 * returns the list of target cells
+	 */
+	public Set<BoardCell> getTargets(){
+		return targetCells;
+	}
+	/**
 	 * gets the legend
 	 * @return Map<Character, String>
 	 */
