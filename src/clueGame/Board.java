@@ -58,6 +58,7 @@ public class Board {
 	public void initialize() {
 		try {
 			loadRoomConfig();
+			loadBoardConfig();
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
@@ -182,8 +183,9 @@ public class Board {
 	 * calculate all adjacencies
 	 */
 	public void calcAdjacencies() {
-		for (int i = 0; i < NUM_ROWS - 1; i++) {
-			for (int j = 0; j < NUM_COLUMNS - 1; j++) {
+		adjCells = new HashMap<BoardCell, Set<BoardCell>>();
+		for (int i = 0; i < NUM_ROWS-1; i++) {
+			for (int j = 0; j < NUM_COLUMNS-1; j++) {
 				BoardCell a = board[i][j];
 				Set<BoardCell> temp = new HashSet<BoardCell>();
 				if(i != 0) {
@@ -202,12 +204,24 @@ public class Board {
 			}
 		}
 	}
+	
+	/**
+	 * returns a BoardCell based of the given row and column
+	 * @param row
+	 * @param col
+	 * @return BoardCell
+	 */
+	public BoardCell getCellAt(int row, int col) {
+		BoardCell b = board[row][col];
+		return b;
+	}
+	
 	/**
 	 * returns the list of adjacent cells
 	 * @return
 	 */
-	public Set<BoardCell> getAdjCells(BoardCell a){
-		return adjCells.get(a);
+	public Set<BoardCell> getAdjList(int row, int col){
+		return adjCells.get(getCellAt(row,col));
 	}
 	
 	/**
@@ -215,18 +229,35 @@ public class Board {
 	 * @param startCell
 	 * @param pathLength
 	 */
-	public void calcTargets(BoardCell startCell, int pathLength) {
+	public void calcTargets(int row, int column, int pathLength) {
+		BoardCell startCell = getCellAt(row,column);
 		visited.add(startCell);
+		System.out.println(adjCells.get(startCell));
 		for(BoardCell a : adjCells.get(startCell)) {
 			if(!visited.contains(a)) {
 				visited.add(a);
 				if(pathLength == 1)
 					targetCells.add(a);
 				else
-					calcTargets(a, pathLength - 1);
+					calcTargets(row, column , pathLength - 1);
 				visited.remove(a);
 			}
 		}
+	}
+	
+	/**
+	 * returns the list of target cells
+	 */
+	public Set<BoardCell> getTargets(){
+		return targetCells;
+	}
+	
+	/**
+	 * returns the list of adjacent cells for one cell on the board
+	 * @return
+	 */
+	public Set<BoardCell> getAdjacencies(BoardCell cell){
+		return adjCells.get(cell);
 	}
 	
 	/**
@@ -244,17 +275,6 @@ public class Board {
 	
 	public void setLegend(Map<Character, String> legend) {
 		this.legend = legend;
-	}
-	
-	/**
-	 * returns a BoardCell based of the given row and column
-	 * @param row
-	 * @param col
-	 * @return BoardCell
-	 */
-	public BoardCell getCellAt(int row, int col) {
-		BoardCell b = board[row][col];
-		return b;
 	}
 	
 	/**
@@ -278,7 +298,4 @@ public class Board {
 		
 	}
 
-	public Set<BoardCell> getTargets() {
-		return targetCells;
-	}
 }
