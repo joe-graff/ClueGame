@@ -231,6 +231,7 @@ public class Board {
 	 */
 	public void calcTargets(int row, int column, int pathLength) {
 		BoardCell startCell = getCellAt(row,column);
+		System.out.println(startCell.toString());
 		visited.add(startCell);
 		System.out.println(adjCells.get(startCell));
 		for(BoardCell a : adjCells.get(startCell)) {
