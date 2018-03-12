@@ -58,6 +58,7 @@ public class Board {
 	public void initialize() {
 		try {
 			loadRoomConfig();
+			loadBoardConfig();
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
@@ -182,8 +183,9 @@ public class Board {
 	 * calculate all adjacencies
 	 */
 	public void calcAdjacencies() {
-		for (int i = 0; i < NUM_ROWS - 1; i++) {
-			for (int j = 0; j < NUM_COLUMNS - 1; j++) {
+		adjCells = new HashMap<BoardCell, Set<BoardCell>>();
+		for (int i = 0; i < NUM_ROWS-1; i++) {
+			for (int j = 0; j < NUM_COLUMNS-1; j++) {
 				BoardCell a = board[i][j];
 				Set<BoardCell> temp = new HashSet<BoardCell>();
 				if(i != 0) {
@@ -228,8 +230,9 @@ public class Board {
 	 * @param pathLength
 	 */
 	public void calcTargets(int row, int column, int pathLength) {
-		BoardCell startCell = board[row][column];
+		BoardCell startCell = getCellAt(row,column);
 		visited.add(startCell);
+		System.out.println(adjCells.get(startCell));
 		for(BoardCell a : adjCells.get(startCell)) {
 			if(!visited.contains(a)) {
 				visited.add(a);
