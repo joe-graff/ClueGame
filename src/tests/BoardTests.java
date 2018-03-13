@@ -130,8 +130,15 @@ public class BoardTests {
 	 */
 	@Test
 	public void adjTestByDoor() {
-		assertEquals(3, board.getAdjacencies(board.getCellAt(5,13)).size()); // by room and door
-		assertEquals(4, board.getAdjacencies(board.getCellAt(4,14)).size()); // by door
+
+		assertTrue(board.getAdjacencies(board.getCellAt(6,5)).size() == 4);
+		assertTrue(board.getAdjacencies(board.getCellAt(6,5)).contains(board.getCellAt(6,4))); // door to left
+		assertTrue(board.getAdjacencies(board.getCellAt(22,8)).size() == 4);
+		assertTrue(board.getAdjacencies(board.getCellAt(22,8)).contains(board.getCellAt(22,9))); // door to right
+		assertTrue(board.getAdjacencies(board.getCellAt(5,13)).size() == 3);
+		assertTrue(board.getAdjacencies(board.getCellAt(5,13)).contains(board.getCellAt(4,13))); // door to above
+		assertTrue(board.getAdjacencies(board.getCellAt(19,5)).size() == 4);
+		assertTrue(board.getAdjacencies(board.getCellAt(19,5)).contains(board.getCellAt(20,5))); // door to below
 	}
 	
 	/**
@@ -171,12 +178,13 @@ public class BoardTests {
 	 */
 	@Test
 	public void testOnlyWalkwaysAdjacent() {
-		BoardCell walkway = board.getCellAt(17,9);
+		BoardCell walkway = board.getCellAt(13,9);
 		assertTrue(walkway.isWalkway());
-		Set<BoardCell> temp = board.getAdjList(17,9);
+		Set<BoardCell> temp = board.getAdjList(13,9);
 		for(BoardCell a: temp) {
 			assertTrue(a.isWalkway());
 		}
+		assertTrue(temp.size() == 4);
 	}
 	
 	/**
@@ -204,7 +212,7 @@ public class BoardTests {
 	
 	/**
 	 * tests cells adjacent to doorways with needed direction
-	 */
+	 *
 	@Test
 	public void testAdjToDoor() {
 		Set<BoardCell> testList = board.getAdjList(12,8);
