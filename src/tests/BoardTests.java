@@ -157,23 +157,6 @@ public class BoardTests {
 	}
 	
 	/**
-	 * test target list when a player can enter a room
-	 *
-	@Test
-	public void testRoomEntry() {
-		board.calcTargets(board.getCellAt(11, 20), 3);
-		assertTrue(board.getTargets().size() == 8);
-		assertTrue(board.getTargets().contains(board.getCellAt(12, 20)));
-		assertTrue(board.getTargets().contains(board.getCellAt(11, 21)));
-		assertTrue(board.getTargets().contains(board.getCellAt(11, 19)));
-		assertTrue(board.getTargets().contains(board.getCellAt(11, 17)));
-		assertTrue(board.getTargets().contains(board.getCellAt(12, 18)));
-		assertTrue(board.getTargets().contains(board.getCellAt(10, 18)));
-		assertTrue(board.getTargets().contains(board.getCellAt(10, 20)));
-		assertTrue(board.getTargets().contains(board.getCellAt(13, 20)));
-	}
-	
-	/**
 	 * test a cell with only walkways as adjacent cells
 	 */
 	@Test
@@ -209,50 +192,17 @@ public class BoardTests {
 		assertEquals(1,testList.size());
 		assertTrue(testList.contains(board.getCellAt(23,12)));
 	}
-	
-	/**
-	 * tests cells adjacent to doorways with needed direction
-	 *
-	@Test
-	public void testAdjToDoor() {
-		Set<BoardCell> testList = board.getAdjList(12,8);
-		assertEquals(4, testList.size());
-		assertTrue(testList.contains(board.getCellAt(13,8)));
-		assertTrue(testList.contains(board.getCellAt(11,8)));
-		assertTrue(testList.contains(board.getCellAt(12,7)));
-		assertTrue(testList.contains(board.getCellAt(12,9)));
-		testList = board.getAdjList(19,2);
-		assertEquals(3, testList.size());
-		assertTrue(testList.contains(board.getCellAt(19,1)));
-		assertTrue(testList.contains(board.getCellAt(19,3)));
-		assertTrue(testList.contains(board.getCellAt(18,2)));
-	}
-	
 
 	
 	/**
 	 * test adjacency list of a cell not next to a door
-	 *
+	 */
 	@Test
-	public void adjTestByDoor() {
+	public void adjTestNotByDoor() {
 		assertEquals(3, board.getAdjList(19,10).size());
 		assertEquals(4, board.getAdjList(7,9).size());
 	}
 	
-	/**
-	 * test adjacency list of a cell that is a door
-	 *
-	@Test
-	public void adjTestInDoor() {
-		assertTrue(board.getAdjList(6,4).size() == 1);
-		assertTrue(board.getAdjList(6,4).contains(board.getCellAt(6,5))); // adjacent cell to right
-		assertTrue(board.getAdjList(19,1).size() == 1);
-		assertTrue(board.getAdjList(19,1).contains(board.getCellAt(22,8))); // adjacent cell to left
-		assertTrue(board.getAdjList(4,13).size() == 1);
-		assertTrue(board.getAdjList(4,13).contains(board.getCellAt(5,13))); // adjacent cell to below
-		assertTrue(board.getAdjList(13,20).size() == 1);
-		assertTrue(board.getAdjList(13,20).contains(board.getCellAt(19,5))); // adjacent cell to above
-	}
 	/**
 	test target list when a player can enter a room
 	*/
