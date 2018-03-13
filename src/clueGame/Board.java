@@ -95,7 +95,7 @@ public class Board {
 		board = new BoardCell[input.size()][];
 		
 		// create columns
-		for (int i = 0; i < input.size(); i++) {
+		for (int i = 0; i < NUM_ROWS; i++) {
 			String[] split = input.get(i).split(",");
 			board[i] = new BoardCell[split.length];
 			if (i == 0) {
@@ -184,20 +184,21 @@ public class Board {
 	 */
 	public void calcAdjacencies() {
 		adjCells = new HashMap<BoardCell, Set<BoardCell>>();
-		for (int i = 0; i < NUM_ROWS-1; i++) {
-			for (int j = 0; j < NUM_COLUMNS-1; j++) {
+		Set<BoardCell> temp;
+		for (int i = 0; i < NUM_ROWS; i++) {
+			for (int j = 0; j < NUM_COLUMNS; j++) {
 				BoardCell a = board[i][j];
-				Set<BoardCell> temp = new HashSet<BoardCell>();
-				if(i != 0) {
+				temp = new HashSet<BoardCell>();
+				if(i != 0) { // top boundary case
 					temp.add(board[i-1][j]);
 				}
-				if(i != NUM_COLUMNS - 2) {
+				if(i != NUM_ROWS -1) { // lower boundary case
 					temp.add(board[i+1][j]);
 				}
-				if(j != 0) { 
+				if(j != 0) { // left boundary case
 					temp.add(board[i][j-1]);
 				}
-				if(j != NUM_ROWS - 2) { 
+				if(j != NUM_COLUMNS-1) { // right boundary case
 					temp.add(board[i][j+1]);
 				}
 				adjCells.put(a, temp);
@@ -231,9 +232,7 @@ public class Board {
 	 */
 	public void calcTargets(int row, int column, int pathLength) {
 		BoardCell startCell = getCellAt(row,column);
-		System.out.println(startCell.toString());
 		visited.add(startCell);
-		System.out.println(adjCells.get(startCell));
 		for(BoardCell a : adjCells.get(startCell)) {
 			if(!visited.contains(a)) {
 				visited.add(a);
