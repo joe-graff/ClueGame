@@ -118,7 +118,7 @@ public class Board {
 				// determines if the cell is a door
 				if (split[j].length() > 1) {
 					if (split[j].charAt(1) == 'R' || split[j].charAt(1) == 'U' || split[j].charAt(1) == 'L' || split[j].charAt(1) == 'D') {
-						board[i][j].setisDoorway(true);
+						getCellAt(i,j).setisDoorway(true);
 						switch(split[j].charAt(1)) {
 							case 'D':
 								board[i][j].setDoorDirection(DoorDirection.DOWN);
@@ -189,19 +189,36 @@ public class Board {
 			for (int j = 0; j < NUM_COLUMNS; j++) {
 				BoardCell a = board[i][j];
 				temp = new HashSet<BoardCell>();
-				if(i != 0) { // top boundary case
-					temp.add(board[i-1][j]);
+				if(a.isDoorway()) {
+					DoorDirection d = a.getDoorDirection();
+					switch(d) {
+					case UP:		temp.add(getCellAt(i-1,j));
+								break;
+					case DOWN:	temp.add(getCellAt(i+1,j));
+								break;
+					case LEFT:	temp.add(getCellAt(i,j-1));
+								break;
+					case RIGHT:	temp.add(getCellAt(i,j+1));
+								break;
+					default:		break;
+					}
+					adjCells.put(a, temp);
 				}
-				if(i != NUM_ROWS -1) { // lower boundary case
-					temp.add(board[i+1][j]);
+				else if(a.isWalkway()) {
+					if(i != 0 && (getCellAt(i-1,j).isWalkway() || getCellAt(i-1,j).getDoorDirection() == DoorDirection.DOWN)) { // top boundary case
+						temp.add(board[i-1][j]);
+					}
+					if(i != NUM_ROWS -1 && (getCellAt(i+1,j).isWalkway() || getCellAt(i+1,j).getDoorDirection() == DoorDirection.UP)) { // lower boundary case
+						temp.add(board[i+1][j]);
+					}
+					if(j != 0 && (getCellAt(i,j-1).isWalkway() || getCellAt(i,j-1).getDoorDirection() == DoorDirection.RIGHT)) { // left boundary case
+						temp.add(board[i][j-1]);
+					}
+					if(j != NUM_COLUMNS-1 && (getCellAt(i, j+1).isWalkway() || getCellAt(i,j+1).getDoorDirection() == DoorDirection.LEFT)) { // right boundary case
+						temp.add(board[i][j+1]);
+					}
+					adjCells.put(a, temp);
 				}
-				if(j != 0) { // left boundary case
-					temp.add(board[i][j-1]);
-				}
-				if(j != NUM_COLUMNS-1) { // right boundary case
-					temp.add(board[i][j+1]);
-				}
-				adjCells.put(a, temp);
 			}
 		}
 	}
@@ -236,7 +253,7 @@ public class Board {
 		for(BoardCell a : adjCells.get(startCell)) {
 			if(!visited.contains(a)) {
 				visited.add(a);
-				if(pathLength == 1)
+				if(pathLength == 1 || a.isDoorway())
 					targetCells.add(a);
 				else
 					calcTargets(row, column , pathLength - 1);

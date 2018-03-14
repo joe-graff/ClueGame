@@ -22,7 +22,7 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 		this.initial = initial;
-		isDoorway = new Boolean(false);
+		isDoorway = false;
 	}
 	// Tests if a cell is a walkway
 	public boolean isWalkway() {

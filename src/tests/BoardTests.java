@@ -118,11 +118,11 @@ public class BoardTests {
 	 */
 	@Test
 	public void adjTestInRoom() {
-		assertEquals(0, board.getAdjacencies(board.getCellAt(3,20)).size()); // mid room
-		assertEquals(0, board.getAdjacencies(board.getCellAt(0,0)).size()); // corner of board
-		assertEquals(0, board.getAdjacencies(board.getCellAt(6,0)).size()); // by walkway
-		assertEquals(0, board.getAdjacencies(board.getCellAt(5,4)).size()); // by walkway and door
-		assertEquals(0, board.getAdjacencies(board.getCellAt(12,6)).size()); // by door
+		assertEquals(0, board.getAdjList(3,20).size()); // mid room
+		assertEquals(0, board.getAdjList(0,0).size()); // corner of board
+		assertEquals(0, board.getAdjList(6,0).size()); // by walkway
+		assertEquals(0, board.getAdjList(5,4).size()); // by walkway and door
+		assertEquals(0, board.getAdjList(12,6).size()); // by door
 	}
 	
 	/**
@@ -200,7 +200,7 @@ public class BoardTests {
 	@Test
 	public void adjTestNotByDoor() {
 		assertEquals(3, board.getAdjList(19,10).size());
-		assertEquals(4, board.getAdjList(7,9).size());
+		assertEquals(3, board.getAdjList(7,9).size());
 	}
 	
 	/**
@@ -209,7 +209,7 @@ public class BoardTests {
 	@Test
 	public void testRoomEntry() {
 		board.calcTargets(11, 20, 3);
-		assertTrue(board.getTargets().size() == 8);
+		assertEquals(8, board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(12, 20)));
 		assertTrue(board.getTargets().contains(board.getCellAt(11, 21)));
 		assertTrue(board.getTargets().contains(board.getCellAt(11, 19)));
@@ -219,7 +219,7 @@ public class BoardTests {
 		assertTrue(board.getTargets().contains(board.getCellAt(10, 20)));
 		assertTrue(board.getTargets().contains(board.getCellAt(13, 20)));
 		board.calcTargets(21, 16, 2);
-		assertEquals(board.getTargets().size(),6);
+		assertEquals(6, board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(19, 16)));
 		assertTrue(board.getTargets().contains(board.getCellAt(20, 17)));
 		assertTrue(board.getTargets().contains(board.getCellAt(21, 18)));
