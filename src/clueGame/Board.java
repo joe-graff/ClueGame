@@ -202,7 +202,6 @@ public class Board {
 								break;
 					default:		break;
 					}
-					adjCells.put(a, temp);
 				}
 				else if(a.isWalkway()) {
 					if(i != 0 && (getCellAt(i-1,j).isWalkway() || getCellAt(i-1,j).getDoorDirection() == DoorDirection.DOWN)) { // top boundary case
@@ -217,8 +216,8 @@ public class Board {
 					if(j != NUM_COLUMNS-1 && (getCellAt(i, j+1).isWalkway() || getCellAt(i,j+1).getDoorDirection() == DoorDirection.LEFT)) { // right boundary case
 						temp.add(board[i][j+1]);
 					}
-					adjCells.put(a, temp);
 				}
+				adjCells.put(a,temp);
 			}
 		}
 	}
@@ -251,15 +250,20 @@ public class Board {
 		BoardCell startCell = getCellAt(row,column);
 		visited.add(startCell);
 		for(BoardCell a : adjCells.get(startCell)) {
-			if(!visited.contains(a)) {
+			if(!visited.contains(a) && (a.isWalkway() || a.isDoorway())) {
+				System.out.println(a.getRow() + "," + a.getColumn());
 				visited.add(a);
 				if(pathLength == 1 || a.isDoorway())
 					targetCells.add(a);
 				else
-					calcTargets(row, column , pathLength - 1);
+					calcTargets(a.getRow(), a.getColumn(), pathLength - 1);
 				visited.remove(a);
 			}
 		}
+	}
+	
+	public void clearTargets(){
+		targetCells.clear();
 	}
 	
 	/**

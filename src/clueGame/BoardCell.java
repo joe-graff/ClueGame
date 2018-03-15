@@ -56,4 +56,14 @@ public class BoardCell {
 	public void setDoorDirection(DoorDirection dir) {
 		doorDirection = dir;
 	}
+	
+	//getter for row
+		public int getRow() {
+			return row;
+		} 
+		
+	//getter for row
+		public int getColumn() {
+			return column;
+		} 
 }
