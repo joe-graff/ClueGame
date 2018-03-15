@@ -248,10 +248,11 @@ public class Board {
 	 */
 	public void calcTargets(int row, int column, int pathLength) {
 		BoardCell startCell = getCellAt(row,column);
+		if(visited.size() == 0)
+			targetCells.clear();
 		visited.add(startCell);
 		for(BoardCell a : adjCells.get(startCell)) {
 			if(!visited.contains(a) && (a.isWalkway() || a.isDoorway())) {
-				System.out.println(a.getRow() + "," + a.getColumn());
 				visited.add(a);
 				if(pathLength == 1 || a.isDoorway())
 					targetCells.add(a);
@@ -260,6 +261,7 @@ public class Board {
 				visited.remove(a);
 			}
 		}
+		visited.remove(startCell);
 	}
 	
 	public void clearTargets(){

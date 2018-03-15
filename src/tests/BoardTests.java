@@ -206,7 +206,7 @@ public class BoardTests {
 	*/
 	@Test
 	public void testRoomEntry() {
-		board.clearTargets();
+		
 		board.calcTargets(11, 20, 3);
 		assertEquals(8, board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(12, 20)));
@@ -217,7 +217,7 @@ public class BoardTests {
 		assertTrue(board.getTargets().contains(board.getCellAt(10, 18)));
 		assertTrue(board.getTargets().contains(board.getCellAt(10, 20)));
 		assertTrue(board.getTargets().contains(board.getCellAt(13, 20)));
-		board.clearTargets();
+		
 		board.calcTargets(21, 16, 2);
 		assertEquals(6, board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(19, 16)));
@@ -233,7 +233,7 @@ public class BoardTests {
 	 */
 	@Test
 	public void testTargetsInHalway() {
-		board.clearTargets();
+		
 		board.calcTargets(19,6, 2);
 	    assertEquals(6,board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(19,4)));
@@ -241,13 +241,13 @@ public class BoardTests {
 		assertTrue(board.getTargets().contains(board.getCellAt(18, 7)));
 		assertTrue(board.getTargets().contains(board.getCellAt(19, 8)));
 		assertTrue(board.getTargets().contains(board.getCellAt(20, 7)));
-		board.clearTargets();
+		
 		board.calcTargets(19,6,1);
 		assertEquals(3,board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(19, 5)));
 		assertTrue(board.getTargets().contains(board.getCellAt(18, 6)));
 		assertTrue(board.getTargets().contains(board.getCellAt(19, 7)));
-		board.clearTargets();
+		
 		board.calcTargets(21, 21, 3);
 		assertEquals(7,board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(21, 18)));
@@ -257,7 +257,7 @@ public class BoardTests {
 		assertTrue(board.getTargets().contains(board.getCellAt(24, 21)));
 		assertTrue(board.getTargets().contains(board.getCellAt(22, 21)));
 		assertTrue(board.getTargets().contains(board.getCellAt(20, 20)));
-		board.clearTargets();
+		
 		board.calcTargets(21, 21, 2);
 		assertEquals(4, board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(21, 19)));
@@ -272,13 +272,13 @@ public class BoardTests {
 	 */
 	@Test
 	public void testTargetsLeavingRoom() {
-		board.clearTargets();
+		
 		board.calcTargets(11,7,2);
 		assertEquals(3,board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(10, 8)));
 		assertTrue(board.getTargets().contains(board.getCellAt(11, 9)));
 		assertTrue(board.getTargets().contains(board.getCellAt(12, 8)));
-		board.clearTargets();
+		
 		board.calcTargets(20,20,3);
 		assertEquals(4,board.getTargets().size());
 		assertTrue(board.getTargets().contains(board.getCellAt(22, 21)));
