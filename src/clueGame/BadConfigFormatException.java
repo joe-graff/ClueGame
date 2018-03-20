@@ -6,7 +6,7 @@ package clueGame;
  * @author Joe Graff
  *
  */
-
+	
 /**
  * BadConfigFormatException looks for formatting errors in the config files and will throw and exception if one is found
  */

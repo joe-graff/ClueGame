@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"clueGame","l":"DoorDirection"}]
