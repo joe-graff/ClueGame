@@ -288,14 +288,7 @@ public class Board {
 		return legend;
 		
 	}
-	/**
-	 * sets the legend
-	 * @param legend
-	 */
-	
-	public void setLegend(Map<Character, String> legend) {
-		this.legend = legend;
-	}
+
 	
 	/**
 	 * gets the Row
