@@ -58,7 +58,6 @@ public class Board {
 	public void initialize() {
 		try {
 			loadRoomConfig();
-			loadBoardConfig();
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
