@@ -35,7 +35,7 @@ public class Board {
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
 	
 	/**
-	 * constructor returns the only board
+	 * constructor returns the single board
 	 */
 	private Board() { 
 		adjCells = new HashMap<BoardCell, Set<BoardCell>>();
