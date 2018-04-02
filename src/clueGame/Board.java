@@ -177,7 +177,7 @@ public class Board {
 	
 	
 	/**
-	 * calculate all adjacencies
+	 * calculate all adjacencies for cells
 	 */
 	public void calcAdjacencies() {
 		adjCells = new HashMap<BoardCell, Set<BoardCell>>();
