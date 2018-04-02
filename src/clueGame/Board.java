@@ -76,10 +76,9 @@ public class Board {
 	public void loadBoardConfig() throws BadConfigFormatException {
 		
 		// opens and read file
-		FileReader reader;
 		ArrayList<String> input = new ArrayList<String>();
 		try {
-			reader = new FileReader(boardConfigFile);
+			FileReader reader = new FileReader(boardConfigFile);
 			Scanner scan = new Scanner(reader);
 			while (scan.hasNextLine()) {
 				input.add(scan.nextLine());
