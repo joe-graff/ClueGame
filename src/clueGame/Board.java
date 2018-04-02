@@ -251,6 +251,12 @@ public class Board {
 		recurse(row, column, pathLength);
 	}
 	
+	/**
+	 * does the recursion for calcTargets
+	 * @param row
+	 * @param column
+	 * @param pathLength
+	 */
 	public void recurse(int row, int column, int pathLength) {
 		BoardCell cell = getCellAt(row,column);
 		for(BoardCell a : adjCells.get(cell)) {
