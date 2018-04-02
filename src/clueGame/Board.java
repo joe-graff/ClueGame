@@ -144,11 +144,10 @@ public class Board {
 	 */
 	public void loadRoomConfig() throws BadConfigFormatException {
 		
-		//opens file
-		FileReader reader;
+		//opens file	
 		Scanner scan = null;
 		try {
-			reader = new FileReader(roomConfigFile);
+			FileReader reader = new FileReader(roomConfigFile);
 			scan = new Scanner(reader);
 		} catch (FileNotFoundException e) {
 			System.out.println(roomConfigFile + " does not exist");
