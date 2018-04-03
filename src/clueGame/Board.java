@@ -245,33 +245,22 @@ public class Board {
 	 */
 	public void calcTargets(int row, int column, int pathLength) {
 		BoardCell startCell = getCellAt(row,column);
-		targetCells = new HashSet<BoardCell>();
-		visited = new HashSet<BoardCell>();
+		if(visited.size() == 0)
+			targetCells.clear();
 		visited.add(startCell);
-		recurse(row, column, pathLength);
+		for(BoardCell a : adjCells.get(startCell)) {
+			if(!visited.contains(a) && (a.isWalkway() || a.isDoorway())) {
+				visited.add(a);
+				if(pathLength == 1 || a.isDoorway())
+					targetCells.add(a);
+				else
+					calcTargets(a.getRow(), a.getColumn(), pathLength - 1);
+				visited.remove(a);
+			}
+		}
+		visited.remove(startCell);
 	}
 	
-	/**
-	 * does the recursion for calcTargets
-	 * @param row
-	 * @param column
-	 * @param pathLength
-	 */
-	public void recurse(int row, int column, int pathLength) {
-		BoardCell cell = getCellAt(row,column);
-		for(BoardCell a : adjCells.get(cell)) {
-			if(visited.contains(a)) {
-				continue;
-			}
-			visited.add(a);
-			if(pathLength == 1 || cell.isDoorway())
-				targetCells.add(a);
-			else
-				recurse(a.getRow(), a.getColumn(), pathLength - 1);
-			visited.remove(a);
-		}
-	}
-
 	public void clearTargets(){
 		targetCells.clear();
 	}
