@@ -7,4 +7,5 @@ package clueGame;
  *
  */
 
-public enum DoorDirection {UP,DOWN,LEFT,RIGHT,NONE}; // enumerated class that defines which direction the player enters through a door
+//enumerated class that defines which direction the player enters through a door
+public enum DoorDirection {UP,DOWN,LEFT,RIGHT,NONE}; 
