@@ -1,0 +1,433 @@
+commit 310650462c44729f88a38dba4276e05be00eee1e
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 17:22:02 2018 -0600
+
+    Added comments for recurse function
+
+commit ee3e24ead17f64a7857c227cd7a0384f0ec9fb4a
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 17:20:58 2018 -0600
+
+    Created separate recursive function for calcTargets for readability
+
+commit aff2d64d746f9f78d2d4683e4e4c81269f6991ec
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 16:56:44 2018 -0600
+
+    Changed comment for Board Constructor for readability
+
+commit 71648ad5fe68ddbd7aedacc9850d236819f060e7
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 16:55:30 2018 -0600
+
+    Clarified comments in calcAdjecencies
+
+commit 1a22a5778ee001700d57092d21538888e9076eff
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 16:53:45 2018 -0600
+
+    Removed setLegend function (never used)
+
+commit b47acc620af45cc75f4ad2f2cc652739fceb97cc
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 16:52:40 2018 -0600
+
+    Removed redundencies in loadRoomConfig
+
+commit 6dfb10982277b5234f9c824b206e8c14266e2656
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 16:51:05 2018 -0600
+
+    Removed redundencies in loadBoardConfig
+
+commit 2319251456cf66d01d3801bfe7ea5cc781b43563
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 16:48:01 2018 -0600
+
+    Removed unneccesary config in initialize
+
+commit ee948f07c383c78e1ed7699e93965a333c4bde7c
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 2 16:46:29 2018 -0600
+
+    Fixed code style in isRoom
+
+commit cd1ac9982abf7230abef7f61f52e27209a21c32c
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Mar 20 13:37:05 2018 -0600
+
+    Java docs created
+
+commit 7795180fce80609c71824e4248e8cd7ffe43075a
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Wed Mar 14 22:57:33 2018 -0600
+
+    all tests passing
+
+commit f54def06e8eb4b2b73fd3bfc91042efd747adcc2
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Wed Mar 14 22:40:01 2018 -0600
+
+    all our tests passing
+
+commit 588f9099ee3c6e8e46e0e2f39c61277f5340d889
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Mar 13 22:46:45 2018 -0600
+
+    Some of tests fixed
+
+commit dec95bfd5eae95e45ce714faaa50cc02d6e7edd4
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Mar 13 15:32:04 2018 -0600
+
+    Tests fixed
+
+commit 1b1dca811ac4f0fc8658fc0e360754029e480e7b
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 12 21:57:28 2018 -0600
+
+    minor test changes
+
+commit ed44e76ac0c125279a8eee8c5d3490dd35279dc0
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 12 21:31:18 2018 -0600
+
+    fixed calcAdjacencies, all new tests failing
+
+commit 04e8aa56addad9b41b7e688ffbdd348036622e25
+Merge: df97f9f 20333fb
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 12 11:58:11 2018 -0600
+
+    Merge branch 'master' of https://www.github.com/joe-graff/ClueGame
+
+commit df97f9f7b15be1e7c65312ca974f9aec46902210
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 12 11:57:48 2018 -0600
+
+    added println, need to pull
+
+commit 20333fb36b4fd75037cb064a72ce67b01c5c4ccb
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Mar 12 11:47:48 2018 -0600
+
+    Added part 4 we already did
+
+commit 6147fcb129fcc672cca789f3a8fc9f1dc726fcdc
+Merge: eb2e377 5d5a6eb
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Mar 12 11:45:42 2018 -0600
+
+    Merge branch 'master' of https://github.com/joe-graff/ClueGame
+
+commit eb2e377a16273b0aaba793c89fffeda68dd75ee6
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Mar 12 11:45:32 2018 -0600
+
+    Added ClueRooms.xlsx
+
+commit 5d5a6ebd2861ccba54e9d935d41db8e758334fee
+Merge: 316c8ab a6148e4
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 12 11:31:39 2018 -0600
+
+    removed duploicate functions
+
+commit 316c8abb196024d6e5ea53f180d383b4642fbff1
+Merge: e6154c7 755cbbe
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 12 09:51:35 2018 -0600
+
+    added .metadata to .gitignore
+
+commit a6148e4b25a6d6f63b27d0340610916e4e5841e4
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 11 23:01:58 2018 -0600
+
+    Target tests finished
+
+commit e75f781271d6a840fede25c0f946ec3a72b64669
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 11 22:10:54 2018 -0600
+
+    Tests updated with excel sheet
+
+commit 3bc592f686afe9e47b789788b0077806276597bb
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 11 21:03:25 2018 -0600
+
+    Fixed test formats
+
+commit a10138603ee8acddf7ea2bf4172b4139e528ae48
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 11 20:55:44 2018 -0600
+
+    changed format of calc adjacencies and calc targets
+
+commit a74cd1fa078bf39aeaa4c10409efc72f389bd149
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Mar 6 16:51:43 2018 -0700
+
+    Adjacent tests finished
+
+commit e6154c7feedbe5b663a07d4c3bf6b605e874e21f
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Mar 6 16:24:09 2018 -0700
+
+    dont erase my code
+
+commit 755cbbeac09fc69f3beb41580bf15cb7ac703cd9
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Mar 6 16:23:12 2018 -0700
+
+    getAdjCells created
+
+commit 4717f62fc1dca4469d41a75a86d6cea84bd9382c
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Mar 6 16:03:15 2018 -0700
+
+    2nd revert
+
+commit 4a49d57db7c5afe20fdff0048dd5552d362a8280
+Merge: 23584d6 777a4dd
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Mar 6 16:01:52 2018 -0700
+
+    Merge branch 'master' of https://github.com/joe-graff/ClueGame
+
+commit 23584d67d5476c713c01382d15387e786eaf6e04
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Mar 6 16:01:25 2018 -0700
+
+    revert
+
+commit 777a4ddeb6708b2c931f86e51558a7a5e8879029
+Merge: 473365e 958f0be
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Mar 6 15:58:14 2018 -0700
+
+    Merge branch 'master' of https://github.com/joe-graff/ClueGame
+
+commit 958f0be117edcc5a8cb7a993fc406f56705a2bdb
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Mar 6 15:57:56 2018 -0700
+
+    modified calcAdjacencies to behave well given a board setup
+
+commit 473365e8bbee9798c8bda5510e52a02238c7b547
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Mar 6 15:57:29 2018 -0700
+
+    CalcTargets updated for doors
+
+commit 06b2c5e205571913748fae3b02a30ebef25e4df9
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Mar 6 15:34:24 2018 -0700
+
+    added Mark's tests to repo
+
+commit 11fea37937ff937151a020e79710c7e3bcfa0bc6
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 5 23:38:38 2018 -0700
+
+    comments finished
+
+commit ba90e2496f79196c5a45d6a43df44ae422eac1a4
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 5 23:30:46 2018 -0700
+
+    Finished, need to comment out
+
+commit 645bae200a3039823834ded69e02046cd206507d
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 5 23:09:45 2018 -0700
+
+    All mark balwdins tests are passing, ours are not. calcAdjacencies is not working
+
+commit 8894b5bbfdca56b7b267bb09520fc46b047fae81
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 5 22:26:33 2018 -0700
+
+    CTest_ExceptionTests.java is passing
+
+commit 39b7386dc38bcd0111e68061638106cffbd7f8b1
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Mon Mar 5 18:09:39 2018 -0700
+
+    Added tests from assignment
+
+commit 039b2a1fbaebd34fc3e09d6494c923df169314e4
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Mar 5 14:55:45 2018 -0700
+
+    Getters and Setters changed and part of BoardCell updated
+
+commit ceed3192bc012320bdcdf4bb4f78642374a3151d
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 4 21:57:01 2018 -0700
+
+    All files finished and commented. Part 1 complete.
+
+commit d85ff160c7d9eea38a2c412630aeabb891c9f689
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 4 21:27:25 2018 -0700
+
+    tests finished
+
+commit 05a32130927292851b419c710d4c34bed6b68941
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 4 21:25:29 2018 -0700
+
+    All tests updated and fail
+
+commit 40136820e20fc66ba6bb3b949b2f3bbdd44c8d2b
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 4 20:57:06 2018 -0700
+
+    Updated stubs
+
+commit 1bf6facdd3c28bea858c9226a3d05843b75a4188
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 4 20:48:32 2018 -0700
+
+    Tests Created
+
+commit b28d67165f022461e3b8907679b72f29559742e7
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 4 14:48:18 2018 -0700
+
+    majority of tests created, need to update with information from spreadsheet and legend
+
+commit 46a60197ee405a660516d0e972a0b87475cd8561
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Mar 4 13:39:50 2018 -0700
+
+    Additional files created
+
+commit 5043f66134d88cd544dbb5da7809fba68cca6687
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sat Mar 3 14:54:05 2018 -0700
+
+    All classes updated and stubs creadted ready to start tests
+
+commit 08bfd541c4a7f8dc03f214956fc8eb543d841dda
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sat Mar 3 14:36:10 2018 -0700
+
+    Board Class created with stubs
+
+commit 4534709d0e3c371da198e8cb95068bca816f905b
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sat Mar 3 14:20:59 2018 -0700
+
+    Clue Game package created and test files imported
+
+commit 2d6f3e4137ea886b563662a6bc478f6d238bb635
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Thu Mar 1 20:21:33 2018 -0700
+
+    all tests passing, comments finished
+
+commit fbe959b2d7d44e6d3ad763b4edd2996b4acc8756
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Thu Mar 1 17:36:09 2018 -0700
+
+    calcAdjacency tests work
+
+commit 590ecf1f6022b23abdb6d58821b5df51ac0f9a20
+Merge: ce2716a 4197102
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Thu Mar 1 15:49:12 2018 -0700
+
+    created backbone of constructor and calcAdjacencies, get null pointer errors
+
+commit ce2716ae66c7797fe9474054cb9dad026e7a7582
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Thu Mar 1 15:46:01 2018 -0700
+
+    created backbone of constructor and calcAdjacencies, get null pointer errors
+
+commit 4197102dde59df93bc9c2bea23f735750ac81445
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Thu Mar 1 15:20:52 2018 -0700
+
+    Fixed small formatting issue
+
+commit e62d320b31dee13e5ef90bf5b6f84f45bc4c7bf7
+Merge: 0cc3d5a bf8565b
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Thu Mar 1 15:15:30 2018 -0700
+
+    Trying to get the changes figured out on my computer
+
+commit 0cc3d5a79d36de23690aea6ad4fea4da9cebfeea
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Thu Mar 1 15:04:43 2018 -0700
+
+    Tweaked IntBoard
+
+commit bf8565b34dfd1e908a814930fe03d3b0b541c8ce
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Thu Mar 1 11:54:34 2018 -0700
+
+    all tests finished and failed, going to begin functions
+
+commit 5ad26cda400eee4507928dd220fa3512a894524b
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Thu Mar 1 08:29:40 2018 -0700
+
+    restructed IntBoard a little, working on tests
+
+commit 73b43708d20ca3b22c65cfff280603173e9fe3de
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Wed Feb 28 21:17:01 2018 -0700
+
+    put IntBoardTests in seperate package
+
+commit 90f21ab8be6591c3b5bc31ca9e3f7634cb5d4624
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Wed Feb 28 20:48:00 2018 -0700
+
+    added libraries needed by my computer, email me if this causes an issue for you
+
+commit bcd374bd68530f119cbb07f0936793600a592215
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Wed Feb 28 20:39:01 2018 -0700
+
+    made IntBoardTest public
+
+commit 011414b025e205c536a966f52c3b2974cbb2dfaa
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Wed Feb 28 17:41:43 2018 -0700
+
+    First testAdjacency case created
+
+commit 93c99368153e6941d514a47c4687603127121b71
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Wed Feb 28 16:49:07 2018 -0700
+
+    IntBoardTests created
+
+commit a54b0b323c4418b21884412f2b545c358c6a624e
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Wed Feb 28 16:11:51 2018 -0700
+
+    Stubs created for IntBoard
+
+commit b62d76c30fbc52246057050ed294b5313912e251
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Feb 27 21:13:04 2018 -0700
+
+    BoardCell created
+
+commit 8c77c2b5d42de6a969bed86219d0186960fca6db
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Feb 27 18:54:43 2018 -0700
+
+    Packages Created
+
+commit e6f72d5acda20d108f6196660178b895d3bb3c5c
+Author: joe-graff <35791779+joe-graff@users.noreply.github.com>
+Date:   Tue Feb 27 18:46:35 2018 -0700
+
+    Initial commit
