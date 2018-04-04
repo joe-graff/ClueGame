@@ -39,7 +39,7 @@ public class Board {
 	private Map<BoardCell, Set<BoardCell>> adjCells; // list of all cells adjacent cells for each cell on the board.
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
-	private ArrayList<Card> deck;
+	public ArrayList<Card> deck;
 	private Player[] players;
 	
 	/**
@@ -75,9 +75,8 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
-		//loadPlayerConfig();
+		loadPlayerConfig();
 		loadWeaponConfig();
-		calcAdjacencies();
 	} 
 	
 	/**
@@ -182,6 +181,11 @@ public class Board {
 			}
 			// puts legend together
 			legend.put(split[0].charAt(0), split[1]);
+			String roomName = split[0];
+			if(str.equalsIgnoreCase("Card")){
+				Card room = new Card(roomName, CardType.ROOM);
+				deck.add(room);
+			}
 		}
 		scan.close();
 	}
@@ -223,8 +227,8 @@ public class Board {
 				Card weapon = new Card(input, CardType.WEAPON);
 				deck.add(weapon);
 				//weapons.add(weapon);
-				scan.close();
 			}
+			scan.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -360,6 +364,12 @@ public class Board {
 	public int getNumColumns() {
 		return NUM_COLUMNS;
 	}
+	
+	public void setConfigFiles(String boardConfig, String roomConfig) {
+		boardConfigFile = boardConfig;
+		roomConfigFile = roomConfig;
+	}
+	
 	public void setConfigFiles(String boardConfig, String roomConfig, String playerConfig, String weaponConfig) {
 		boardConfigFile = boardConfig;
 		roomConfigFile = roomConfig;
