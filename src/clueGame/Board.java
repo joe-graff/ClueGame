@@ -195,6 +195,7 @@ public class Board {
 			while (scan.hasNextLine()) {
 				input.add(scan.nextLine());
 			}
+			scan.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -205,49 +206,11 @@ public class Board {
 		// Fill player array
 		for (int i = 0; i < input.size(); i++) {
 			String[] split = input.get(i).split(", ");
-			String playerName = split[0];
-			Color color = convertColor(split[1]);
-			boolean isHuman = false;
-			if (split[2].equalsIgnoreCase("Player")) {
-				isHuman = true;
-			}
 			Card player = new Card(split[0], CardType.PERSON);
 			deck.add(player);
-			playerList.add(player);
 		}
 	}
 	
-	/**
-	 * 
-	 * @param strInt
-	 * @return
-	 */
-	public int intConverter(String strInt) {
-		int output;
-		try {
-			output = Integer.parseInt(strInt);
-		} catch (NumberFormatException e) {
-			output = 0;
-		}
-		return output;
-	}
-	
-	/**
-	 * from http://stackoverflow.com/questions/2854043/converting-a-string-to-color-in-java
-	 * @param strColor
-	 * @return
-	 */
-	public Color convertColor(String strColor) {
-		Color color;
-		try {
-			// We can use reflection to convert the string to a color
-			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
-			color = (Color)field.get(null);
-		} catch (Exception e) {
-			color = null; // Not defined
-		}
-		return color;
-	}
 	
 	public void loadWeaponConfig() {
 		FileReader iFS;
