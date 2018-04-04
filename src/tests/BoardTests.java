@@ -32,7 +32,7 @@ public class BoardTests {
 	@Before	
 	public void Start() throws BadConfigFormatException {
 		board = Board.getInstance();
-		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt");
+		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt","PlayerFile.txt","WeaponsFile");
 		board.loadRoomConfig();
 		board.loadBoardConfig();	
 		board.initialize();

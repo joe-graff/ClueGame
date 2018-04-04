@@ -1,6 +1,6 @@
-Joe Student, pink, Player
-President Johnson, white, Computer
-Mr Baldwin, green, Computer
-CPW, red, Computer
-Wendy Fisher, blue, Computer
-Jeff Paone, orange, Computer
+Joe Student, pink, Player, 0, 16
+President Johnson, white, Computer, 1, 6
+Mr Baldwin, green, Computer, 24, 12
+CPW, red, Computer, 24, 7
+Wendy Fisher, blue, Computer, 12, 21
+Jeff Paone, orange, Computer, 24, 3

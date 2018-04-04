@@ -1,13 +1,16 @@
 package clueGame;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
 
 import clueGame.BoardCell;
 
@@ -25,14 +28,19 @@ public class Board {
 	private static int NUM_ROWS;
 	private static int NUM_COLUMNS;
 	private static int MAX_BOARD_SIZE;
+	private int numPlayers;
 	private BoardCell board[][];
 	private Map<Character, String> legend;
 	private String boardConfigFile;
-	private String roomConfigFile; 
+	private String roomConfigFile;
+	private String weaponConfigFile;
+	private String playerConfigFile;
 	private static Board instance = new Board(); // the only instance of the board
 	private Map<BoardCell, Set<BoardCell>> adjCells; // list of all cells adjacent cells for each cell on the board.
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
+	private ArrayList<Card> deck;
+	private Player[] players;
 	
 	/**
 	 * constructor returns the single board
@@ -42,6 +50,7 @@ public class Board {
 		visited = new HashSet<BoardCell>();
 		targetCells = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
+		deck = new ArrayList<Card>();
 	}
 	
 	/**
@@ -66,6 +75,8 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
+		//loadPlayerConfig();
+		loadWeaponConfig();
 		calcAdjacencies();
 	} 
 	
@@ -173,6 +184,87 @@ public class Board {
 			legend.put(split[0].charAt(0), split[1]);
 		}
 		scan.close();
+	}
+	public void loadPlayerConfig() {
+		FileReader iFS;
+		ArrayList<String> input = new ArrayList<String>();
+		try {
+			iFS = new FileReader(playerConfigFile);
+			Scanner scan = new Scanner(iFS);
+			// read in rows
+			while (scan.hasNextLine()) {
+				input.add(scan.nextLine());
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		// Allocate player array
+		numPlayers = input.size();
+		players = new Player[numPlayers];
+		
+		// Fill player array
+		for (int i = 0; i < input.size(); i++) {
+			String[] split = input.get(i).split(", ");
+			String playerName = split[0];
+			Color color = convertColor(split[1]);
+			boolean isHuman = false;
+			if (split[2].equalsIgnoreCase("Player")) {
+				isHuman = true;
+			}
+			Card player = new Card(split[0], CardType.PERSON);
+			deck.add(player);
+			playerList.add(player);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param strInt
+	 * @return
+	 */
+	public int intConverter(String strInt) {
+		int output;
+		try {
+			output = Integer.parseInt(strInt);
+		} catch (NumberFormatException e) {
+			output = 0;
+		}
+		return output;
+	}
+	
+	/**
+	 * from http://stackoverflow.com/questions/2854043/converting-a-string-to-color-in-java
+	 * @param strColor
+	 * @return
+	 */
+	public Color convertColor(String strColor) {
+		Color color;
+		try {
+			// We can use reflection to convert the string to a color
+			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+			color = (Color)field.get(null);
+		} catch (Exception e) {
+			color = null; // Not defined
+		}
+		return color;
+	}
+	
+	public void loadWeaponConfig() {
+		FileReader iFS;
+		try {
+			iFS = new FileReader(weaponConfigFile);
+			Scanner scan = new Scanner(iFS);
+			// read in rows
+			while (scan.hasNextLine()) {
+				String input = scan.nextLine();
+				Card weapon = new Card(input, CardType.WEAPON);
+				deck.add(weapon);
+				//weapons.add(weapon);
+				scan.close();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -305,10 +397,19 @@ public class Board {
 	public int getNumColumns() {
 		return NUM_COLUMNS;
 	}
-	public void setConfigFiles(String boardConfig, String roomConfig) {
+	public void setConfigFiles(String boardConfig, String roomConfig, String playerConfig, String weaponConfig) {
 		boardConfigFile = boardConfig;
 		roomConfigFile = roomConfig;
+		playerConfigFile = playerConfig;
+		weaponConfigFile = weaponConfig;
+		
 		
 	}
 
+	public ArrayList<Card> getDeck() {
+		return deck;
+	}
+	
 }
+
+
