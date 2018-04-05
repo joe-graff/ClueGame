@@ -95,11 +95,13 @@ public class gameSetupTests {
 		board.dealDeck();
 		assertEquals(board.getDeck().size(), 0);
 		assertEquals(board.getSolution().size(), 3);
-		assertEquals(board.getSolution().get(0).getCardType(), CardType.PERSON);
-		assertEquals(board.getSolution().get(1).getCardType(), CardType.ROOM);
-		assertEquals(board.getSolution().get(2).getCardType(), CardType.WEAPON);
+		int numCard = 0;
+		for(CardType cardType : CardType.values()) {
+			assertEquals(board.getSolution().get(numCard).getCardType(), cardType);
+			numCard++;
+		}
 		ArrayList<Card> remainingCards = new ArrayList<Card>();
-		for(int player = 0; player < board.getNumPlayers; player++) {
+		for(int player = 0; player < board.getNumPlayers(); player++) {
 			for(Card card : board.getPlayer(player).getHand()) {
 				remainingCards.add(card);
 			}
@@ -107,5 +109,6 @@ public class gameSetupTests {
 		assertTrue(!remainingCards.contains(board.getSolution().get(0)));
 		assertTrue(!remainingCards.contains(board.getSolution().get(1)));
 		assertTrue(!remainingCards.contains(board.getSolution().get(2)));	
+		}
 }
 

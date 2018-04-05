@@ -13,6 +13,10 @@ public class Card {
 		return cardName;
 	}
 	
+	public CardType getCardType() {
+		return cardType;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
