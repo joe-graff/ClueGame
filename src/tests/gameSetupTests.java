@@ -7,6 +7,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.junit.Before;
@@ -61,7 +62,6 @@ public class gameSetupTests {
 		assertEquals(board.players[5].getColumn(), 3);
 		assertEquals(board.players[5].getRow(), 24);
 		assertTrue(board.players[5] instanceof ComputerPlayer);
-		
 	}
 	
 	/**
@@ -85,5 +85,30 @@ public class gameSetupTests {
 		assertTrue(board.deck.contains(new Card("Brown", CardType.ROOM)));
 	}
 
+	/**
+	 * This set of tests makes sure that 3 cards (a weapon, a person, and a room) are removed from the
+	 * deck and set aside as the solution. It also makes sure that the remaining cards are dealt to the
+	 * players.
+	 */
+	@Test
+	public void testDealCards() {
+		board.dealDeck();
+		assertEquals(board.getDeck().size(), 0);
+		assertEquals(board.getSolution().size(), 3);
+		int numCard = 0;
+		for(CardType cardType : CardType.values()) {
+			assertEquals(board.getSolution().get(numCard).getCardType(), cardType);
+			numCard++;
+		}
+		ArrayList<Card> remainingCards = new ArrayList<Card>();
+		for(int player = 0; player < board.getNumPlayers(); player++) {
+			for(Card card : board.getPlayer(player).getHand()) {
+				remainingCards.add(card);
+			}
+		}
+		assertTrue(!remainingCards.contains(board.getSolution().get(0)));
+		assertTrue(!remainingCards.contains(board.getSolution().get(1)));
+		assertTrue(!remainingCards.contains(board.getSolution().get(2)));	
+		}
 }
 

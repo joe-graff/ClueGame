@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -40,6 +41,7 @@ public class Board {
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
 	public ArrayList<Card> deck;
+	public ArrayList<Card> solution;
 	public Player[] players;
 	
 	/**
@@ -51,6 +53,7 @@ public class Board {
 		targetCells = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
 		deck = new ArrayList<Card>();
+		solution = new ArrayList<Card>();
 	}
 	
 	/**
@@ -77,9 +80,6 @@ public class Board {
 		}
 		loadPlayerConfig();
 		loadWeaponConfig();
-		for(Card c: deck) {
-			System.out.println(c.getCardName() + ".");
-		}
 	} 
 	
 	/**
@@ -388,6 +388,7 @@ public class Board {
 		return NUM_COLUMNS;
 	}
 	
+	
 	public void setConfigFiles(String boardConfig, String roomConfig) {
 		boardConfigFile = boardConfig;
 		roomConfigFile = roomConfig;
@@ -398,12 +399,53 @@ public class Board {
 		roomConfigFile = roomConfig;
 		playerConfigFile = playerConfig;
 		weaponConfigFile = weaponConfig;
-		
-		
 	}
 
+	/**
+	 * removes cards from the deck and adds them to the solution. also distributes
+	 * the rest of the cards to the players
+	 * @return
+	 */
+	public void dealDeck() {
+		Collections.shuffle(deck);
+		for(CardType cardType : CardType.values()) {
+			for(Card card : deck) {
+				if(card.getCardType() == cardType) {
+					solution.add(card);
+					break;
+				}
+			}
+		}
+		for(Card card : solution) {
+			deck.remove(card);
+		}
+		int playerNumber = 0;
+		for(Card card : deck) {
+			players[playerNumber].getHand().add(card);
+			playerNumber = ++playerNumber % numPlayers;
+		}
+		for(Player player : players) {
+			for(Card card : player.getHand()) {
+				deck.remove(card);
+			}
+		}
+	}
+	
+	// only for testing purposes
 	public ArrayList<Card> getDeck() {
 		return deck;
+	}
+	
+	public int getNumPlayers() {
+		return numPlayers;
+	}
+	
+	public ArrayList<Card> getSolution() {
+		return solution;
+	}
+	
+	public Player getPlayer(int playerNumber) {
+		return players[playerNumber];
 	}
 	
 }

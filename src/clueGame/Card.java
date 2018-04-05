@@ -1,5 +1,10 @@
 package clueGame;
-
+/**
+ * 
+ * @author Lewis Setter
+ * @author Joe Graff
+ *
+ */
 public class Card {
 	public String cardName;
 	public CardType cardType;
@@ -11,6 +16,10 @@ public class Card {
 
 	public String getCardName() {
 		return cardName;
+	}
+	
+	public CardType getCardType() {
+		return cardType;
 	}
 	
 	@Override
