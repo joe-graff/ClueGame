@@ -40,6 +40,7 @@ public class Board {
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
 	public ArrayList<Card> deck;
+	public ArrayList<Card> solution;
 	public Player[] players;
 	
 	/**
@@ -51,6 +52,7 @@ public class Board {
 		targetCells = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
 		deck = new ArrayList<Card>();
+		solution = new ArrayList<Card>();
 	}
 	
 	/**
@@ -398,10 +400,12 @@ public class Board {
 		roomConfigFile = roomConfig;
 		playerConfigFile = playerConfig;
 		weaponConfigFile = weaponConfig;
-		
-		
 	}
 
+	public void dealDeck() {
+		
+	}
+	
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}
