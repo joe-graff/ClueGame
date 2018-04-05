@@ -422,8 +422,7 @@ public class Board {
 		int playerNumber = 0;
 		for(Card card : deck) {
 			players[playerNumber].getHand().add(card);
-			playerNumber++;
-			playerNumber %= numPlayers;
+			playerNumber = ++playerNumber % numPlayers;
 		}
 		for(Player player : players) {
 			for(Card card : player.getHand()) {
