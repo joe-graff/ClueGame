@@ -28,31 +28,31 @@ public class gameSetupTests {
 	}
 	
 	@Test
-	public void testNumCards() {
-		assertEquals(board.getDeck().size(),DECK_SIZE);
+	public void testLoadingPeople() {
+		assertEquals(board.players[0].getPlayerName(), "Joe Student");
+		assertEquals(board.players[0].getColor(), Color.pink);
+		assertEquals(board.players[0].getColumn(), 16);
+		assertEquals(board.players[0].getRow(), 0);
+		assertTrue(board.players[0] instanceof HumanPlayer);
+		
+		assertEquals(board.players[3].getPlayerName(), "CPW");
+		assertEquals(board.players[3].getColor(), Color.red);
+		assertEquals(board.players[3].getColumn(), 7);
+		assertEquals(board.players[3].getRow(), 24);
+		assertTrue(board.players[3] instanceof ComputerPlayer);
+		
+		
+		assertEquals(board.players[5].getPlayerName(), "Jeff Paone");
+		assertEquals(board.players[5].getColor(), Color.orange);
+		assertEquals(board.players[5].getColumn(), 3);
+		assertEquals(board.players[5].getRow(), 24);
+		assertTrue(board.players[5] instanceof ComputerPlayer);
+		
 	}
 	
 	@Test
-	public void testLoadingPeople() {
-		assertEquals(board.players[0].getPlayerName(), "Jo Student");
-		assertEquals(board.players[0].getColor(), Color.red);
-		assertEquals(board.players[0].getColumn(), 1);
-		assertEquals(board.players[0].getRow(), 10);
-		assertTrue(board.players[0] instanceof ComputerPlayer);
-		
-		assertEquals(board.players[3].getPlayerName(), "CW");
-		assertEquals(board.players[3].getColor(), Color.yellow);
-		assertEquals(board.players[3].getColumn(), 6);
-		assertEquals(board.players[3].getRow(), 2);
-		assertTrue(board.players[3] instanceof HumanPlayer);
-		
-		
-		assertEquals(board.players[5].getPlayerName(), "Jef Paone");
-		assertEquals(board.players[5].getColor(), Color.red);
-		assertEquals(board.players[5].getColumn(), 1);
-		assertEquals(board.players[5].getRow(), 4);
-		assertTrue(board.players[5] instanceof HumanPlayer);
-		
+	public void testCards() {
+		assertEquals(board.getDeck().size(),DECK_SIZE);
 	}
 
 }

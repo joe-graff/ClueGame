@@ -217,7 +217,6 @@ public class Board {
 			int r = Integer.parseInt(split[3]);
 			int c = Integer.parseInt(split[4]);
 			String type = split[2];
-			System.out.println(type);
 			if(type.equals("Player")) {
 				players[i] = new HumanPlayer(split[0], r, c, color);
 			} else if(type.equals("Computer")){
