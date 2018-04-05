@@ -40,7 +40,7 @@ public class Board {
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
 	public ArrayList<Card> deck;
-	private Player[] players;
+	public Player[] players;
 	
 	/**
 	 * constructor returns the single board
@@ -77,6 +77,7 @@ public class Board {
 		}
 		loadPlayerConfig();
 		loadWeaponConfig();
+
 	} 
 	
 	/**
@@ -181,7 +182,7 @@ public class Board {
 			}
 			// puts legend together
 			legend.put(split[0].charAt(0), split[1]);
-			String roomName = split[0];
+			String roomName = split[1];
 			if(str.equalsIgnoreCase("Card")){
 				Card room = new Card(roomName, CardType.ROOM);
 				deck.add(room);
@@ -212,9 +213,30 @@ public class Board {
 			String[] split = input.get(i).split(", ");
 			Card player = new Card(split[0], CardType.PERSON);
 			deck.add(player);
+			Color color = convertColor(split[1]);
+			int r = Integer.parseInt(split[3]);
+			int c = Integer.parseInt(split[4]);
+			String type = split[2];
+			System.out.println(type);
+			if(type.equals("Player")) {
+				players[i] = new HumanPlayer(split[0], r, c, color);
+			} else if(type.equals("Computer")){
+				players[i] = new ComputerPlayer(split[0], r, c, color);
+			}
 		}
 	}
 	
+	public Color convertColor(String strColor) {
+		Color color;
+		try {
+			// We can use reflection to convert the string to a color
+			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+			color = (Color)field.get(null);
+		} catch (Exception e) {
+			color = null; // Not defined
+		}
+		return color;
+	}
 	
 	public void loadWeaponConfig() {
 		FileReader iFS;
