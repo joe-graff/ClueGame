@@ -1,3 +1,7 @@
+/**
+ * Authors: Joseph Graff & Lewis Setter
+ */
+
 package tests;
 
 import static org.junit.Assert.*;
@@ -21,7 +25,11 @@ import clueGame.HumanPlayer;
 public class gameSetupTests {
 	public static final int DECK_SIZE = 21;
 	public static Board board;
-	
+
+	/**
+	 * creates an instance of the board and initializes everything before any of the tests are called
+	 * @throws BadConfigFormatException
+	 */
 	@BeforeClass
 	public static void setup()  throws  BadConfigFormatException{
 		board = Board.getInstance();
@@ -29,6 +37,10 @@ public class gameSetupTests {
 		board.initialize();
 	}
 	
+	/**
+	 * This set of tests tests the loading of the players, make sure they have the correct name, color, 
+	 * starting position and whether they are human or computer players.
+	 */
 	@Test
 	public void testLoadingPeople() {
 		assertEquals(board.players[0].getPlayerName(), "Joe Student");
@@ -52,6 +64,10 @@ public class gameSetupTests {
 		
 	}
 	
+	/**
+	 * This set of tests tests the cards to make sure there is the correct amount of each cards,
+	 *  the correct number of cards total and checks one of each type of card to ensure the names are correct.
+	 */
 	@Test
 	public void testCards() {
 		assertEquals(board.getDeck().size(),DECK_SIZE);
@@ -61,12 +77,12 @@ public class gameSetupTests {
 			else if(board.deck.get(i).cardType == CardType.WEAPON) weapon++;
 			else if(board.deck.get(i).cardType == CardType.ROOM) room++;
 		}
-		assertEquals(person, 5);
-		assertEquals(weapon, 5);
-		assertEquals(room, 8);
-		assertTrue(board.deck.contains(new Card("Joe Studet", CardType.PERSON)));
-		assertTrue(board.deck.contains(new Card("Roe", CardType.WEAPON)));
-		assertTrue(board.deck.contains(new Card("Bron", CardType.ROOM)));
+		assertEquals(person, 6);
+		assertEquals(weapon, 6);
+		assertEquals(room, 9);
+		assertTrue(board.deck.contains(new Card("Joe Student", CardType.PERSON)));
+		assertTrue(board.deck.contains(new Card("Rope", CardType.WEAPON)));
+		assertTrue(board.deck.contains(new Card("Brown", CardType.ROOM)));
 	}
 
 }
