@@ -12,6 +12,8 @@ import org.junit.Test;
 import clueGame.BadConfigFormatException;
 import clueGame.Board;
 import clueGame.BoardCell;
+import clueGame.Card;
+import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.DoorDirection;
 import clueGame.HumanPlayer;
@@ -53,6 +55,18 @@ public class gameSetupTests {
 	@Test
 	public void testCards() {
 		assertEquals(board.getDeck().size(),DECK_SIZE);
+		int room = 0, person = 0, weapon = 0;
+		for(int i = 0; i < board.getDeck().size(); i++) {
+			if(board.deck.get(i).cardType == CardType.PERSON) person++;
+			else if(board.deck.get(i).cardType == CardType.WEAPON) weapon++;
+			else if(board.deck.get(i).cardType == CardType.ROOM) room++;
+		}
+		assertEquals(person, 5);
+		assertEquals(weapon, 5);
+		assertEquals(room, 8);
+		assertTrue(board.deck.contains(new Card("Joe Studet", CardType.PERSON)));
+		assertTrue(board.deck.contains(new Card("Roe", CardType.WEAPON)));
+		assertTrue(board.deck.contains(new Card("Bron", CardType.ROOM)));
 	}
 
 }

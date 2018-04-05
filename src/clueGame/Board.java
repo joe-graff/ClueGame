@@ -77,7 +77,9 @@ public class Board {
 		}
 		loadPlayerConfig();
 		loadWeaponConfig();
-
+		for(Card c: deck) {
+			System.out.println(c.getCardName() + ".");
+		}
 	} 
 	
 	/**
