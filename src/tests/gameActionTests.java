@@ -15,17 +15,18 @@ class gameActionTests {
 	Player testComputerPlayer;
 	Board board;
 	
-	/*
-	 * This tests the ability of a computer player to move considering the rules for movement that appear
-	 * on canvas
-	 */
+	
 	@BeforeClass
 	public void setup() {
 		board = Board.getInstance();
 		testComputerPlayer = board.getPlayer(3);
 	}
 	
-	@Test
+	/*
+	 * This tests the ability of a computer player to move considering the rules for movement that appear
+	 * on canvas
+	 */
+	@Test 
 	public void TestACompMovement() {
 		testComputerPlayer.movePlayer(4);
 		assertEquals(testComputerPlayer.getRow(), 24); // tests if the computer player entered the room
