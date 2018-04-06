@@ -14,6 +14,8 @@ import clueGame.Player;
 
 class gameActionTests {
 	public static Board board;
+	public Player testComputerPlayer;
+	
 	
 	@BeforeClass
 	public static void before()  throws  BadConfigFormatException{
@@ -21,13 +23,11 @@ class gameActionTests {
 		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt","PlayerFile.txt","WeaponsFile.txt");
 		board.initialize();
 	}
-	/*
+	
 	@Test
 	public void testAccusations() {
 		//assertTrue(board.checkAccusation(Solution.person, Solution.weapon, Solution.room));
-	Player testComputerPlayer;
-	Board board;
-	
+	}
 	
 	@BeforeClass
 	public void setup() {
@@ -39,7 +39,7 @@ class gameActionTests {
 	 * This tests the ability of a computer player to move considering the rules for movement that appear
 	 * on canvas
 	 */
-	/*
+	
 	@Test 
 	public void TestACompMovement() {
 		testComputerPlayer.movePlayer(4);
@@ -51,5 +51,4 @@ class gameActionTests {
 		testComputerPlayer.movePlayer(1);
 		assertTrue(board.getCellAt(testComputerPlayer.getRow(), testComputerPlayer.getColumn()).isWalkway()); // tests if player left room
 	}
-	*/
 }
