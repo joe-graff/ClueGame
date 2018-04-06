@@ -10,15 +10,17 @@ import clueGame.Board;
 import clueGame.Player;
 
 
-class gameActionTests {
+public class gameActionTests {
 
-	Player testComputerPlayer;
-	Board board;
+	public static Player testComputerPlayer;
+	public static Board board;
 	
 	
 	@BeforeClass
-	public void setup() {
+	public static void setup() {
 		board = Board.getInstance();
+		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt","PlayerFile.txt","WeaponsFile.txt");
+		board.initialize();
 		testComputerPlayer = board.getPlayer(3);
 	}
 	
@@ -29,7 +31,7 @@ class gameActionTests {
 	@Test 
 	public void TestACompMovement() {
 		testComputerPlayer.movePlayer(4);
-		assertEquals(testComputerPlayer.getRow(), 24); // tests if the computer player entered the room
+		assertEquals(testComputerPlayer.getRow(), 22); // tests if the computer player entered the room
 		assertEquals(testComputerPlayer.getColumn(), 9);
 		testComputerPlayer.movePlayer(8);
 		assertEquals(testComputerPlayer.getRow(), 20); // tests if the computer player entered another room

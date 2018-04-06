@@ -26,7 +26,6 @@ public class Board {
 	
 	private static int NUM_ROWS;
 	private static int NUM_COLUMNS;
-	private static int MAX_BOARD_SIZE;
 	private int numPlayers;
 	private BoardCell board[][];
 	private Map<Character, String> legend;
@@ -78,6 +77,7 @@ public class Board {
 		}
 		loadPlayerConfig();
 		loadWeaponConfig();
+		calcAdjacencies();
 	} 
 	
 	/**
