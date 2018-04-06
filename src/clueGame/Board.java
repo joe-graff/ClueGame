@@ -24,8 +24,6 @@ import clueGame.BoardCell;
 
 public class Board {
 	
-
-	
 	private static int NUM_ROWS;
 	private static int NUM_COLUMNS;
 	private static int MAX_BOARD_SIZE;
@@ -220,9 +218,9 @@ public class Board {
 			int c = Integer.parseInt(split[4]);
 			String type = split[2];
 			if(type.equals("Player")) {
-				players[i] = new HumanPlayer(split[0], r, c, color);
+				players[i] = new HumanPlayer(split[0], r, c, color, getInstance());
 			} else if(type.equals("Computer")){
-				players[i] = new ComputerPlayer(split[0], r, c, color);
+				players[i] = new ComputerPlayer(split[0], r, c, color, getInstance());
 			}
 		}
 	}

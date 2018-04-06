@@ -9,26 +9,32 @@ import java.util.ArrayList;
  *
  */
 
-public class Player {
+public abstract class Player {
 	private String playerName;
-	private int row;
-	private int column;
+	protected int row;
+	protected int column;
+	protected BoardCell lastRoom;
 	private Color color;
 	private ArrayList<Card> hand;
+	public Board board;
 	
-	public Player(String playerName, int row, int column, Color color) {
+	public Player(String playerName, int row, int column, Color color, Board board) {
 		super();
 		this.playerName = playerName;
 		this.row = row;
 		this.column = column;
 		this.color = color;
 		hand  = new ArrayList<Card>();
+		this.board = board;
 	}
 	
 	public ArrayList<Card> getHand() {
 		return hand;
 		
 	}
+	
+	
+	public abstract void movePlayer(int pathLength);
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		return null;
