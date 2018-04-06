@@ -18,6 +18,7 @@ import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
+import clueGame.Solution;
 
 public class gameSetupTests {
 	public static final int DECK_SIZE = 21;
@@ -90,10 +91,10 @@ public class gameSetupTests {
 	public void testDealCards() {
 		board.dealDeck();
 		assertEquals(board.getDeck().size(), 0);
-		assertEquals(board.getSolution().size(), 3);
+		assertEquals(board.solution.returnCards().size(), 3);
 		int numCard = 0;
 		for(CardType cardType : CardType.values()) {
-			assertEquals(board.getSolution().get(numCard).getCardType(), cardType);
+			assertEquals(board.solution.returnCards().get(numCard).getCardType(), cardType);
 			numCard++;
 		}
 		ArrayList<Card> remainingCards = new ArrayList<Card>();
@@ -102,9 +103,9 @@ public class gameSetupTests {
 				remainingCards.add(card);
 			}
 		}
-		assertTrue(!remainingCards.contains(board.getSolution().get(0)));
-		assertTrue(!remainingCards.contains(board.getSolution().get(1)));
-		assertTrue(!remainingCards.contains(board.getSolution().get(2)));	
+		assertTrue(!remainingCards.contains(board.solution.returnCards().get(0)));
+		assertTrue(!remainingCards.contains(board.solution.returnCards().get(1)));
+		assertTrue(!remainingCards.contains(board.solution.returnCards().get(2)));	
 		}
 }
 

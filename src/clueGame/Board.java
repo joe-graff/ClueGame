@@ -38,7 +38,7 @@ public class Board {
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
 	public ArrayList<Card> deck;
-	public ArrayList<Card> solution;
+	public Solution solution;
 	public Player[] players;
 	
 	/**
@@ -50,7 +50,7 @@ public class Board {
 		targetCells = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
 		deck = new ArrayList<Card>();
-		solution = new ArrayList<Card>();
+		solution = new Solution();
 	}
 	
 	/**
@@ -409,12 +409,13 @@ public class Board {
 		for(CardType cardType : CardType.values()) {
 			for(Card card : deck) {
 				if(card.getCardType() == cardType) {
-					solution.add(card);
+					System.out.println(card.cardName + " " + cardType.toString());
+					solution.setSolutionCard(card, cardType);
 					break;
 				}
 			}
 		}
-		for(Card card : solution) {
+		for(Card card : solution.returnCards()) {
 			deck.remove(card);
 		}
 		int playerNumber = 0;
@@ -437,15 +438,17 @@ public class Board {
 	public int getNumPlayers() {
 		return numPlayers;
 	}
-	
-	public ArrayList<Card> getSolution() {
-		return solution;
-	}
-	
+
 	public Player getPlayer(int playerNumber) {
 		return players[playerNumber];
 	}
 	
+	public Boolean checkAccusation(Card player, Card weapon, Card room) {
+		
+		if(solution.getPerson() == player && solution.getWeapon() == weapon && solution.getRoom() == room)
+			return true;
+		return false;
+	}
 }
 
 

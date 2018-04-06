@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import clueGame.BadConfigFormatException;
+import clueGame.Board;
+import clueGame.Solution;
 import clueGame.Board;
 import clueGame.Player;
 
@@ -15,13 +18,18 @@ public class gameActionTests {
 	public static Player testComputerPlayer;
 	public static Board board;
 	
-	
 	@BeforeClass
-	public static void setup() {
+	public static void before()  throws  BadConfigFormatException{
 		board = Board.getInstance();
 		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt","PlayerFile.txt","WeaponsFile.txt");
 		board.initialize();
 		testComputerPlayer = board.getPlayer(3);
+	}
+	@Test
+	public void testAccusations() {
+		//assertTrue(board.checkAccusation(Solution.person, Solution.weapon, Solution.room));
+	Player testComputerPlayer;
+	Board board;
 	}
 	
 	/*
