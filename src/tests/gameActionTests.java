@@ -28,7 +28,7 @@ public class gameActionTests {
 		testComputerPlayer = board.getPlayer(3);
 	}
 	
-	/*
+	/**
 	 * This tests whether an accusation is correct or incorrect
 	 */
 	@Test
@@ -39,6 +39,11 @@ public class gameActionTests {
 		assertFalse(board.checkAccusation(board.solution.getPerson(), board.solution.getWeapon(), board.solution.getWeapon()));
 	}
 	
+	/**
+	 * This tests when a suggestion is made, if the player has only one of these cards, the player should return that card,
+	 * if the player has multiple of these cards, then the player should return one of the cards at random,
+	 * if the  player has none of the cards the player should return null.
+	 */
 	@Test
 	public void testDisproveSuggestion() {
 		Card tempPlayer = null;
@@ -53,12 +58,14 @@ public class gameActionTests {
 				tempRoom = c;
 			}
 		}
+		//tests if the player only has one of the cards from the suggestion
 		if(tempPlayer != null)
 			assertEquals(testComputerPlayer.DisproveSuggestion(tempPlayer, board.solution.getWeapon(), board.solution.getRoom()), tempPlayer);
 		if(tempWeapon != null)
 			assertEquals(testComputerPlayer.DisproveSuggestion(board.solution.getPerson(), tempWeapon, board.solution.getRoom()), tempWeapon);
 		if(tempRoom != null)
 			assertEquals(testComputerPlayer.DisproveSuggestion(board.solution.getPerson(), board.solution.getWeapon(), tempRoom), tempRoom);
+		// tests if the player has multiple of the cards from the suggestion
 		if(tempPlayer != null && tempWeapon != null) {
 			assertTrue(testComputerPlayer.DisproveSuggestion(tempPlayer, tempWeapon,  board.solution.getRoom()) == tempPlayer || 
 					testComputerPlayer.DisproveSuggestion(tempPlayer, tempWeapon,  board.solution.getRoom()) == tempWeapon);
@@ -71,6 +78,7 @@ public class gameActionTests {
 			assertTrue(testComputerPlayer.DisproveSuggestion(tempPlayer, tempWeapon,  board.solution.getRoom()) == tempRoom || 
 					testComputerPlayer.DisproveSuggestion(tempPlayer, tempWeapon,  board.solution.getRoom()) == tempWeapon);
 		}
+		// tests if the player has none of the cards from the suggestion
 		assertEquals(testComputerPlayer.DisproveSuggestion(board.solution.getPerson(), board.solution.getWeapon(), board.solution.getRoom()), null);
 	}
 	
