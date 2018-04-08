@@ -30,9 +30,21 @@ public abstract class Player {
 	
 	public ArrayList<Card> getHand() {
 		return hand;
-		
 	}
 	
+	public Card DisproveSuggestion(Card person, Card weapon, Card room) {
+		/*ArrayList<Card> disproveList = new ArrayList();
+		for(Card c: hand) {
+			if(c == person || c == weapon || c == room)
+				disproveList.add(c);
+		}
+		if(disproveList.size() == 0)
+			return null;
+		else{
+			return disproveList.get((int)(Math.random() * disproveList.size()));
+		}*/
+		return null;
+	}
 	
 	public abstract void movePlayer(int pathLength);
 	
