@@ -12,38 +12,34 @@ import clueGame.Solution;
 import clueGame.Board;
 import clueGame.Player;
 
-class gameActionTests {
+
+public class gameActionTests {
+
+	public static Player testComputerPlayer;
 	public static Board board;
-	public Player testComputerPlayer;
-	
 	
 	@BeforeClass
 	public static void before()  throws  BadConfigFormatException{
 		board = Board.getInstance();
 		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt","PlayerFile.txt","WeaponsFile.txt");
 		board.initialize();
+		testComputerPlayer = board.getPlayer(3);
 	}
-	
 	@Test
 	public void testAccusations() {
 		//assertTrue(board.checkAccusation(Solution.person, Solution.weapon, Solution.room));
-	}
-	
-	@BeforeClass
-	public void setup() {
-		board = Board.getInstance();
-		testComputerPlayer = board.getPlayer(3);
+	Player testComputerPlayer;
+	Board board;
 	}
 	
 	/*
 	 * This tests the ability of a computer player to move considering the rules for movement that appear
 	 * on canvas
 	 */
-	
 	@Test 
 	public void TestACompMovement() {
 		testComputerPlayer.movePlayer(4);
-		assertEquals(testComputerPlayer.getRow(), 24); // tests if the computer player entered the room
+		assertEquals(testComputerPlayer.getRow(), 22); // tests if the computer player entered the room
 		assertEquals(testComputerPlayer.getColumn(), 9);
 		testComputerPlayer.movePlayer(8);
 		assertEquals(testComputerPlayer.getRow(), 20); // tests if the computer player entered another room

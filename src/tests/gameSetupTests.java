@@ -8,19 +8,15 @@ import static org.junit.Assert.*;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.BadConfigFormatException;
 import clueGame.Board;
-import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
-import clueGame.DoorDirection;
 import clueGame.HumanPlayer;
 import clueGame.Solution;
 
