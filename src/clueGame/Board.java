@@ -78,6 +78,7 @@ public class Board {
 		loadPlayerConfig();
 		loadWeaponConfig();
 		calcAdjacencies();
+		dealDeck();
 	} 
 	
 	/**
@@ -409,7 +410,6 @@ public class Board {
 		for(CardType cardType : CardType.values()) {
 			for(Card card : deck) {
 				if(card.getCardType() == cardType) {
-					System.out.println(card.cardName + " " + cardType.toString());
 					solution.setSolutionCard(card, cardType);
 					break;
 				}
@@ -444,10 +444,11 @@ public class Board {
 	}
 	
 	public Boolean checkAccusation(Card player, Card weapon, Card room) {
-		
-		if(solution.getPerson() == player && solution.getWeapon() == weapon && solution.getRoom() == room)
+		if(solution.getPerson() == player && solution.getWeapon() == weapon && solution.getRoom() == room) {
 			return true;
-		return false;
+		} else {
+			return false;
+		}
 	}
 }
 

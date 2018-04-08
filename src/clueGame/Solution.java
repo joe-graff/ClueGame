@@ -3,9 +3,9 @@ package clueGame;
 import java.util.ArrayList;
 
 public class Solution {
-	public Card person;
-	public Card room;
-	public Card weapon;
+	private Card person;
+	private Card room;
+	private Card weapon;
 	
 	public Solution() {
 	}
@@ -27,7 +27,6 @@ public class Solution {
 		cards.add(room);
 		return cards;
 	}
-
 	public Card getPerson() {
 		return person;
 	}

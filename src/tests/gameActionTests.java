@@ -27,10 +27,10 @@ public class gameActionTests {
 	}
 	@Test
 	public void testAccusations() {
-		assertTrue(board.checkAccusation(board.solution.person, board.solution.weapon, board.solution.room));
-		assertFalse(board.checkAccusation(board.solution.weapon, board.solution.weapon, board.solution.room));
-		assertFalse(board.checkAccusation(board.solution.person, board.solution.person, board.solution.room));
-		assertFalse(board.checkAccusation(board.solution.person, board.solution.weapon, board.solution.weapon));
+		assertTrue(board.checkAccusation(board.solution.getPerson(), board.solution.getWeapon(), board.solution.getRoom()));
+		assertFalse(board.checkAccusation(board.solution.getWeapon(), board.solution.getWeapon(), board.solution.getRoom()));
+		assertFalse(board.checkAccusation(board.solution.getPerson(), board.solution.getPerson(), board.solution.getRoom()));
+		assertFalse(board.checkAccusation(board.solution.getPerson(), board.solution.getWeapon(), board.solution.getWeapon()));
 	}
 	
 	/*
