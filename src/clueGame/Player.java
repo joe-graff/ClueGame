@@ -15,9 +15,14 @@ public abstract class Player {
 	protected int column;
 	protected BoardCell lastRoom;
 	private Color color;
-	private ArrayList<Card> hand;
+	protected ArrayList<Card> hand;
 	public Board board;
+	protected ArrayList<Card> possibleCards;
 	
+	public ArrayList<Card> getPossibleCards() {
+		return possibleCards;
+	}
+
 	public Player(String playerName, int row, int column, Color color, Board board) {
 		super();
 		this.playerName = playerName;

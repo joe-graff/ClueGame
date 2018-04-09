@@ -226,6 +226,22 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * helper function to find what room player is in
+	 * @param row
+	 * @param col
+	 * @return
+	 */
+	public Card getRoom(int row, int col) {
+		BoardCell  b = board[row][col];
+		String roomName = legend.get(b.getInitial());
+		for(Card c: deck) {
+			if(c.getCardName() == roomName)
+				return c;
+		}
+		return null;
+	}
+	
 	public Color convertColor(String strColor) {
 		Color color;
 		try {
@@ -456,6 +472,7 @@ public class Board {
 		while(nextPlayerID != playerID) {
 			Card revealThisCard = players[nextPlayerID].disproveSuggestion(suggestion);
 			if(revealThisCard != null) {
+				players[playerID].getPossibleCards().remove(revealThisCard);
 				return revealThisCard;
 			}
 			nextPlayerID = (nextPlayerID + 1) % numPlayers;
