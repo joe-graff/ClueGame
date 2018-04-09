@@ -10,22 +10,29 @@ import clueGame.BadConfigFormatException;
 import clueGame.Board;
 import clueGame.Card;
 import clueGame.CardType;
+import clueGame.HumanPlayer;
 import clueGame.Solution;
 import clueGame.Player;
 
 
 public class gameActionTests {
 
-	public static Player testComputerPlayer;
+	public static Player testComputerPlayer, tempCompPlayer1, tempHumanPlayer;
 	public static Board board;
-	
+	public static Card tempCTLM, tempRope;
 	@BeforeClass
 	public static void before()  throws  BadConfigFormatException{
 		board = Board.getInstance();
 		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt","PlayerFile.txt","WeaponsFile.txt");
 		board.initialize();
 		board.dealDeck();
+		tempHumanPlayer = board.getPlayer(0);
+		tempCompPlayer1 = board.getPlayer(1);
 		testComputerPlayer = board.getPlayer(3);
+		Card tempRope = new Card("tempRope", CardType.WEAPON);
+		Card tempCTLM = new Card("tempCTLM", CardType.ROOM);
+		tempHumanPlayer.getHand().add(tempRope);
+		tempCompPlayer1.getHand().add(tempCTLM);
 	}
 	
 	/**
@@ -146,5 +153,6 @@ public class gameActionTests {
 	@Test
 	public void TestSuggestionHandling() {
 		assertEquals(null, board.handleSuggestion(0,board.getSolution()));
+		
 	}
 }
