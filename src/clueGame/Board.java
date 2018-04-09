@@ -450,15 +450,17 @@ public class Board {
 		}
 	}
 	
-	/*
 	public Card handleSuggestion(int playerID, Solution suggestion) {
 		int nextPlayerID = (playerID + 1) % numPlayers;
 		while(nextPlayerID != playerID) {
-			Card revealedCard = players[nextPlayerID].disproveSuggestion(suggestion);
+			Card revealThisCard = players[nextPlayerID].disproveSuggestion(suggestion);
+			if(revealThisCard != null) {
+				return revealThisCard;
+			}
 			nextPlayerID = (nextPlayerID + 1) % numPlayers;
 		}
 		return null;
-	}*/
+	}
 	
 	public Solution getSolution() {
 		return solution;

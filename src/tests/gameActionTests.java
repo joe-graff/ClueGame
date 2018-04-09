@@ -58,15 +58,17 @@ public class gameActionTests {
 			} else {
 				tempRoom = c;
 			}
-		}
-		// tests if the player has none of the cards from the suggestion
+		}				
+		// tests if the player all of the cards from the suggestion
 		if(tempPlayer != null && tempWeapon != null && tempRoom != null) {
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
-			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), null);
-		}			
-		// tests if the player has multiple of the cards from the suggestion
+			assertTrue(testComputerPlayer.disproveSuggestion(suggestion) == tempPlayer || 
+					   testComputerPlayer.disproveSuggestion(suggestion) == tempWeapon ||
+					   testComputerPlayer.disproveSuggestion(suggestion) == tempRoom);	
+		}
+		// tests if the player has two of the cards from the suggestion
 		if(tempPlayer != null && tempWeapon != null) {
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
@@ -89,21 +91,31 @@ public class gameActionTests {
 					   testComputerPlayer.disproveSuggestion(suggestion) == tempRoom);
 		}
 		//tests if the player only has one of the cards from the suggestion
-		if(tempPlayer != null)
+		if(tempPlayer != null) {
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
 			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempPlayer);
-		if(tempWeapon != null)
+		}
+		if(tempWeapon != null) {
 			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempWeapon);
-		if(tempRoom != null)
+		}
+		if(tempRoom != null) {
 			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
 			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempRoom);
+		}
+		// tests if the player has none of the cards from the suggestion
+				if(tempPlayer == null && tempWeapon == null && tempRoom == null) {
+					suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
+					suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
+					suggestion.setSolutionCard(tempRoom, CardType.ROOM);
+					assertEquals(testComputerPlayer.disproveSuggestion(suggestion), null);
+				}
 	}
 	
 	/*
@@ -129,7 +141,6 @@ public class gameActionTests {
 	 */
 	@Test
 	public void TestSuggestionHandling() {
-		assertEquals(null, board.handleSuggestion(0,board.getSolution().getPerson()));
-		assertTrue(board.handleSuggestion(0,board.getPlayer(0).getHand().get(0)) != null);
+		assertEquals(null, board.handleSuggestion(0,board.getSolution()));
 	}
 }
