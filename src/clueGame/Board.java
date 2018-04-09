@@ -451,7 +451,7 @@ public class Board {
 	}
 	
 	/*
-	public Card handSuggestion(int playerID, Solution suggestion) {
+	public Card handleSuggestion(int playerID, Solution suggestion) {
 		int nextPlayerID = (playerID + 1) % numPlayers;
 		while(nextPlayerID != playerID) {
 			Card revealedCard = players[nextPlayerID].disproveSuggestion(suggestion);

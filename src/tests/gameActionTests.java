@@ -121,9 +121,15 @@ public class gameActionTests {
 		testComputerPlayer.movePlayer(1);
 		assertTrue(board.getCellAt(testComputerPlayer.getRow(), testComputerPlayer.getColumn()).isWalkway()); // tests if player left room
 	}
+	
 	/*
+	 * Tests the ability of the game to go through each players hand when a suggestion is made and
+	 * correctly show any return any required card which needs to be shown by the player making
+	 * a suggestion
+	 */
 	@Test
 	public void TestSuggestionHandling() {
-		
-	}*/
+		assertEquals(null, board.handleSuggestion(0,board.getSolution().getPerson()));
+		assertTrue(board.handleSuggestion(0,board.getPlayer(0).getHand().get(0)) != null);
+	}
 }
