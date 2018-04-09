@@ -17,9 +17,9 @@ import clueGame.Player;
 
 public class gameActionTests {
 
-	public static Player testComputerPlayer, tempCompPlayer1, tempHumanPlayer;
+	public static Player testComputerPlayer, tempCompPlayer1, tempHumanPlayer; //temporary players for testing purposes
 	public static Board board;
-	public static Card tempCTLM, tempRope;
+	public static Card tempCTLM, tempRope, tempCPW; //temporary cards for testing purposes
 	@BeforeClass
 	public static void before()  throws  BadConfigFormatException{
 		board = Board.getInstance();
@@ -31,15 +31,17 @@ public class gameActionTests {
 		testComputerPlayer = board.getPlayer(3);
 		Card tempRope = new Card("tempRope", CardType.WEAPON);
 		Card tempCTLM = new Card("tempCTLM", CardType.ROOM);
+		Card tempCPW = new Card("tempCPW", CardType.PERSON);
 		tempHumanPlayer.getHand().add(tempRope);
 		tempCompPlayer1.getHand().add(tempCTLM);
+		testComputerPlayer.getHand().add(tempCPW);
 	}
 	
 	/**
 	 * This tests whether an accusation is correct or incorrect
 	 */
 	@Test
-	public void testAccusations() {
+	public void testMakeAccusations() {
 		assertTrue(board.checkAccusation(board.getSolution().getPerson(), board.getSolution().getWeapon(), board.getSolution().getRoom()));
 		assertFalse(board.checkAccusation(board.getSolution().getWeapon(), board.getSolution().getWeapon(), board.getSolution().getRoom()));
 		assertFalse(board.checkAccusation(board.getSolution().getPerson(), board.getSolution().getPerson(), board.getSolution().getRoom()));
@@ -129,7 +131,7 @@ public class gameActionTests {
 		}
 	}
 	
-	/*
+	/**
 	 * This tests the ability of a computer player to move considering the rules for movement that appear
 	 * on canvas
 	 */
@@ -145,14 +147,28 @@ public class gameActionTests {
 		assertTrue(board.getCellAt(testComputerPlayer.getRow(), testComputerPlayer.getColumn()).isWalkway()); // tests if player left room
 	}
 	
-	/*
+	/**
 	 * Tests the ability of the game to go through each players hand when a suggestion is made and
 	 * correctly show any return any required card which needs to be shown by the player making
 	 * a suggestion
 	 */
 	@Test
 	public void TestSuggestionHandling() {
-		assertEquals(null, board.handleSuggestion(0,board.getSolution()));
-		
+		Solution suggestion = new Solution();
+		assertEquals(null, board.handleSuggestion(0,board.getSolution())); // tests if no one can disprove the suggestion
+		suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
+		suggestion.setSolutionCard(board.getSolution().getWeapon(),CardType.WEAPON);
+		suggestion.setSolutionCard(tempCTLM, CardType.ROOM);
+		assertEquals(null, board.handleSuggestion(1, suggestion)); // tests if only accuser can disprove suggestion
+		suggestion.setSolutionCard(tempRope, CardType.WEAPON);
+		suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
+		assertEquals(null, board.handleSuggestion(0, suggestion)); // tests if only human can disprove suggestion but human is accuser
+		assertEquals(tempRope, board.handleSuggestion(1,suggestion)); // tests if only human can disprove suggestion
+		suggestion.setSolutionCard(tempCTLM, CardType.ROOM);
+		assertEquals(tempRope, board.handleSuggestion(2, suggestion)); // tests if two players can disprove to make sure correct player is chosen
+		suggestion.setSolutionCard(tempCPW, CardType.PERSON);
+		suggestion.setSolutionCard(tempRope, CardType.WEAPON);
+		suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM); // tests if a player and a human player can both disprove but player is before human player
+		assertEquals(tempCPW, board.handleSuggestion(1,suggestion));
 	}
 }
