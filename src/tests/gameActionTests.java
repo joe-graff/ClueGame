@@ -58,59 +58,56 @@ public class gameActionTests {
 			} else {
 				tempRoom = c;
 			}
-		}				
+		}	
 		// tests if the player all of the cards from the suggestion
-		if(tempPlayer != null && tempWeapon != null && tempRoom != null) {
-			System.out.println("Did it fail?");
+		if((tempPlayer != null) && (tempWeapon != null) && (tempRoom != null)) {
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
-			assertTrue(testComputerPlayer.disproveSuggestion(suggestion) == tempPlayer || 
-					   testComputerPlayer.disproveSuggestion(suggestion) == tempWeapon ||
-					   testComputerPlayer.disproveSuggestion(suggestion) == tempRoom);	
+			Card suggestedCard = testComputerPlayer.disproveSuggestion(suggestion);
+			assertTrue(suggestedCard == tempPlayer || 
+					   suggestedCard == tempWeapon ||
+					   suggestedCard == tempRoom);	
 		}
 		// tests if the player has two of the cards from the suggestion
-		else if(tempPlayer != null && tempWeapon != null) {
-			System.out.println("Did it fail?");
+		else if((tempPlayer != null) && (tempWeapon != null)) {
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
-			assertTrue(testComputerPlayer.disproveSuggestion(suggestion) == tempPlayer || 
-					   testComputerPlayer.disproveSuggestion(suggestion) == tempWeapon);
+			Card suggestedCard = testComputerPlayer.disproveSuggestion(suggestion);
+			assertTrue(suggestedCard == tempPlayer || 
+					   suggestedCard == tempWeapon);	
 		}
-		else if(tempPlayer != null && tempRoom != null) {
-			System.out.println("Did it fail?");
+		else if((tempPlayer != null) && (tempRoom != null)) {
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
-			assertTrue(testComputerPlayer.disproveSuggestion(suggestion) == tempPlayer || 
-					   testComputerPlayer.disproveSuggestion(suggestion) == tempRoom);
+			Card suggestedCard = testComputerPlayer.disproveSuggestion(suggestion);
+			assertTrue(suggestedCard == tempPlayer ||
+					   suggestedCard == tempRoom);	
 		}
-		else if(tempWeapon != null && tempRoom != null) {
-			System.out.println("Did it fail?");
+		else if((tempWeapon != null) && (tempRoom != null)) {
 			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
-			assertTrue(testComputerPlayer.disproveSuggestion(suggestion) == tempWeapon || 
-					   testComputerPlayer.disproveSuggestion(suggestion) == tempRoom);
+			Card suggestedCard = testComputerPlayer.disproveSuggestion(suggestion);
+			assertTrue(suggestedCard == tempWeapon ||
+					   suggestedCard == tempRoom);	
 		}
 		//tests if the player only has one of the cards from the suggestion
-		else if(tempPlayer != null) {
-			System.out.println("Did it pass?");
+		else if((tempPlayer != null)) {
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
 			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempPlayer);
 		}
-		else if(tempWeapon != null) {
-			System.out.println("Did it pass?");
+		else if((tempWeapon != null)) {
 			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempWeapon);
 		}
-		else if(tempRoom != null) {
-			System.out.println("Did it pass?");
+		else if((tempRoom != null)) {
 			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
 			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
@@ -118,7 +115,6 @@ public class gameActionTests {
 		}
 		// tests if the player has none of the cards from the suggestion
 		else {
-			System.out.println("Did it pass?");
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
