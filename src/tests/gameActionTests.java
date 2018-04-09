@@ -61,6 +61,7 @@ public class gameActionTests {
 		}				
 		// tests if the player all of the cards from the suggestion
 		if(tempPlayer != null && tempWeapon != null && tempRoom != null) {
+			System.out.println("Did it fail?");
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
@@ -69,21 +70,24 @@ public class gameActionTests {
 					   testComputerPlayer.disproveSuggestion(suggestion) == tempRoom);	
 		}
 		// tests if the player has two of the cards from the suggestion
-		if(tempPlayer != null && tempWeapon != null) {
+		else if(tempPlayer != null && tempWeapon != null) {
+			System.out.println("Did it fail?");
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
 			assertTrue(testComputerPlayer.disproveSuggestion(suggestion) == tempPlayer || 
 					   testComputerPlayer.disproveSuggestion(suggestion) == tempWeapon);
 		}
-		if(tempPlayer != null && tempRoom != null) {
+		else if(tempPlayer != null && tempRoom != null) {
+			System.out.println("Did it fail?");
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
 			assertTrue(testComputerPlayer.disproveSuggestion(suggestion) == tempPlayer || 
 					   testComputerPlayer.disproveSuggestion(suggestion) == tempRoom);
 		}
-		if(tempWeapon != null && tempRoom != null) {
+		else if(tempWeapon != null && tempRoom != null) {
+			System.out.println("Did it fail?");
 			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
@@ -91,31 +95,35 @@ public class gameActionTests {
 					   testComputerPlayer.disproveSuggestion(suggestion) == tempRoom);
 		}
 		//tests if the player only has one of the cards from the suggestion
-		if(tempPlayer != null) {
+		else if(tempPlayer != null) {
+			System.out.println("Did it pass?");
 			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
 			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
 			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempPlayer);
 		}
-		if(tempWeapon != null) {
+		else if(tempWeapon != null) {
+			System.out.println("Did it pass?");
 			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
 			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
 			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempWeapon);
 		}
-		if(tempRoom != null) {
+		else if(tempRoom != null) {
+			System.out.println("Did it pass?");
 			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
 			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
 			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempRoom);
 		}
 		// tests if the player has none of the cards from the suggestion
-				if(tempPlayer == null && tempWeapon == null && tempRoom == null) {
-					suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
-					suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
-					suggestion.setSolutionCard(tempRoom, CardType.ROOM);
-					assertEquals(testComputerPlayer.disproveSuggestion(suggestion), null);
-				}
+		else {
+			System.out.println("Did it pass?");
+			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
+			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
+			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
+			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), null);
+		}
 	}
 	
 	/*
