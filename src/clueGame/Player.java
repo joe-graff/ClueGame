@@ -32,10 +32,10 @@ public abstract class Player {
 		return hand;
 	}
 	
-	public Card DisproveSuggestion(Card person, Card weapon, Card room) {
-		ArrayList<Card> disproveList = new ArrayList();
+	public Card disproveSuggestion(Solution suggestion) {
+		ArrayList<Card> disproveList = new ArrayList<Card>();
 		for(Card c: hand) {
-			if(c == person || c == weapon || c == room)
+			if(c == suggestion.getPerson() || c == suggestion.getWeapon() || c == suggestion.getRoom())
 				disproveList.add(c);
 		}
 		if(disproveList.size() == 0)
@@ -47,9 +47,6 @@ public abstract class Player {
 	
 	public abstract void movePlayer(int pathLength);
 	
-	public Card disproveSuggestion(Solution suggestion) {
-		return null;
-	}
 	public String getPlayerName() {
 		return playerName;
 	}

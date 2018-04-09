@@ -18,7 +18,6 @@ import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
-import clueGame.Solution;
 
 public class gameSetupTests {
 	public static final int DECK_SIZE = 21;
@@ -67,7 +66,7 @@ public class gameSetupTests {
 	 */
 	@Test
 	public void testCards() {
-		assertEquals(board.getDeck().size(),DECK_SIZE);
+		assertEquals(board.getDeck().size(), DECK_SIZE);
 		int room = 0, person = 0, weapon = 0;
 		for(int i = 0; i < board.getDeck().size(); i++) {
 			if(board.deck.get(i).cardType == CardType.PERSON) person++;
@@ -84,17 +83,17 @@ public class gameSetupTests {
 
 	/**
 	 * This set of tests makes sure that 3 cards (a weapon, a person, and a room) are removed from the
-	 * deck and set aside as the solution. It also makes sure that the remaining cards are dealt to the
+	 * deck and set aside as the getSolution(). It also makes sure that the remaining cards are dealt to the
 	 * players.
 	 */
 	@Test
 	public void testDealCards() {
 		board.dealDeck();
 		assertEquals(board.getDeck().size(), 0);
-		assertEquals(board.solution.returnCards().size(), 3);
+		assertEquals(board.getSolution().returnCards().size(), 3);
 		int numCard = 0;
 		for(CardType cardType : CardType.values()) {
-			assertEquals(board.solution.returnCards().get(numCard).getCardType(), cardType);
+			assertEquals(board.getSolution().returnCards().get(numCard).getCardType(), cardType);
 			numCard++;
 		}
 		ArrayList<Card> remainingCards = new ArrayList<Card>();
@@ -103,9 +102,9 @@ public class gameSetupTests {
 				remainingCards.add(card);
 			}
 		}
-		assertTrue(!remainingCards.contains(board.solution.returnCards().get(0)));
-		assertTrue(!remainingCards.contains(board.solution.returnCards().get(1)));
-		assertTrue(!remainingCards.contains(board.solution.returnCards().get(2)));	
+		assertTrue(!remainingCards.contains(board.getSolution().returnCards().get(0)));
+		assertTrue(!remainingCards.contains(board.getSolution().returnCards().get(1)));
+		assertTrue(!remainingCards.contains(board.getSolution().returnCards().get(2)));	
 		}
 }
 

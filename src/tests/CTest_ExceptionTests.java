@@ -21,7 +21,7 @@ public class CTest_ExceptionTests {
 		// Note that we are using a LOCAL Board variable, because each 
 		// test will load different files
 		Board board = Board.getInstance();
-		board.setConfigFiles("CTest_ClueLayoutBadColumns.csv", "CTest_ClueLegend.txt");
+		board.setConfigFiles("CTest_ClueLayoutBadColumns.csv", "CTest_ClueLegend.txt","PlayerFile.txt","WeaponsFile.txt");
 		// Instead of initialize, we call the two load functions directly.
 		// This is necessary because initialize contains a try-catch. 
 		board.loadRoomConfig();

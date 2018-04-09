@@ -38,7 +38,7 @@ public class Board {
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
 	public ArrayList<Card> deck;
-	public Solution solution;
+	private Solution solution;
 	public Player[] players;
 	
 	/**
@@ -78,8 +78,7 @@ public class Board {
 		loadPlayerConfig();
 		loadWeaponConfig();
 		calcAdjacencies();
-		dealDeck();
-	} 
+	}
 	
 	/**
 	 *  loads the board
@@ -449,6 +448,20 @@ public class Board {
 		} else {
 			return false;
 		}
+	}
+	
+	/*
+	public Card handSuggestion(int playerID, Solution suggestion) {
+		int nextPlayerID = (playerID + 1) % numPlayers;
+		while(nextPlayerID != playerID) {
+			Card revealedCard = players[nextPlayerID].disproveSuggestion(suggestion);
+			nextPlayerID = (nextPlayerID + 1) % numPlayers;
+		}
+		return null;
+	}*/
+	
+	public Solution getSolution() {
+		return solution;
 	}
 }
 
