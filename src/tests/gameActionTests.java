@@ -3,6 +3,9 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -10,6 +13,7 @@ import clueGame.BadConfigFormatException;
 import clueGame.Board;
 import clueGame.Card;
 import clueGame.CardType;
+import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 import clueGame.Solution;
 import clueGame.Player;
@@ -21,11 +25,15 @@ public class gameActionTests {
 	public static Board board;
 	public static Card tempCTLM, tempRope, tempCPW; //temporary cards for testing purposes
 	@BeforeClass
-	public static void before()  throws  BadConfigFormatException{
+	public static void beforeClass()  throws  BadConfigFormatException{
 		board = Board.getInstance();
 		board.setConfigFiles("ClueRooms.csv","ClueRooms.txt","PlayerFile.txt","WeaponsFile.txt");
 		board.initialize();
 		board.dealDeck();
+	}
+	
+	@Before
+	public void before() {
 		tempHumanPlayer = board.getPlayer(0);
 		tempCompPlayer1 = board.getPlayer(1);
 		testComputerPlayer = board.getPlayer(3);
@@ -170,5 +178,50 @@ public class gameActionTests {
 		suggestion.setSolutionCard(tempRope, CardType.WEAPON);
 		suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM); // tests if a player and a human player can both disprove but player is before human player
 		assertEquals(tempCPW, board.handleSuggestion(1,suggestion));
+	}
+	
+	/*
+	 * This tests the ability of a computer player to create a suggestion based on previously seen cards
+	 */
+	@Test
+	public void testComputerSuggestions() {
+		Solution suggestion = testComputerPlayer.createSuggestion();
+		assertEquals(suggestion.getRoom(), testComputerPlayer.getRoom()); // tests if the current player's room is in the suggestion
+		if(testComputerPlayer.playersSeen().size() == board.getNumPlayers() - 1) {
+			Card unseenPlayer;
+			for(Card card : board.getPlayers()) {
+				if(!testComputerPlayer.playersSeen().contains(card)) {
+					unseenPlayer = card;
+				}
+			}
+			assertEquals(suggestion.getPerson(), unseenPlayer); // if the computer has seen all put one person cards, suggest that card
+		}
+		if(testComputerPlayer.weaponsSeen().size() == board.getNumWeapons() - 1) {
+			Card unseenWeapon;
+			for(Card card : board.getWeapons()) {
+				if(!testComputerPlayer.weaponsSeen().contains(card)) {
+					unseenWeapon = card;
+				}
+			}
+			assertEquals(suggestion.getWeapon(), unseenWeapon); // if the computer has seen all put one weapons cards, suggest that card
+		}
+		if(testComputerPlayer.playersSeen().size() < board.getNumPlayers() - 1) {
+			ArrayList<Card> unseenPlayers = new ArrayList<Card>();
+			for(Card card : board.getPlayers()) {
+				if(!testComputerPlayer.playersSeen().contains(card)) {
+					unseenPlayers.add(card);
+				}
+			}
+			assertTrue(unseenPlayers.contains(suggestion.getPerson())); // if the computer has not seen multiple person cards, suggest one at random
+		}
+		if(testComputerPlayer.weaponsSeen().size() < board.getNumWeapons() - 1) {
+			ArrayList<Card> unseenWeapons = new ArrayList<Card>();
+			for(Card card : board.getWeapons()) {
+				if(!testComputerPlayer.weaponssSeen().contains(card)) {
+					unseenWeapons.add(card);
+				}
+			}
+			assertTrue(unseenWeapons.contains(suggestion.getPerson())); // if the computer has not seen multiple weapon cards, suggest one at random
+		}
 	}
 }
