@@ -221,7 +221,7 @@ public class Board {
 			String[] split = input.get(i).split(", ");
 			Card player = new Card(split[0], CardType.PERSON);
 			deck.add(player);
-			people.add(player);
+			people.add(player);	
 			Color color = convertColor(split[1]);
 			int r = Integer.parseInt(split[3]);
 			int c = Integer.parseInt(split[4]);
