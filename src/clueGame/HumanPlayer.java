@@ -18,6 +18,12 @@ public class HumanPlayer extends Player {
 	public void movePlayer(int pathLength) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public Solution createSuggestion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

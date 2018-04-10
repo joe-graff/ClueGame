@@ -69,16 +69,16 @@ public class gameSetupTests {
 		assertEquals(board.getDeck().size(), DECK_SIZE);
 		int room = 0, person = 0, weapon = 0;
 		for(int i = 0; i < board.getDeck().size(); i++) {
-			if(board.deck.get(i).cardType == CardType.PERSON) person++;
-			else if(board.deck.get(i).cardType == CardType.WEAPON) weapon++;
-			else if(board.deck.get(i).cardType == CardType.ROOM) room++;
+			if(board.getDeck().get(i).cardType == CardType.PERSON) person++;
+			else if(board.getDeck().get(i).cardType == CardType.WEAPON) weapon++;
+			else if(board.getDeck().get(i).cardType == CardType.ROOM) room++;
 		}
 		assertEquals(person, 6);
 		assertEquals(weapon, 6);
 		assertEquals(room, 9);
-		assertTrue(board.deck.contains(new Card("Joe Student", CardType.PERSON)));
-		assertTrue(board.deck.contains(new Card("Rope", CardType.WEAPON)));
-		assertTrue(board.deck.contains(new Card("Brown", CardType.ROOM)));
+		assertTrue(board.getDeck().contains(new Card("Joe Student", CardType.PERSON)));
+		assertTrue(board.getDeck().contains(new Card("Rope", CardType.WEAPON)));
+		assertTrue(board.getDeck().contains(new Card("Brown", CardType.ROOM)));
 	}
 
 	/**

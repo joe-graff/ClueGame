@@ -16,7 +16,7 @@ public abstract class Player {
 	protected BoardCell lastRoom;
 	private Color color;
 	protected ArrayList<Card> hand;
-	public Board board;
+	protected Board board;
 	protected ArrayList<Card> possibleCards;
 	
 	public ArrayList<Card> getPossibleCards() {
@@ -63,5 +63,11 @@ public abstract class Player {
 	}
 	public Color getColor() {
 		return color;
+	}
+
+	public abstract Solution createSuggestion();
+
+	public Card getRoom() {
+		return board.getRoom(row, column);
 	}
 }

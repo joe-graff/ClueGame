@@ -11,12 +11,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ComputerPlayer extends Player{
+	private ArrayList<Card> peopleSeen;
+	private ArrayList<Card> weaponsSeen;
+	private ArrayList<Card> roomsSeen;
+	
 	public ComputerPlayer(String playerName, int row, int column, Color color, Board board) {
 		super(playerName, row, column, color, board);
-		possibleCards = new ArrayList();
+		possibleCards = new ArrayList<Card>();
 		for(Card c: hand) {
 			possibleCards.remove(c);
 		}
+		peopleSeen = new ArrayList<Card>();
+		weaponsSeen = new ArrayList<Card>();
+		roomsSeen = new ArrayList<Card>();
 	}
 
 	@Override
@@ -65,6 +72,18 @@ public class ComputerPlayer extends Player{
 	
 	public ArrayList<Card> getPossibleCards(){
 		return possibleCards;
+	}
+
+	public ArrayList<Card> weaponsSeen() {
+		return weaponsSeen;
+	}
+
+	public ArrayList<Card> peopleSeen() {
+		return peopleSeen;
+	}
+	
+	public ArrayList<Card> roomsSeen() {
+		return roomsSeen;
 	}
 }
 	

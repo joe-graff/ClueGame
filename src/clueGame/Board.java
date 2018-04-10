@@ -38,7 +38,10 @@ public class Board {
 	private Map<BoardCell, Set<BoardCell>> adjCells; // list of all cells adjacent cells for each cell on the board.
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
-	public ArrayList<Card> deck;
+	private ArrayList<Card> deck;
+	private ArrayList<Card> people;
+	private ArrayList<Card> weapons;
+	private ArrayList<Card> rooms;
 	private Solution solution;
 	public Player[] players;
 	
@@ -51,6 +54,9 @@ public class Board {
 		targetCells = new HashSet<BoardCell>();
 		legend = new HashMap<Character, String>();
 		deck = new ArrayList<Card>();
+		people = new ArrayList<Card>();
+		weapons = new ArrayList<Card>();
+		rooms = new ArrayList<Card>();
 		solution = new Solution();
 	}
 	
@@ -187,6 +193,7 @@ public class Board {
 			if(str.equalsIgnoreCase("Card")){
 				Card room = new Card(roomName, CardType.ROOM);
 				deck.add(room);
+				rooms.add(room);
 			}
 		}
 		scan.close();
@@ -214,6 +221,7 @@ public class Board {
 			String[] split = input.get(i).split(", ");
 			Card player = new Card(split[0], CardType.PERSON);
 			deck.add(player);
+			people.add(player);
 			Color color = convertColor(split[1]);
 			int r = Integer.parseInt(split[3]);
 			int c = Integer.parseInt(split[4]);
@@ -264,6 +272,7 @@ public class Board {
 				String input = scan.nextLine();
 				Card weapon = new Card(input, CardType.WEAPON);
 				deck.add(weapon);
+				weapons.add(weapon);
 				//weapons.add(weapon);
 			}
 			scan.close();
@@ -482,6 +491,26 @@ public class Board {
 	
 	public Solution getSolution() {
 		return solution;
+	}
+
+	public int getNumWeapons() {
+		return weapons.size();
+	}
+
+	public ArrayList<Card> getWeapons() {
+		return weapons;
+	}
+
+	public int getNumPeople() {
+		return people.size();
+	}
+	
+	public ArrayList<Card> getPeople() {
+		return people;
+	}
+	
+	public ArrayList<Card> getRooms() {
+		return rooms;
 	}
 }
 

@@ -62,7 +62,7 @@ public class gameActionTests {
 	 * if the  player has none of the cards the player should return null.
 	 */
 	@Test
-	public void testdisproveSuggestion() {
+	public void testDisproveSuggestion() {
 		Card tempPlayer = null;
 		Card tempWeapon = null;
 		Card tempRoom = null;
@@ -187,37 +187,35 @@ public class gameActionTests {
 	public void testComputerSuggestions() {
 		Solution suggestion = testComputerPlayer.createSuggestion();
 		assertEquals(suggestion.getRoom(), testComputerPlayer.getRoom()); // tests if the current player's room is in the suggestion
-		if(testComputerPlayer.playersSeen().size() == board.getNumPlayers() - 1) {
-			Card unseenPlayer;
-			for(Card card : board.getPlayers()) {
-				if(!testComputerPlayer.playersSeen().contains(card)) {
-					unseenPlayer = card;
+		if(((ComputerPlayer) testComputerPlayer).peopleSeen().size() == board.getNumPeople() - 1) {
+			for(Card card : board.getPeople()) {
+				if(!((ComputerPlayer) testComputerPlayer).peopleSeen().contains(card)) {
+					assertEquals(suggestion.getPerson(), card); // if the computer has seen all put one person cards, suggest that card
+					break;
 				}
 			}
-			assertEquals(suggestion.getPerson(), unseenPlayer); // if the computer has seen all put one person cards, suggest that card
 		}
-		if(testComputerPlayer.weaponsSeen().size() == board.getNumWeapons() - 1) {
-			Card unseenWeapon;
+		if(((ComputerPlayer) testComputerPlayer).weaponsSeen().size() == board.getNumWeapons() - 1) {
 			for(Card card : board.getWeapons()) {
-				if(!testComputerPlayer.weaponsSeen().contains(card)) {
-					unseenWeapon = card;
+				if(!((ComputerPlayer) testComputerPlayer).weaponsSeen().contains(card)) {
+					assertEquals(suggestion.getWeapon(),card); // if the computer has seen all put one weapons cards, suggest that card
+					break;
 				}
 			}
-			assertEquals(suggestion.getWeapon(), unseenWeapon); // if the computer has seen all put one weapons cards, suggest that card
 		}
-		if(testComputerPlayer.playersSeen().size() < board.getNumPlayers() - 1) {
-			ArrayList<Card> unseenPlayers = new ArrayList<Card>();
-			for(Card card : board.getPlayers()) {
-				if(!testComputerPlayer.playersSeen().contains(card)) {
-					unseenPlayers.add(card);
+		if(((ComputerPlayer) testComputerPlayer).peopleSeen().size() < board.getNumPeople() - 1) {
+			ArrayList<Card> unseenPeople = new ArrayList<Card>();
+			for(Card card : board.getPeople()) {
+				if(!((ComputerPlayer) testComputerPlayer).peopleSeen().contains(card)) {
+					unseenPeople.add(card);
 				}
 			}
-			assertTrue(unseenPlayers.contains(suggestion.getPerson())); // if the computer has not seen multiple person cards, suggest one at random
+			assertTrue(unseenPeople.contains(suggestion.getPerson())); // if the computer has not seen multiple person cards, suggest one at random
 		}
-		if(testComputerPlayer.weaponsSeen().size() < board.getNumWeapons() - 1) {
+		if(((ComputerPlayer) testComputerPlayer).weaponsSeen().size() < board.getNumWeapons() - 1) {
 			ArrayList<Card> unseenWeapons = new ArrayList<Card>();
 			for(Card card : board.getWeapons()) {
-				if(!testComputerPlayer.weaponssSeen().contains(card)) {
+				if(!((ComputerPlayer) testComputerPlayer).weaponsSeen().contains(card)) {
 					unseenWeapons.add(card);
 				}
 			}
