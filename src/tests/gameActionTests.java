@@ -50,7 +50,7 @@ public class gameActionTests {
 	 */
 	@Test
 	public void testMakeAccusations() {
-		assertTrue(board.checkAccusation(board.getSolution().getPerson(), board.getSolution().getWeapon(), board.getSolution().getRoom()));
+		assertTrue(board.checkAccusation();
 		assertFalse(board.checkAccusation(board.getSolution().getWeapon(), board.getSolution().getWeapon(), board.getSolution().getRoom()));
 		assertFalse(board.checkAccusation(board.getSolution().getPerson(), board.getSolution().getPerson(), board.getSolution().getRoom()));
 		assertFalse(board.checkAccusation(board.getSolution().getPerson(), board.getSolution().getWeapon(), board.getSolution().getWeapon()));
