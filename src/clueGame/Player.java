@@ -17,11 +17,7 @@ public abstract class Player {
 	private Color color;
 	protected ArrayList<Card> hand;
 	protected Board board;
-	protected ArrayList<Card> possibleCards;
 	
-	public ArrayList<Card> getPossibleCards() {
-		return possibleCards;
-	}
 
 	public Player(String playerName, int row, int column, Color color, Board board) {
 		super();

@@ -1,3 +1,9 @@
+commit 37cd9a55d0eb3a0146faa1f7b24adab56bb3a18e
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Apr 10 09:58:00 2018 -0600
+
+    created new gitlog
+
 commit da91c7ba7a19b9034c5a5ef8b7642d58939ef44a
 Author: Lewis Setter <ljsetter@mines.edu>
 Date:   Tue Apr 10 09:48:42 2018 -0600

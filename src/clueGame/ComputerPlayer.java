@@ -17,13 +17,18 @@ public class ComputerPlayer extends Player{
 	
 	public ComputerPlayer(String playerName, int row, int column, Color color, Board board) {
 		super(playerName, row, column, color, board);
-		possibleCards = new ArrayList<Card>();
-		for(Card c: hand) {
-			possibleCards.remove(c);
-		}
 		peopleSeen = new ArrayList<Card>();
 		weaponsSeen = new ArrayList<Card>();
 		roomsSeen = new ArrayList<Card>();
+		for(Card c: hand) {
+			if(c.getCardType() == CardType.PERSON) {
+				peopleSeen.add(c);
+			} else if(c.getCardType() == CardType.WEAPON) {
+				weaponsSeen.add(c);
+			} else {
+				roomsSeen.add(c);
+			}
+		}
 	}
 
 	@Override
@@ -54,24 +59,10 @@ public class ComputerPlayer extends Player{
 	 */
 	public Solution createSuggestion() {
 		Solution solution = new Solution();
-		ArrayList<Card> people = new ArrayList<Card>();
-		ArrayList<Card> weapons = new ArrayList<Card>();
-		Card room = board.getRoom(row, column);
-		solution.setSolutionCard(room, CardType.ROOM);
-		for(Card c: possibleCards) {
-			if(c.cardType == CardType.PERSON) {
-				people.add(c);
-			} else if(c.cardType == CardType.WEAPON) {
-				weapons.add(c);
-			}
-		}
-		solution.setSolutionCard(people.get((int)(Math.random() * people.size())), CardType.PERSON);
-		solution.setSolutionCard(weapons.get((int)(Math.random() * weapons.size())), CardType.WEAPON);
+		solution.setSolutionCard(board.getRoom(row, column), CardType.ROOM);
+		solution.setSolutionCard(board.getPeople().get((int)(Math.random() * board.getPeople().size())), CardType.PERSON);
+		solution.setSolutionCard(board.getWeapons().get((int)(Math.random() * board.getWeapons().size())), CardType.WEAPON);
 		return solution;
-	}
-	
-	public ArrayList<Card> getPossibleCards(){
-		return possibleCards;
 	}
 
 	public ArrayList<Card> weaponsSeen() {
