@@ -481,7 +481,6 @@ public class Board {
 		while(nextPlayerID != playerID) {
 			Card revealThisCard = players[nextPlayerID].disproveSuggestion(suggestion);
 			if(revealThisCard != null) {
-				players[playerID].getPossibleCards().remove(revealThisCard);
 				return revealThisCard;
 			}
 			nextPlayerID = (nextPlayerID + 1) % numPlayers;

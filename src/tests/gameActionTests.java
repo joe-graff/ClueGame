@@ -219,7 +219,7 @@ public class gameActionTests {
 					unseenWeapons.add(card);
 				}
 			}
-			assertTrue(unseenWeapons.contains(suggestion.getPerson())); // if the computer has not seen multiple weapon cards, suggest one at random
+			assertTrue(unseenWeapons.contains(suggestion.getWeapon())); // if the computer has not seen multiple weapon cards, suggest one at random
 		}
 	}
 }
