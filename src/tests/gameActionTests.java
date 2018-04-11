@@ -50,10 +50,34 @@ public class gameActionTests {
 	 */
 	@Test
 	public void testMakeAccusations() {
-		assertTrue(board.checkAccusation();
-		assertFalse(board.checkAccusation(board.getSolution().getWeapon(), board.getSolution().getWeapon(), board.getSolution().getRoom()));
-		assertFalse(board.checkAccusation(board.getSolution().getPerson(), board.getSolution().getPerson(), board.getSolution().getRoom()));
-		assertFalse(board.checkAccusation(board.getSolution().getPerson(), board.getSolution().getWeapon(), board.getSolution().getWeapon()));
+		Solution accusation = new Solution();
+		accusation.setPerson(board.getSolution().getPerson());
+		accusation.setWeapon(board.getSolution().getWeapon());
+		accusation.setRoom(board.getSolution().getRoom());
+		assertTrue(board.checkAccusation(accusation)); // correct accusation
+		for(Card card : board.getPeople()) {
+			if(!board.getSolution().returnCards().contains(card)) {
+				accusation.setPerson(card);
+				break;
+			}
+		}
+		assertFalse(board.checkAccusation(accusation)); // incorrect person
+		accusation.setPerson(board.getSolution().getPerson());
+		for(Card card : board.getRooms()) {
+			if(!board.getSolution().returnCards().contains(card)) {
+				accusation.setRoom(card);
+				break;
+			}
+		}
+		assertFalse(board.checkAccusation(accusation)); // incorrect room
+		accusation.setRoom(board.getSolution().getRoom());
+		for(Card card : board.getWeapons()) {
+			if(!board.getSolution().returnCards().contains(card)) {
+				accusation.setWeapon(card);
+				break;
+			}
+		}
+		assertFalse(board.checkAccusation(accusation)); // incorrect weapon
 	}
 	
 	/**
