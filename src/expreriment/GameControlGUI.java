@@ -1,3 +1,8 @@
+/**
+ * Authors: Joseph Graff & Lewis Setter
+ */
+
+
 package expreriment;
 
 import java.awt.BorderLayout;
@@ -9,6 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+
+/**
+ * GameControl GUI creates the game control menu for the interface with the user
+ *
+ */
 public class GameControlGUI extends JPanel{
 	public GameControlGUI(){
 		setLayout(new GridLayout(2,0));
@@ -18,7 +28,10 @@ public class GameControlGUI extends JPanel{
 		panel = createSecondPanel();
 		add(panel);
 	}
-	
+	/**
+	 * creates the top row of fields and buttons
+	 * @return
+	 */
 	private JPanel createFirstPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
@@ -38,7 +51,10 @@ public class GameControlGUI extends JPanel{
 
 		return panel;
 	}
-	
+	/**
+	 * creates the second row of fields and buttons
+	 * @return
+	 */
 	private JPanel createSecondPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
