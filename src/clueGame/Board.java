@@ -468,8 +468,10 @@ public class Board {
 		return players[playerNumber];
 	}
 	
-	public Boolean checkAccusation(Card player, Card weapon, Card room) {
-		if(solution.getPerson() == player && solution.getWeapon() == weapon && solution.getRoom() == room) {
+	public Boolean checkAccusation(Solution accusation) {
+		if(solution.getPerson() == accusation.getPerson() &&
+		   solution.getWeapon() == accusation.getWeapon() &&
+		   solution.getRoom() == accusation.getRoom()) {
 			return true;
 		} else {
 			return false;

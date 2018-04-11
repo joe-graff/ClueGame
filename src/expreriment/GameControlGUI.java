@@ -12,16 +12,21 @@ import javax.swing.JLabel;
 public class GameControlGUI extends JPanel{
 	public GameControlGUI(){
 		setLayout(new GridLayout(2,0));
-		JPanel panel = createFirstPanel();
-		add(panel);
+		JPanel panel = new JPanel();
+		panel.add(createFirstPanel(), BorderLayout.SOUTH);
 		panel = createSecondPanel();
 		add(panel);
 		
 	}
 	
-	private JPanel createFirstPanel() {
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1,0));
+	private JFrame createFirstPanel() {
+		JFrame panel = new JFrame();
+		panel.setLayout(new GridLayout(2,1));
+		JLabel turnLabel = new JLabel("Who's Turn?");
+		JLabel whosTurn = new JLabel("hello");
+		panel.add(turnLabel);
+		panel.add(whosTurn);
+		panel.setVisible(true);
 		
 		JPanel turnPanel = new JPanel();
 		turnPanel.setLayout(new GridLayout(2,0));

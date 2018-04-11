@@ -60,8 +60,16 @@ public class ComputerPlayer extends Player{
 	public Solution createSuggestion() {
 		Solution solution = new Solution();
 		solution.setSolutionCard(board.getRoom(row, column), CardType.ROOM);
-		solution.setSolutionCard(board.getPeople().get((int)(Math.random() * board.getPeople().size())), CardType.PERSON);
-		solution.setSolutionCard(board.getWeapons().get((int)(Math.random() * board.getWeapons().size())), CardType.WEAPON);
+		for(Card person : board.getPeople()) {
+			if(!peopleSeen.contains(person)) {
+				solution.setSolutionCard(board.getPeople().get((int)(Math.random() * board.getPeople().size())), CardType.PERSON);
+			}
+		}
+		for(Card weapon : board.getWeapons()) {
+			if(!weaponsSeen.contains(weapon)) {
+				solution.setSolutionCard(board.getWeapons().get((int)(Math.random() * board.getWeapons().size())), CardType.WEAPON);
+			}
+		}
 		return solution;
 	}
 
