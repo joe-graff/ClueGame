@@ -13,20 +13,15 @@ public class GameControlGUI extends JPanel{
 	public GameControlGUI(){
 		setLayout(new GridLayout(2,0));
 		JPanel panel = new JPanel();
-		panel.add(createFirstPanel(), BorderLayout.SOUTH);
+		panel = createFirstPanel();
+		add(panel);
 		panel = createSecondPanel();
 		add(panel);
-		
 	}
 	
-	private JFrame createFirstPanel() {
-		JFrame panel = new JFrame();
-		panel.setLayout(new GridLayout(2,1));
-		JLabel turnLabel = new JLabel("Who's Turn?");
-		JLabel whosTurn = new JLabel("hello");
-		panel.add(turnLabel);
-		panel.add(whosTurn);
-		panel.setVisible(true);
+	private JPanel createFirstPanel() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(1,0));
 		
 		JPanel turnPanel = new JPanel();
 		turnPanel.setLayout(new GridLayout(2,0));
@@ -50,7 +45,7 @@ public class GameControlGUI extends JPanel{
 		
 		JPanel dieRoll = new JPanel();
 		dieRoll.setLayout(new GridLayout(2,0));
-		JTextField dieField = new JTextField(10);
+		JTextField dieField = new JTextField(5);
 		dieField.setEditable(false);
 		JLabel dieLable = new JLabel("Die Roll");
 		dieRoll.add(dieLable);
@@ -58,7 +53,7 @@ public class GameControlGUI extends JPanel{
 		
 		JPanel guessPanel = new JPanel();
 		guessPanel.setLayout(new GridLayout(2,0));
-		JTextField guessField = new JTextField(10);
+		JTextField guessField = new JTextField(20);
 		guessField.setEditable(false);
 		JLabel guessLable = new JLabel("Guess");
 		guessPanel.add(guessLable);
