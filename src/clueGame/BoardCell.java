@@ -1,5 +1,11 @@
 package clueGame;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 /**
  * 
  * @author Lewis Setter
@@ -12,6 +18,7 @@ public class BoardCell {
 	private char initial;
 	private Boolean isDoorway;
 	private DoorDirection doorDirection;
+	public static final int CELL_SIZE = 40;
 	
 	/**
 	 * constructor: creates a cell on the board given a row and a column
@@ -66,4 +73,57 @@ public class BoardCell {
 		public int getColumn() {
 			return column;
 		} 
+		
+		public void draw(Graphics g) {
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setStroke(new BasicStroke(1));
+			if (initial == 'W') {
+				g2.setColor(Color.yellow);
+				g2.fillRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+				g2.setColor(Color.BLACK);
+				g2.drawRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+			}
+			else if (initial == 'X') {
+				g2.setColor(Color.red);
+				g2.fillRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+				g2.setColor(Color.BLACK);
+				g2.drawRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+			}
+			else {
+				g2.setColor(Color.gray);
+				g2.fillRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+				g2.setColor(Color.BLACK);
+				g2.drawRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+			}
+			
+			if (isDoorway) {
+				g2.setColor(Color.blue);
+				g2.setStroke(new BasicStroke(10));
+				switch (doorDirection) {
+				case DOWN:
+					g2.drawLine(column*CELL_SIZE, row*CELL_SIZE + CELL_SIZE,  column*CELL_SIZE + CELL_SIZE, row*CELL_SIZE + CELL_SIZE);
+					break;
+				case UP:
+					g2.drawLine(column*CELL_SIZE, row*CELL_SIZE,column*CELL_SIZE + CELL_SIZE, row*CELL_SIZE);
+					break;
+				case RIGHT:
+					g2.drawLine(column*CELL_SIZE + CELL_SIZE, row*CELL_SIZE, column*CELL_SIZE + CELL_SIZE, row*CELL_SIZE + CELL_SIZE);
+					break;
+				case LEFT:
+					g2.drawLine(column*CELL_SIZE, row*CELL_SIZE, column*CELL_SIZE, row*CELL_SIZE + CELL_SIZE);
+					break;
+				}
+			}
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+			g.drawString("Brown", 1 * CELL_SIZE, 3 * CELL_SIZE);
+			g.drawString("Alderson", 2 * CELL_SIZE, 12 * CELL_SIZE);
+			g.drawString("Hill", 1 * CELL_SIZE, 22 * CELL_SIZE);
+			g.drawString("Marquez", 10 * CELL_SIZE, 3 * CELL_SIZE);
+			g.drawString("CTLM", 5 * CELL_SIZE, 22 * CELL_SIZE);
+			g.drawString("Stratton", 9 * CELL_SIZE, 22 * CELL_SIZE);
+			g.drawString("Coors Tek", 18* CELL_SIZE, 4 * CELL_SIZE);
+			g.drawString("Green", 13 * CELL_SIZE, 22 * CELL_SIZE);
+			g.drawString("Center", 13 * CELL_SIZE, 23 * CELL_SIZE);
+			g.drawString("Berthoud", 18 * CELL_SIZE, 17 * CELL_SIZE);
+		}
 }

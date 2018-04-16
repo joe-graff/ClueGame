@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +18,7 @@ public abstract class Player {
 	private Color color;
 	protected ArrayList<Card> hand;
 	protected Board board;
+	private static final int CELL_SIZE = 40;
 	
 
 	public Player(String playerName, int row, int column, Color color, Board board) {
@@ -65,5 +67,11 @@ public abstract class Player {
 
 	public Card getRoom() {
 		return board.getRoom(row, column);
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(color);
+		g.fillOval(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+		g.drawOval(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 	}
 }

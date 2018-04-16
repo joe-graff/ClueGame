@@ -1,6 +1,9 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
@@ -13,6 +16,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JPanel;
 
 import clueGame.BoardCell;
 
@@ -23,7 +27,7 @@ import clueGame.BoardCell;
  *
  */
 
-public class Board {
+public class Board extends JPanel {
 	
 	private static int NUM_ROWS;
 	private static int NUM_COLUMNS;
@@ -512,6 +516,40 @@ public class Board {
 	
 	public ArrayList<Card> getRooms() {
 		return rooms;
+	}
+	
+	public void paintComponent(Graphics g) {
+		for (int i = 0; i < NUM_ROWS; i++) {
+			for (int j = 0; j < NUM_COLUMNS; j++) {
+				board[i][j].draw(g);
+			}
+		}
+		for(int player = 0; player < numPlayers; player++) {
+			players[player].draw(g);
+		}
+	}
+	
+	private class MouseControl implements MouseListener {
+
+		// unused function from MouseListener
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+		
+		@Override
+		public void mouseClicked(MouseEvent e) {}
+
+		// unused function from MouseListener
+		@Override
+		public void mouseEntered(MouseEvent e) {}
+
+		// unused function from MouseListener
+		@Override
+		public void mouseExited(MouseEvent e) {}
+		
+		// TBD
+		@Override
+		public void mousePressed(MouseEvent e) {}
+		
 	}
 }
 
