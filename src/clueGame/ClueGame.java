@@ -1,5 +1,10 @@
 package clueGame;
-
+/**
+ * 
+ * @author Lewis Setter
+ * @author Joe Graff
+ *
+ */
 
 
 import java.awt.BorderLayout;
