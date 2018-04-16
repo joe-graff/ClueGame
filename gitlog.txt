@@ -1,3 +1,90 @@
+commit cea5ee0ad5fc666e0c628f8939fc93b5861e4531
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Sun Apr 15 22:59:02 2018 -0600
+
+    added new files
+
+commit b9507bef2688089f275d65232aaae8b3f62d3316
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Sun Apr 15 22:58:36 2018 -0600
+
+    minor board edits
+
+commit 0d8b9fc077c07ec5816a82d0ed8992b79a34e52a
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Sun Apr 15 22:51:39 2018 -0600
+
+    implemented basic board gui
+
+commit 85193ec1d9a8f607150a99d963753dcfe11b23e5
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 10 22:49:05 2018 -0600
+
+    Code commented and finished
+
+commit 03f4b78da5b94ed724d6a894b335254c73e0fa1c
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 10 22:44:10 2018 -0600
+
+    actually working this time
+
+commit 0e9dd83ad86e8e6ae2352253a15b520d32618137
+Merge: 82f7e2f e1b3edd
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 10 22:36:43 2018 -0600
+
+    merge conflicts resolved
+
+commit 82f7e2fb7d3f394e4678bc79980984913ea3b36c
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 10 22:35:26 2018 -0600
+
+    GameControl GUI finished
+
+commit e1b3edd14cae3a253ec1131e5826e68a0e5f228b
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Apr 10 21:02:48 2018 -0600
+
+    refactored checkAccustion() to take in a <Solution>
+
+commit ad029bc6e09e8e4561c0841f8b22053db9ca0c27
+Merge: bfadf40 5d25a52
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Apr 10 16:29:27 2018 -0600
+
+    Merge branch 'master' of http://www.github.com/Joe-Graff/ClueGame
+
+commit bfadf40b5349f85c113c6af5b59d89affc454b18
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Apr 10 16:29:16 2018 -0600
+
+    refactoring
+
+commit 5d25a527f965c0ea5378cbe55b9340144ba3a51a
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 10 16:28:28 2018 -0600
+
+    GUI added
+
+commit fb3cb6570398350fa309a09f2c5e61c35db6110c
+Merge: 120d00c 9480866
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 10 16:08:14 2018 -0600
+
+    Merge branch 'master' of https://github.com/joe-graff/ClueGame
+
+commit 120d00ca020399f9067ea43048e6212a025d83d0
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 10 16:08:11 2018 -0600
+
+    GameControlGUI created
+
+commit 94808667f942482f7600577d9129d4d85cc591fa
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Apr 10 16:05:31 2018 -0600
+
+    refactored the way the computerplayer tracks cards
+
 commit 37cd9a55d0eb3a0146faa1f7b24adab56bb3a18e
 Author: Lewis Setter <ljsetter@mines.edu>
 Date:   Tue Apr 10 09:58:00 2018 -0600
