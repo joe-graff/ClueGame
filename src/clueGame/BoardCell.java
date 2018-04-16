@@ -78,21 +78,21 @@ public class BoardCell {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setStroke(new BasicStroke(1));
 			if (initial == 'W') {
-				g2.setColor(Color.yellow);
+				g2.setColor(Color.white);
 				g2.fillRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 				g2.setColor(Color.BLACK);
 				g2.drawRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 			}
-			else if (initial == 'X') {
+			else if (initial == 'K') {
 				g2.setColor(Color.red);
 				g2.fillRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
-				g2.setColor(Color.BLACK);
+				g2.setColor(Color.red);
 				g2.drawRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 			}
 			else {
 				g2.setColor(Color.gray);
 				g2.fillRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
-				g2.setColor(Color.BLACK);
+				g2.setColor(Color.gray);
 				g2.drawRect(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 			}
 			

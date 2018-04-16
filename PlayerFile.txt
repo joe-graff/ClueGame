@@ -1,5 +1,5 @@
 Joe Student, pink, Player, 0, 16
-President Johnson, white, Computer, 1, 6
+President Johnson, yellow, Computer, 1, 6
 Mr Baldwin, green, Computer, 24, 12
 CPW, red, Computer, 24, 7
 Wendy Fisher, blue, Computer, 12, 21
