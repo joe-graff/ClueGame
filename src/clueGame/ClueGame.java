@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 public class ClueGame extends JFrame{
 	private DetectiveNotesDialog notesDialog;
 	private static Board board;
+	private static JOptionPane splashMenu;
 	
 	public ClueGame() {
 		JMenuBar menuBar = new JMenuBar();
@@ -64,9 +65,11 @@ public class ClueGame extends JFrame{
 
 	public static void main(String[] args) {
 		ClueGame frame = new ClueGame();
+		splashMenu = new JOptionPane();
+		String splash = "You are Joe Student, press Next Player to play";
+		splashMenu.showMessageDialog(frame, splash, "Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(950, 1100);
-		JOptionPane splashMenu = new JOptionPane();
 		frame.setVisible(true);
 		frame.add(board, BorderLayout.CENTER);
 
