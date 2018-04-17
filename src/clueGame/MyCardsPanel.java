@@ -20,13 +20,15 @@ public class MyCardsPanel extends JPanel{
 		setBorder(new TitledBorder(new EtchedBorder(), "My Cards:"));
 		JPanel panel = createPeople();
 		add(panel);
+		panel = createWeapons();
+		add(panel);
 	}
 	
 	private JPanel createPeople() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(1,1));
 		JLabel lable = new JLabel("People:");
-		JTextField people = new JTextField(15);
+		people = new JTextField(15);
 		String card = "";
 		for(Card c : board.getPlayer(0).getHand()) {
 			if(c.cardType == CardType.PERSON)
@@ -39,6 +41,21 @@ public class MyCardsPanel extends JPanel{
 		return tempPanel;
 	}
 	
+	private JPanel createWeapons() {
+		JPanel tempPanel = new JPanel();
+		JLabel lable = new JLabel("Weapons:");
+		weapons = new JTextField(15);
+		String card = "";
+		for(Card c:board.getPlayer(0).getHand()) {
+			if(c.cardType == CardType.WEAPON)
+				card += c.getCardName();
+		}
+		weapons.setEditable(false);
+		weapons.setText(card);
+		tempPanel.add(lable);
+		tempPanel.add(weapons);
+		return tempPanel;
+	}
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
