@@ -1,3 +1,51 @@
+commit bdee0dff8b25586e304faa1f2500784ae551e483
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Apr 17 14:57:25 2018 -0600
+
+    My Cards panel and game control panel included in gui
+
+commit 8269f477fac20ba83b26a7beab13cf02f19b53ad
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 17 11:07:27 2018 -0600
+
+    Weapons cards added
+
+commit 36dd8fb715ddf33ab4f80d2394d2684d2af7e115
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 17 11:02:59 2018 -0600
+
+    People cards added
+
+commit 611ab56b39ae435a0c1ac70b9bb28d91dc19089c
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 17 10:44:29 2018 -0600
+
+    MyCardsPanel.java added
+
+commit 5115c8fb38739640ae58a97e67ead2491aa25504
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 17 10:39:40 2018 -0600
+
+    Splash Screen working
+
+commit 36c200960f9e866fdf4561190a4c2b99dd141274
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Tue Apr 17 10:31:14 2018 -0600
+
+    Splash Screen created
+
+commit b068dce1e0da80749edf2517df6c5bb0b1ac28db
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Sun Apr 15 23:00:59 2018 -0600
+
+    added comments'
+
+commit ce19b535d2c948476a360bbf371b0d9c6820eb02
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Sun Apr 15 22:59:23 2018 -0600
+
+    new git log
+
 commit cea5ee0ad5fc666e0c628f8939fc93b5861e4531
 Author: Lewis Setter <ljsetter@mines.edu>
 Date:   Sun Apr 15 22:59:02 2018 -0600
