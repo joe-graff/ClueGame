@@ -65,8 +65,8 @@ public class ClueGame extends JFrame{
 	public static void main(String[] args) {
 		ClueGame frame = new ClueGame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(950, 1100);	
-		new JOptionPane();
+		frame.setSize(950, 1100);
+		JOptionPane splashMenu = new JOptionPane();
 		frame.setVisible(true);
 		frame.add(board, BorderLayout.CENTER);
 
