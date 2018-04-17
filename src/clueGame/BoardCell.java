@@ -18,7 +18,7 @@ public class BoardCell {
 	private char initial;
 	private Boolean isDoorway;
 	private DoorDirection doorDirection;
-	public static final int CELL_SIZE = 40;
+	public static final int CELL_SIZE = 30;
 	
 	/**
 	 * constructor: creates a cell on the board given a row and a column
@@ -114,7 +114,7 @@ public class BoardCell {
 					break;
 				}
 			}
-			g.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 			g.drawString("Brown", 1 * CELL_SIZE, 3 * CELL_SIZE);
 			g.drawString("Alderson", 2 * CELL_SIZE, 12 * CELL_SIZE);
 			g.drawString("Hill", 1 * CELL_SIZE, 22 * CELL_SIZE);

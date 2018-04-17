@@ -65,13 +65,17 @@ public class ClueGame extends JFrame{
 
 	public static void main(String[] args) {
 		ClueGame frame = new ClueGame();
+		ClueGame.board.dealDeck();
 		splashMenu = new JOptionPane();
 		String splash = "You are Joe Student, press Next Player to play";
 		splashMenu.showMessageDialog(frame, splash, "Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(950, 1100);
-		frame.setVisible(true);
+		frame.setSize(1100, 900);
 		frame.add(board, BorderLayout.CENTER);
-
+		MyCardsPanel cardsPanel = new MyCardsPanel();
+		frame.add(cardsPanel, BorderLayout.EAST);
+		GameControlGUI gameControl = new GameControlGUI();
+		frame.add(gameControl, BorderLayout.SOUTH);
+		frame.setVisible(true);
 	}
 }

@@ -18,7 +18,7 @@ public abstract class Player {
 	private Color color;
 	protected ArrayList<Card> hand;
 	protected Board board;
-	private static final int CELL_SIZE = 40;
+	private static final int CELL_SIZE = 30;
 	
 
 	public Player(String playerName, int row, int column, Color color, Board board) {

@@ -3,7 +3,7 @@
  */
 
 
-package expreriment;
+package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -35,7 +35,6 @@ public class GameControlGUI extends JPanel{
 	private JPanel createFirstPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
-		
 		JPanel turnPanel = new JPanel();
 		turnPanel.setLayout(new GridLayout(2,0));
 		JTextField turnFeild = new JTextField(10);

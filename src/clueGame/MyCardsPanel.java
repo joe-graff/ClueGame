@@ -22,6 +22,8 @@ public class MyCardsPanel extends JPanel{
 		add(panel);
 		panel = createWeapons();
 		add(panel);
+		panel = createRooms();
+		add(panel);
 	}
 	
 	private JPanel createPeople() {
@@ -32,7 +34,7 @@ public class MyCardsPanel extends JPanel{
 		String card = "";
 		for(Card c : board.getPlayer(0).getHand()) {
 			if(c.cardType == CardType.PERSON)
-				card += c.getCardName();
+				card += c.getCardName() + "; ";
 		}
 		people.setEditable(false);
 		people.setText(card);
@@ -44,16 +46,34 @@ public class MyCardsPanel extends JPanel{
 	private JPanel createWeapons() {
 		JPanel tempPanel = new JPanel();
 		JLabel lable = new JLabel("Weapons:");
+		tempPanel.setLayout(new GridLayout(1,1));
 		weapons = new JTextField(15);
 		String card = "";
 		for(Card c:board.getPlayer(0).getHand()) {
 			if(c.cardType == CardType.WEAPON)
-				card += c.getCardName();
+				card += c.getCardName()+ "; ";
 		}
 		weapons.setEditable(false);
 		weapons.setText(card);
 		tempPanel.add(lable);
 		tempPanel.add(weapons);
+		return tempPanel;
+	}
+	
+	private JPanel createRooms() {
+		JPanel tempPanel = new JPanel();
+		JLabel lable = new JLabel("Rooms:");
+		tempPanel.setLayout(new GridLayout(1,1));
+		rooms = new JTextField(15);
+		String card = "";
+		for(Card c:board.getPlayer(0).getHand()) {
+			if(c.cardType == CardType.ROOM)
+				card += c.getCardName()+ "; ";
+		}
+		rooms.setEditable(false);
+		rooms.setText(card);
+		tempPanel.add(lable);
+		tempPanel.add(rooms);
 		return tempPanel;
 	}
 	
