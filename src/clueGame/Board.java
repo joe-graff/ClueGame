@@ -48,6 +48,7 @@ public class Board extends JPanel {
 	private ArrayList<Card> rooms;
 	private Solution solution;
 	public Player[] players;
+	private int playerPosition;
 	
 	/**
 	 * constructor returns the single board
@@ -62,6 +63,7 @@ public class Board extends JPanel {
 		weapons = new ArrayList<Card>();
 		rooms = new ArrayList<Card>();
 		solution = new Solution();
+		playerPosition = 0;
 	}
 	
 	/**
@@ -527,6 +529,15 @@ public class Board extends JPanel {
 		for(int player = 0; player < numPlayers; player++) {
 			players[player].draw(g);
 		}
+	}
+	
+	public void playClue() {
+		
+	}
+	
+	public void nextPlayer() {
+		playerPosition++;
+		
 	}
 	
 	private class MouseControl implements MouseListener {

@@ -7,11 +7,14 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.JLabel;
 
 
@@ -44,12 +47,19 @@ public class GameControlGUI extends JPanel{
 		turnPanel.add(turnFeild);
 		panel.add(turnPanel);
 		JButton next = new JButton("NextPlayer");
+		next.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				Board.getInstance().nextPlayer();
+			}
+		});
+		
 		JButton accusation = new JButton("Make an accusation");
 		panel.add(next);
 		panel.add(accusation);
 
 		return panel;
 	}
+	
 	/**
 	 * creates the second row of fields and buttons
 	 * @return
