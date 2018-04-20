@@ -23,6 +23,10 @@ import javax.swing.JLabel;
  *
  */
 public class GameControlGUI extends JPanel{
+	public ClueGame game;
+	private JTextField turnField;
+	private JTextField dieField;
+	
 	public GameControlGUI(){
 		setLayout(new GridLayout(2,0));
 		JPanel panel = new JPanel();
@@ -40,11 +44,11 @@ public class GameControlGUI extends JPanel{
 		panel.setLayout(new GridLayout(1,0));
 		JPanel turnPanel = new JPanel();
 		turnPanel.setLayout(new GridLayout(2,0));
-		JTextField turnFeild = new JTextField(10);
-		turnFeild.setEditable(false);
+		turnField = new JTextField(Board.getInstance().getPlayer(Board.getInstance().getNextPlayer()).getPlayerName(), 10);
+		turnField.setEditable(false);
 		JLabel turnLabel = new JLabel("Who's Turn?");
 		turnPanel.add(turnLabel);
-		turnPanel.add(turnFeild);
+		turnPanel.add(turnField);
 		panel.add(turnPanel);
 		JButton next = new JButton("NextPlayer");
 		next.addActionListener(new ActionListener(){
@@ -70,7 +74,7 @@ public class GameControlGUI extends JPanel{
 		
 		JPanel dieRoll = new JPanel();
 		dieRoll.setLayout(new GridLayout(2,0));
-		JTextField dieField = new JTextField(5);
+		dieField = new JTextField(5);
 		dieField.setEditable(false);
 		JLabel dieLable = new JLabel("Die Roll");
 		dieRoll.add(dieLable);
@@ -98,13 +102,19 @@ public class GameControlGUI extends JPanel{
 		return panel;
 	}
 	
+	public void updateTurn(String player, int roll) {
+		turnField.setText(player);
+		dieField.setText(String.valueOf(roll));
+	}
+	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("GameControlGUI");
-		frame.setSize(500,250);
+		JFrame game = new JFrame();
+		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		game.setTitle("GameControlGUI");
+		game.setSize(500,250);
 		GameControlGUI gui = new GameControlGUI();
-		frame.add(gui, BorderLayout.CENTER);
-		frame.setVisible(true);
+		Board.getInstance().setGameControlGUI(gui);
+		game.add(gui, BorderLayout.CENTER);
+		game.setVisible(true);
 	}
 }

@@ -49,6 +49,8 @@ public class Board extends JPanel {
 	private Solution solution;
 	public Player[] players;
 	private int playerPosition;
+	public int diceRoll;
+	public GameControlGUI gameControl;
 	
 	/**
 	 * constructor returns the single board
@@ -73,6 +75,12 @@ public class Board extends JPanel {
 	public static Board getInstance() {
 		return instance;
 	} 
+
+	
+	public void playClue() {
+		
+		
+	}
 	
 	/**
 	 * initializes the board
@@ -531,13 +539,18 @@ public class Board extends JPanel {
 		}
 	}
 	
-	public void playClue() {
-		
-	}
-	
 	public void nextPlayer() {
 		playerPosition++;
-		
+		diceRoll = (int)(Math.random() * 6) + 1;
+		gameControl.updateTurn(players[playerPosition % 6].getPlayerName(), diceRoll);
+	}
+	
+	public int getNextPlayer() {
+		return playerPosition % 6;
+	}
+	
+	public void setGameControlGUI(GameControlGUI gui) {
+		gameControl = gui;
 	}
 	
 	private class MouseControl implements MouseListener {
