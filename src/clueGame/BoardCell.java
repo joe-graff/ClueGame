@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  * @author Joe Graff
  *
  */
-public class BoardCell implements ActionListener {
+public class BoardCell{
 	private int row;
 	private int column;
 	private char initial;
@@ -133,12 +133,5 @@ public class BoardCell implements ActionListener {
 		public void paintTargets(Graphics g) {
 			g.setColor(Color.cyan);
 			g.fillRect(this.column*CELL_SIZE, this.row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent a) {
-			
-			Board.getInstance().getPlayer().makeMove(this);
-			
 		}
 }

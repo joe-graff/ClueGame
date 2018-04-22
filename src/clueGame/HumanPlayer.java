@@ -14,15 +14,15 @@ public class HumanPlayer extends Player {
 		super(playerName, row, column, color, board);
 	}
 
-	@Override
-	public void movePlayer(int pathLength) {
-		// TODO Auto-generated method stub
+	public void makeMove(BoardCell b) {
+		row = b.getRow();
+		column = b.getColumn();
 	}
-
+	
 	@Override
 	public Solution createSuggestion() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

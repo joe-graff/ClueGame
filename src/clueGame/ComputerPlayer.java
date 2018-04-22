@@ -31,7 +31,6 @@ public class ComputerPlayer extends Player{
 		}
 	}
 
-	@Override
 	public void movePlayer(int pathlength) {
 		board.calcTargets(row, column, pathlength);
 		for(BoardCell location : board.getTargets()) {

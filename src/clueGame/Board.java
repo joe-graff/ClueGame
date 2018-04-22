@@ -115,7 +115,7 @@ public class Board extends JPanel {
 			int cellX = y/BoardCell.CELL_SIZE;
 			int cellY = x/BoardCell.CELL_SIZE;
 			selectedCell = getCellAt(cellX, cellY);
-			players[playerPosition % 6].makeMove(selectedCell);
+			((HumanPlayer) players[playerPosition % 6]).makeMove(selectedCell);
 			repaint();
 		}
 	}
@@ -563,7 +563,7 @@ public class Board extends JPanel {
 		if(playerPosition != -1 && players[playerPosition % 6] instanceof HumanPlayer) { 
 			calcTargets(players[playerPosition % 6].row, players[playerPosition % 6].column, diceRoll);
 			for(BoardCell b: targetCells) {
-				System.out.println(b.getRow() + " " + b.getColumn());
+				
 				b.paintTargets(g);
 			}
 		}
@@ -571,6 +571,9 @@ public class Board extends JPanel {
 	
 	public void nextPlayer() {
 		playerPosition++;
+		if(players[playerPosition % 6] instanceof ComputerPlayer) {
+			((ComputerPlayer) players[playerPosition % 6]).movePlayer(diceRoll);
+		}
 		repaint();
 		diceRoll = (int)(Math.random() * 6) + 1;
 		gameControl.updateTurn(players[playerPosition % 6].getPlayerName(), diceRoll);

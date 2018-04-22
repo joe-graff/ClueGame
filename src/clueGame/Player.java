@@ -47,14 +47,7 @@ public abstract class Player {
 			return disproveList.get((int)(Math.random() * disproveList.size()));
 		}
 	}
-	
-	public void makeMove(BoardCell b) {
-		row = b.getRow();
-		column = b.getColumn();
-	}
-	
-	public abstract void movePlayer(int pathLength);
-	
+
 	public String getPlayerName() {
 		return playerName;
 	}
