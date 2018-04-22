@@ -48,6 +48,11 @@ public abstract class Player {
 		}
 	}
 	
+	public void makeMove(BoardCell b) {
+		row = b.getRow();
+		column = b.getColumn();
+	}
+	
 	public abstract void movePlayer(int pathLength);
 	
 	public String getPlayerName() {
@@ -74,4 +79,5 @@ public abstract class Player {
 		g.fillOval(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 		g.drawOval(column*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 	}
+	
 }

@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * 
@@ -12,7 +14,7 @@ import java.awt.Graphics2D;
  * @author Joe Graff
  *
  */
-public class BoardCell {
+public class BoardCell implements ActionListener {
 	private int row;
 	private int column;
 	private char initial;
@@ -114,6 +116,7 @@ public class BoardCell {
 					break;
 				}
 			}
+			
 			g.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 			g.drawString("Brown", 1 * CELL_SIZE, 3 * CELL_SIZE);
 			g.drawString("Alderson", 2 * CELL_SIZE, 12 * CELL_SIZE);
@@ -125,5 +128,17 @@ public class BoardCell {
 			g.drawString("Green", 13 * CELL_SIZE, 22 * CELL_SIZE);
 			g.drawString("Center", 13 * CELL_SIZE, 23 * CELL_SIZE);
 			g.drawString("Berthoud", 18 * CELL_SIZE, 17 * CELL_SIZE);
+		}
+		
+		public void paintTargets(Graphics g) {
+			g.setColor(Color.cyan);
+			g.fillRect(this.column*CELL_SIZE, this.row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent a) {
+			
+			Board.getInstance().getPlayer().makeMove(this);
+			
 		}
 }

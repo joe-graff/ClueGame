@@ -44,7 +44,7 @@ public class GameControlGUI extends JPanel{
 		panel.setLayout(new GridLayout(1,0));
 		JPanel turnPanel = new JPanel();
 		turnPanel.setLayout(new GridLayout(2,0));
-		turnField = new JTextField(Board.getInstance().getPlayer(Board.getInstance().getNextPlayer()).getPlayerName(), 10);
+		turnField = new JTextField(10);
 		turnField.setEditable(false);
 		JLabel turnLabel = new JLabel("Who's Turn?");
 		turnPanel.add(turnLabel);

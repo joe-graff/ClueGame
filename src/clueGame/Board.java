@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
@@ -51,6 +52,11 @@ public class Board extends JPanel {
 	private int playerPosition;
 	public int diceRoll;
 	public GameControlGUI gameControl;
+	public BoardCell selectedCell;
+	
+	public int getDiceRoll() {
+		return diceRoll;
+	}
 	
 	/**
 	 * constructor returns the single board
@@ -65,7 +71,7 @@ public class Board extends JPanel {
 		weapons = new ArrayList<Card>();
 		rooms = new ArrayList<Card>();
 		solution = new Solution();
-		playerPosition = 0;
+		playerPosition = -1;
 	}
 	
 	/**
@@ -99,6 +105,19 @@ public class Board extends JPanel {
 		loadPlayerConfig();
 		loadWeaponConfig();
 		calcAdjacencies();
+		addMouseListener(new PanelListener());
+	}
+	
+	private class PanelListener extends MouseAdapter{
+		public void mousePressed(MouseEvent e) {
+			int x = e.getX();
+			int y = e.getY();
+			int cellX = y/BoardCell.CELL_SIZE;
+			int cellY = x/BoardCell.CELL_SIZE;
+			selectedCell = getCellAt(cellX, cellY);
+			players[playerPosition % 6].makeMove(selectedCell);
+			repaint();
+		}
 	}
 	
 	/**
@@ -478,8 +497,12 @@ public class Board extends JPanel {
 		return numPlayers;
 	}
 
-	public Player getPlayer(int playerNumber) {
-		return players[playerNumber];
+	public Player getPlayer(int playerNum) {
+		return players[playerNum];
+	}
+	
+	public Player getPlayer() {
+		return players[playerPosition%6];
 	}
 	
 	public Boolean checkAccusation(Solution accusation) {
@@ -537,10 +560,18 @@ public class Board extends JPanel {
 		for(int player = 0; player < numPlayers; player++) {
 			players[player].draw(g);
 		}
+		if(playerPosition != -1 && players[playerPosition % 6] instanceof HumanPlayer) { 
+			calcTargets(players[playerPosition % 6].row, players[playerPosition % 6].column, diceRoll);
+			for(BoardCell b: targetCells) {
+				System.out.println(b.getRow() + " " + b.getColumn());
+				b.paintTargets(g);
+			}
+		}
 	}
 	
 	public void nextPlayer() {
 		playerPosition++;
+		repaint();
 		diceRoll = (int)(Math.random() * 6) + 1;
 		gameControl.updateTurn(players[playerPosition % 6].getPlayerName(), diceRoll);
 	}
