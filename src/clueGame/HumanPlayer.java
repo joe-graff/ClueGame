@@ -20,8 +20,9 @@ public class HumanPlayer extends Player {
 		if(Board.getInstance().targetCells.contains(b)) {
 			row = b.getRow();
 			column = b.getColumn();
-		} else {// create error message
-			
+		} else {
+			JOptionPane errorMessage = new JOptionPane();
+			errorMessage.showMessageDialog(Board.getInstance(), "This is not a valid selection", "Invalid Selection", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
