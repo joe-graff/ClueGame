@@ -8,15 +8,21 @@ package clueGame;
  */
 import java.awt.Color;
 
-public class HumanPlayer extends Player {
+import javax.swing.JOptionPane;
 
+public class HumanPlayer extends Player {
+	private static JOptionPane wrongBox;
 	public HumanPlayer(String playerName, int row, int column, Color color, Board board) {
 		super(playerName, row, column, color, board);
 	}
 
 	public void makeMove(BoardCell b) {
-		row = b.getRow();
-		column = b.getColumn();
+		if(Board.getInstance().targetCells.contains(b)) {
+			row = b.getRow();
+			column = b.getColumn();
+		} else {// create error message
+			
+		}
 	}
 	
 	@Override

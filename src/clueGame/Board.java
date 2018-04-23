@@ -42,7 +42,7 @@ public class Board extends JPanel {
 	private static Board instance = new Board(); // the only instance of the board
 	private Map<BoardCell, Set<BoardCell>> adjCells; // list of all cells adjacent cells for each cell on the board.
 	private Set<BoardCell> visited; // used for the calculation of target cells.
-	private Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
+	public Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
 	private ArrayList<Card> deck;
 	private ArrayList<Card> people;
 	private ArrayList<Card> weapons;
@@ -563,13 +563,13 @@ public class Board extends JPanel {
 		if(playerPosition != -1 && players[playerPosition % 6] instanceof HumanPlayer) { 
 			calcTargets(players[playerPosition % 6].row, players[playerPosition % 6].column, diceRoll);
 			for(BoardCell b: targetCells) {
-				
 				b.paintTargets(g);
 			}
 		}
 	}
 	
 	public void nextPlayer() {
+		
 		playerPosition++;
 		if(players[playerPosition % 6] instanceof ComputerPlayer) {
 			((ComputerPlayer) players[playerPosition % 6]).movePlayer(diceRoll);
