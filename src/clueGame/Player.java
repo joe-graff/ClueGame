@@ -47,7 +47,7 @@ public abstract class Player {
 			return disproveList.get((int)(Math.random() * disproveList.size()));
 		}
 	}
-
+	
 	public String getPlayerName() {
 		return playerName;
 	}

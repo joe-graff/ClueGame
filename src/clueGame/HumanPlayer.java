@@ -28,7 +28,7 @@ public class HumanPlayer extends Player {
 	
 	@Override
 	public Solution createSuggestion() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

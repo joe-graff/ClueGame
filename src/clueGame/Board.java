@@ -110,6 +110,12 @@ public class Board extends JPanel {
 			int cellY = x/BoardCell.CELL_SIZE;
 			selectedCell = getCellAt(cellX, cellY);
 			((HumanPlayer) players[playerPosition % 6]).makeMove(selectedCell);
+			if(selectedCell.isDoorway()) {
+				Player currentPlayer = players[playerPosition % 6];
+				Solution playerGuess = currentPlayer.createSuggestion();
+				Card returnedCard = handleSuggestion(playerPosition % 6, playerGuess);
+				gameControl.updateResult(returnedCard.getCardName());
+			}
 		}
 	}
 	
@@ -498,6 +504,10 @@ public class Board extends JPanel {
 		return players[playerPosition%6];
 	}
 	
+	public int getPlayerPosition() {
+		return playerPosition;
+	}
+	
 	public Boolean checkAccusation(Solution accusation) {
 		if(solution.getPerson() == accusation.getPerson() &&
 		   solution.getWeapon() == accusation.getWeapon() &&
@@ -513,11 +523,18 @@ public class Board extends JPanel {
 		while(nextPlayerID != playerID) {
 			Card revealThisCard = players[nextPlayerID].disproveSuggestion(suggestion);
 			if(revealThisCard != null) {
+				addCardToSeen(revealThisCard);
 				return revealThisCard;
 			}
 			nextPlayerID = (nextPlayerID + 1) % numPlayers;
 		}
 		return null;
+	}
+	
+	public void addCardToSeen(Card c) {
+		for(int i = 0; i < numPlayers; i++)
+			if(players[i] instanceof ComputerPlayer)
+				((ComputerPlayer) players[i]).addToHand(c);
 	}
 	
 	public Solution getSolution() {

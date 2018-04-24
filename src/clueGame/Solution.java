@@ -8,6 +8,7 @@ public class Solution {
 	private Card weapon;
 	
 	public Solution() {
+		
 	}
 	
 	public void setSolutionCard(Card card, CardType type) {
@@ -49,5 +50,9 @@ public class Solution {
 
 	public Card getWeapon() {
 		return weapon;
+	}
+	
+	public String toString() {
+		return person.getCardName() + " " + room.getCardName() + " " + weapon.getCardName();
 	}
 }

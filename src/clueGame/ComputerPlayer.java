@@ -30,14 +30,28 @@ public class ComputerPlayer extends Player{
 			}
 		}
 	}
-
+	
+	public void addToHand(Card c) {
+		if(c.cardType == CardType.PERSON)
+			peopleSeen.add(c);
+		else if(c.cardType == CardType.WEAPON)
+			weaponsSeen.add(c);
+		else if(c.cardType == CardType.ROOM)
+			roomsSeen.add(c);
+	}
+	
+	
 	public void movePlayer(int pathlength) {
 		board.calcTargets(row, column, pathlength);
 		for(BoardCell location : board.getTargets()) {
 			if(location.isDoorway()) {
-				if(lastRoom == null || location != lastRoom) {
+				if(lastRoom == null || (lastRoom.getInitial() != location.getInitial() && location != lastRoom)) {
 					row = location.getRow();
 					column = location.getColumn();
+					Solution computerSuggestion = createSuggestion();
+					System.out.println(computerSuggestion.toString());
+					Board.getInstance().gameControl.updateGuess(computerSuggestion.getPerson().getCardName(), computerSuggestion.getWeapon().getCardName(), computerSuggestion.getRoom().getCardName());
+					Board.getInstance().handleSuggestion(Board.getInstance().getPlayerPosition(), computerSuggestion);
 					lastRoom = location;
 					return;
 				}
@@ -59,16 +73,20 @@ public class ComputerPlayer extends Player{
 	public Solution createSuggestion() {
 		Solution solution = new Solution();
 		solution.setSolutionCard(board.getRoom(row, column), CardType.ROOM);
+		ArrayList<Card> tempPeople = new ArrayList<Card>();
+		ArrayList<Card> tempWeapons = new ArrayList<Card>();
 		for(Card person : board.getPeople()) {
 			if(!peopleSeen.contains(person)) {
-				solution.setSolutionCard(board.getPeople().get((int)(Math.random() * board.getPeople().size())), CardType.PERSON);
+				tempPeople.add(person);
 			}
 		}
 		for(Card weapon : board.getWeapons()) {
 			if(!weaponsSeen.contains(weapon)) {
-				solution.setSolutionCard(board.getWeapons().get((int)(Math.random() * board.getWeapons().size())), CardType.WEAPON);
+				tempWeapons.add(weapon);
 			}
 		}
+		solution.setSolutionCard(tempPeople.get((int)(Math.random() * tempPeople.size())), CardType.PERSON);
+		solution.setSolutionCard(tempWeapons.get((int)(Math.random() * tempWeapons.size())), CardType.WEAPON);
 		return solution;
 	}
 

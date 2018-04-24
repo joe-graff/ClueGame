@@ -1,3 +1,45 @@
+commit 366124439aa40dcec38f0c2b0a7ce617099606b8
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 23 15:29:48 2018 -0600
+
+    All functionality for moving players work
+
+commit 2f8916c533a3a6ffc8a97ca93ed7df98c3672e9a
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Mon Apr 23 10:06:20 2018 -0600
+
+    changed some comments
+
+commit 869fda18a0c25a7e1c14942d9ffea2301a36cce9
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Apr 22 14:53:56 2018 -0600
+
+    Human and Computer players move correctly
+
+commit 6e9c3e4025ba40106f0820dc307de0ef4efda72a
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Sun Apr 22 14:35:09 2018 -0600
+
+    Targets show up for Human Player
+
+commit 965628387c0ef878a12495afbfbcbe5fd56dd529
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Thu Apr 19 20:14:22 2018 -0600
+
+    player field and dice field display correct player when next player is pushed
+
+commit 317dd06e50f122de3b9df24250fba606a2d4414d
+Author: Joseph Graff <jgraff@mymail.mines.edu>
+Date:   Thu Apr 19 18:37:25 2018 -0600
+
+    next player button iterates through list of players
+
+commit a5b52c7c7b11c387cb8ac6edea11c02240a2027a
+Author: Lewis Setter <ljsetter@mines.edu>
+Date:   Tue Apr 17 14:57:44 2018 -0600
+
+    new git log
+
 commit bdee0dff8b25586e304faa1f2500784ae551e483
 Author: Lewis Setter <ljsetter@mines.edu>
 Date:   Tue Apr 17 14:57:25 2018 -0600

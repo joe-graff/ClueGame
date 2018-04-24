@@ -26,6 +26,8 @@ public class GameControlGUI extends JPanel{
 	public ClueGame game;
 	private JTextField turnField;
 	private JTextField dieField;
+	private JTextField resultField;
+	private JTextField guessField;
 	
 	public GameControlGUI(){
 		setLayout(new GridLayout(2,0));
@@ -82,7 +84,7 @@ public class GameControlGUI extends JPanel{
 		
 		JPanel guessPanel = new JPanel();
 		guessPanel.setLayout(new GridLayout(2,0));
-		JTextField guessField = new JTextField(20);
+		guessField = new JTextField(20);
 		guessField.setEditable(false);
 		JLabel guessLable = new JLabel("Guess");
 		guessPanel.add(guessLable);
@@ -90,7 +92,7 @@ public class GameControlGUI extends JPanel{
 		
 		JPanel guessResultPanel = new JPanel();
 		guessResultPanel.setLayout(new GridLayout(2,0));
-		JTextField resultField = new JTextField(10);
+		resultField = new JTextField(10);
 		resultField.setEditable(false);
 		JLabel resultLable = new JLabel("Guess Result Response");
 		guessResultPanel.add(resultLable);
@@ -105,6 +107,15 @@ public class GameControlGUI extends JPanel{
 	public void updateTurn(String player, int roll) {
 		turnField.setText(player);
 		dieField.setText(String.valueOf(roll));
+	}
+	
+	public void updateResult(String result) {
+		resultField.setText(result);
+	}
+	
+	public void updateGuess(String person, String weapon, String room) {
+		String guess = person + ", " + weapon + ", " + room;
+		guessField.setText(guess);
 	}
 	
 	public static void main(String[] args) {
