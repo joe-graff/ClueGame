@@ -49,7 +49,9 @@ public class ComputerPlayer extends Player{
 					row = location.getRow();
 					column = location.getColumn();
 					Solution computerSuggestion = createSuggestion();
-					System.out.println(computerSuggestion.toString());
+					//System.out.println(computerSuggestion.getPerson().getCardName());
+					//System.out.println(computerSuggestion.getWeapon().getCardName());
+					//System.out.println(computerSuggestion.getRoom().getCardName());
 					Board.getInstance().gameControl.updateGuess(computerSuggestion.getPerson().getCardName(), computerSuggestion.getWeapon().getCardName(), computerSuggestion.getRoom().getCardName());
 					Board.getInstance().handleSuggestion(Board.getInstance().getPlayerPosition(), computerSuggestion);
 					lastRoom = location;
@@ -71,8 +73,6 @@ public class ComputerPlayer extends Player{
 	 * @return
 	 */
 	public Solution createSuggestion() {
-		Solution solution = new Solution();
-		solution.setSolutionCard(board.getRoom(row, column), CardType.ROOM);
 		ArrayList<Card> tempPeople = new ArrayList<Card>();
 		ArrayList<Card> tempWeapons = new ArrayList<Card>();
 		for(Card person : board.getPeople()) {
@@ -85,8 +85,7 @@ public class ComputerPlayer extends Player{
 				tempWeapons.add(weapon);
 			}
 		}
-		solution.setSolutionCard(tempPeople.get((int)(Math.random() * tempPeople.size())), CardType.PERSON);
-		solution.setSolutionCard(tempWeapons.get((int)(Math.random() * tempWeapons.size())), CardType.WEAPON);
+		Solution solution = new Solution(tempPeople.get((int)(Math.random() * tempPeople.size())), tempWeapons.get((int)(Math.random() * tempWeapons.size())), board.getRoom(row, column));
 		return solution;
 	}
 

@@ -50,10 +50,7 @@ public class gameActionTests {
 	 */
 	@Test
 	public void testMakeAccusations() {
-		Solution accusation = new Solution();
-		accusation.setPerson(board.getSolution().getPerson());
-		accusation.setWeapon(board.getSolution().getWeapon());
-		accusation.setRoom(board.getSolution().getRoom());
+		Solution accusation = new Solution(board.getSolution().getPerson(), board.getSolution().getWeapon(), board.getSolution().getRoom());
 		assertTrue(board.checkAccusation(accusation)); // correct accusation
 		for(Card card : board.getPeople()) {
 			if(!board.getSolution().returnCards().contains(card)) {
@@ -90,7 +87,6 @@ public class gameActionTests {
 		Card tempPlayer = null;
 		Card tempWeapon = null;
 		Card tempRoom = null;
-		Solution suggestion = new Solution();
 		for(Card c: testComputerPlayer.getHand()){
 			if(c.cardType == CardType.PERSON) {
 				tempPlayer = c;
@@ -100,11 +96,9 @@ public class gameActionTests {
 				tempRoom = c;
 			}
 		}	
+		Solution suggestion = new Solution(tempPlayer, tempWeapon, tempRoom);
 		// tests if the player all of the cards from the suggestion
 		if((tempPlayer != null) && (tempWeapon != null) && (tempRoom != null)) {
-			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
-			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
-			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
 			Card suggestedCard = testComputerPlayer.disproveSuggestion(suggestion);
 			assertTrue(suggestedCard == tempPlayer || 
 					   suggestedCard == tempWeapon ||
@@ -112,53 +106,39 @@ public class gameActionTests {
 		}
 		// tests if the player has two of the cards from the suggestion
 		else if((tempPlayer != null) && (tempWeapon != null)) {
-			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
-			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
-			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
+			suggestion = new Solution(tempPlayer, tempWeapon, board.getSolution().getRoom());
 			Card suggestedCard = testComputerPlayer.disproveSuggestion(suggestion);
 			assertTrue(suggestedCard == tempPlayer || 
 					   suggestedCard == tempWeapon);	
 		}
 		else if((tempPlayer != null) && (tempRoom != null)) {
-			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
-			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
-			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
+			suggestion = new Solution(tempPlayer, board.getSolution().getWeapon(), tempRoom);
 			Card suggestedCard = testComputerPlayer.disproveSuggestion(suggestion);
 			assertTrue(suggestedCard == tempPlayer ||
 					   suggestedCard == tempRoom);	
 		}
 		else if((tempWeapon != null) && (tempRoom != null)) {
-			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
-			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
-			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
+			suggestion = new Solution(board.getSolution().getPerson(), tempWeapon, tempRoom);
 			Card suggestedCard = testComputerPlayer.disproveSuggestion(suggestion);
 			assertTrue(suggestedCard == tempWeapon ||
 					   suggestedCard == tempRoom);	
 		}
 		//tests if the player only has one of the cards from the suggestion
 		else if((tempPlayer != null)) {
-			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
-			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
-			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
+			suggestion = new Solution(tempPlayer, board.getSolution().getWeapon(), board.getSolution().getRoom());
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempPlayer);
 		}
 		else if((tempWeapon != null)) {
-			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
-			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
-			suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
+			suggestion = new Solution(board.getSolution().getPerson(), tempWeapon, board.getSolution().getRoom());
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempWeapon);
 		}
 		else if((tempRoom != null)) {
-			suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
-			suggestion.setSolutionCard(board.getSolution().getWeapon(), CardType.WEAPON);
-			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
+			suggestion = new Solution(board.getSolution().getPerson(),board.getSolution().getWeapon(), tempRoom);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), tempRoom);
 		}
 		// tests if the player has none of the cards from the suggestion
 		else {
-			suggestion.setSolutionCard(tempPlayer, CardType.PERSON);
-			suggestion.setSolutionCard(tempWeapon, CardType.WEAPON);
-			suggestion.setSolutionCard(tempRoom, CardType.ROOM);
+			suggestion = new Solution(tempPlayer, tempWeapon, tempRoom);
 			assertEquals(testComputerPlayer.disproveSuggestion(suggestion), null);
 		}
 	}
@@ -186,21 +166,15 @@ public class gameActionTests {
 	 */
 	@Test
 	public void TestSuggestionHandling() {
-		Solution suggestion = new Solution();
 		assertEquals(null, board.handleSuggestion(0,board.getSolution())); // tests if no one can disprove the suggestion
-		suggestion.setSolutionCard(board.getSolution().getPerson(), CardType.PERSON);
-		suggestion.setSolutionCard(board.getSolution().getWeapon(),CardType.WEAPON);
-		suggestion.setSolutionCard(tempCTLM, CardType.ROOM);
+		Solution suggestion = new Solution(board.getSolution().getPerson(),board.getSolution().getWeapon(), tempCTLM);
 		assertEquals(null, board.handleSuggestion(1, suggestion)); // tests if only accuser can disprove suggestion
-		suggestion.setSolutionCard(tempRope, CardType.WEAPON);
-		suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM);
+		suggestion = new Solution(board.getSolution().getPerson(), tempRope,board.getSolution().getRoom());
 		assertEquals(null, board.handleSuggestion(0, suggestion)); // tests if only human can disprove suggestion but human is accuser
 		assertEquals(tempRope, board.handleSuggestion(1,suggestion)); // tests if only human can disprove suggestion
-		suggestion.setSolutionCard(tempCTLM, CardType.ROOM);
+		suggestion = new Solution(board.getSolution().getPerson(), tempRope, tempCTLM);
 		assertEquals(tempRope, board.handleSuggestion(2, suggestion)); // tests if two players can disprove to make sure correct player is chosen
-		suggestion.setSolutionCard(tempCPW, CardType.PERSON);
-		suggestion.setSolutionCard(tempRope, CardType.WEAPON);
-		suggestion.setSolutionCard(board.getSolution().getRoom(), CardType.ROOM); // tests if a player and a human player can both disprove but player is before human player
+		suggestion = new Solution(tempCPW, tempRope,board.getSolution().getRoom());
 		assertEquals(tempCPW, board.handleSuggestion(1,suggestion));
 	}
 	

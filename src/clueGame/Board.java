@@ -43,7 +43,7 @@ public class Board extends JPanel {
 	private Map<BoardCell, Set<BoardCell>> adjCells; // list of all cells adjacent cells for each cell on the board.
 	private Set<BoardCell> visited; // used for the calculation of target cells.
 	public Set<BoardCell> targetCells; // list of all cells one can move to give a location and a roll of the die.
-	private ArrayList<Card> deck;
+	private ArrayList<Card> deck, originalDeck;
 	private ArrayList<Card> people;
 	private ArrayList<Card> weapons;
 	private ArrayList<Card> rooms;
@@ -70,7 +70,6 @@ public class Board extends JPanel {
 		people = new ArrayList<Card>();
 		weapons = new ArrayList<Card>();
 		rooms = new ArrayList<Card>();
-		solution = new Solution();
 		playerPosition = -1;
 	}
 	
@@ -275,8 +274,10 @@ public class Board extends JPanel {
 	public Card getRoom(int row, int col) {
 		BoardCell  b = board[row][col];
 		String roomName = legend.get(b.getInitial());
-		for(Card c: deck) {
-			if(c.getCardName() == roomName)
+		System.out.println(originalDeck.size());
+		for(Card c: originalDeck) {
+			System.out.println(c.getCardName());
+			if(c.getCardName().equals(roomName))
 				return c;
 		}
 		return null;
@@ -463,15 +464,24 @@ public class Board extends JPanel {
 	 * @return
 	 */
 	public void dealDeck() {
+		originalDeck = new ArrayList<Card>();
+		for(Card c : deck) {originalDeck.add(c);}
+		System.out.println(originalDeck.size());
+		Card person = null;
+		Card weapon = null;
+		Card room = null;
 		Collections.shuffle(deck);
 		for(CardType cardType : CardType.values()) {
 			for(Card card : deck) {
 				if(card.getCardType() == cardType) {
-					solution.setSolutionCard(card, cardType);
+					if(cardType == CardType.PERSON) {person = card;}
+					else if(cardType == CardType.WEAPON) {weapon = card;}
+					else {room = card;}
 					break;
 				}
 			}
 		}
+		solution = new Solution(person, weapon, room);
 		for(Card card : solution.returnCards()) {
 			deck.remove(card);
 		}

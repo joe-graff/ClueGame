@@ -7,18 +7,10 @@ public class Solution {
 	private Card room;
 	private Card weapon;
 	
-	public Solution() {
-		
-	}
-	
-	public void setSolutionCard(Card card, CardType type) {
-		if(type == CardType.PERSON) {
-			person = card;
-		} else if(type == CardType.ROOM) {
-			room = card;
-		} else if(type == CardType.WEAPON) {
-			weapon = card;
-		}
+	public Solution(Card person, Card weapon, Card room) {
+		this.person = person;
+		this.weapon = weapon;
+		this.room = room;
 	}
 	
 	public void setPerson(Card person) {
