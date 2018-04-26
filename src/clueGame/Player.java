@@ -3,6 +3,8 @@ package clueGame;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -107,6 +109,24 @@ public abstract class Player {
 				rowThree.add(weaponChoice);
 				JPanel rowFour = new JPanel();
 				JButton submit = new JButton("Submit");
+				submit.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						Card tempPerson = null;
+						Card tempWeapon = null;
+						for(Card c: Board.getInstance().getPeople()) {
+							if(personChoice.getSelectedItem().equals(c.getCardName()))
+								tempPerson = c;
+						}
+						for(Card c: Board.getInstance().getWeapons()) {
+							if(weaponChoice.getSelectedItem().equals(c.getCardName()))
+								tempWeapon = c;
+						}
+						Solution suggestion = new Solution(tempPerson, tempWeapon, Board.getInstance().getRoom(b.getRow(), b.getColumn()));
+						Board.getInstance().gameControl.updateGuess(tempPerson.getCardName(), tempWeapon.getCardName(), Board.getInstance().getRoom(b.getRow(), b.getColumn()).getCardName());
+						Board.getInstance().gameControl.updateResult(Board.getInstance().handleSuggestion(0, suggestion).getCardName());
+						
+					}
+				});
 				JButton cancel = new JButton("Cancel");
 				rowFour.add(submit);
 				rowFour.add(cancel);

@@ -111,9 +111,6 @@ public class Board extends JPanel {
 			players[playerPosition % 6].makeMove(selectedCell);
 			if(selectedCell.isDoorway()) {
 				Player currentPlayer = players[playerPosition % 6];
-				//Solution playerGuess = currentPlayer.createSuggestion();
-				//Card returnedCard = handleSuggestion(playerPosition % 6, playerGuess);
-				//gameControl.updateResult(returnedCard.getCardName());
 			}
 		}
 	}
