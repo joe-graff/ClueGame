@@ -53,6 +53,8 @@ public class Board extends JPanel {
 	public int diceRoll;
 	public GameControlGUI gameControl;
 	public BoardCell selectedCell;
+	public Boolean accusationFlag;
+	public Solution previousSolution;
 	
 	public int getDiceRoll() {
 		return diceRoll;
@@ -71,6 +73,7 @@ public class Board extends JPanel {
 		weapons = new ArrayList<Card>();
 		rooms = new ArrayList<Card>();
 		playerPosition = -1;
+		accusationFlag = false;
 	}
 	
 	/**
@@ -109,9 +112,7 @@ public class Board extends JPanel {
 			int cellY = x/BoardCell.CELL_SIZE;
 			selectedCell = getCellAt(cellX, cellY);
 			players[playerPosition % 6].makeMove(selectedCell);
-			if(selectedCell.isDoorway()) {
-				Player currentPlayer = players[playerPosition % 6];
-			}
+			nextPlayer();
 		}
 	}
 	
@@ -513,9 +514,9 @@ public class Board extends JPanel {
 	}
 	
 	public Boolean checkAccusation(Solution accusation) {
-		if(solution.getPerson() == accusation.getPerson() &&
-		   solution.getWeapon() == accusation.getWeapon() &&
-		   solution.getRoom() == accusation.getRoom()) {
+		if(solution.getPerson().equals(accusation.getPerson()) &&
+		   solution.getWeapon().equals(accusation.getWeapon())&&
+		   solution.getRoom().equals(accusation.getRoom())) {
 			return true;
 		} else {
 			return false;
@@ -523,6 +524,8 @@ public class Board extends JPanel {
 	}
 	
 	public Card handleSuggestion(int playerID, Solution suggestion) {
+		previousSolution = suggestion;
+		selectedCell = null;
 		int nextPlayerID = (playerID + 1) % numPlayers;
 		while(nextPlayerID != playerID) {
 			Card revealThisCard = players[nextPlayerID].disproveSuggestion(suggestion);
@@ -532,6 +535,7 @@ public class Board extends JPanel {
 			}
 			nextPlayerID = (nextPlayerID + 1) % numPlayers;
 		}
+		accusationFlag = true;
 		return null;
 	}
 	

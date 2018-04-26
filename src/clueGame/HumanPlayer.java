@@ -15,10 +15,9 @@ public class HumanPlayer extends Player {
 	public HumanPlayer(String playerName, int row, int column, Color color, Board board) {
 		super(playerName, row, column, color, board);
 	}
-	
 	@Override
 	public Solution createSuggestion() {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 

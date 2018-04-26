@@ -124,10 +124,15 @@ public abstract class Player {
 						Solution suggestion = new Solution(tempPerson, tempWeapon, Board.getInstance().getRoom(b.getRow(), b.getColumn()));
 						Board.getInstance().gameControl.updateGuess(tempPerson.getCardName(), tempWeapon.getCardName(), Board.getInstance().getRoom(b.getRow(), b.getColumn()).getCardName());
 						Board.getInstance().gameControl.updateResult(Board.getInstance().handleSuggestion(0, suggestion).getCardName());
-						
+						humanGuess.dispose();
 					}
 				});
 				JButton cancel = new JButton("Cancel");
+				cancel.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						humanGuess.dispose();
+					}
+				});
 				rowFour.add(submit);
 				rowFour.add(cancel);
 				humanGuess.add(rowOne);
@@ -153,7 +158,11 @@ public abstract class Player {
 					column = location.getColumn();
 					Solution computerSuggestion = createSuggestion();
 					Board.getInstance().gameControl.updateGuess(computerSuggestion.getPerson().getCardName(), computerSuggestion.getWeapon().getCardName(), computerSuggestion.getRoom().getCardName());
-					Board.getInstance().gameControl.updateResult(Board.getInstance().handleSuggestion(Board.getInstance().getPlayerPosition(), computerSuggestion).getCardName());
+					if(Board.getInstance().handleSuggestion(Board.getInstance().getPlayerPosition(), computerSuggestion) == null) {
+						Board.getInstance().gameControl.updateResult("No Cards to match Suggestion");
+					} else {
+						Board.getInstance().gameControl.updateResult(Board.getInstance().handleSuggestion(Board.getInstance().getPlayerPosition(), computerSuggestion).getCardName());
+					}
 					lastRoom = location;
 					return;
 				}

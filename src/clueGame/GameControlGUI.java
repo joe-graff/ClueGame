@@ -65,71 +65,83 @@ public class GameControlGUI extends JPanel{
 		JButton accusation = new JButton("Make an accusation");
 		accusation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()) instanceof HumanPlayer) {
-				JFrame humanAccusation = new JFrame();
-				humanAccusation.setLayout(new GridLayout(4,0));
-				humanAccusation.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				humanAccusation.setTitle("Make a Guess");
-				humanAccusation.setSize(250,250);
-				JPanel rowOne = new JPanel();
-				JLabel room = new JLabel("Room");
-				rowOne.add(room);
-				JComboBox roomChoice = new JComboBox();
-				ArrayList<String> rooms = new ArrayList<String>();
-				for(Card c: Board.getInstance().getRooms())
-					rooms.add(c.getCardName());
-				roomChoice.setModel(new DefaultComboBoxModel(rooms.toArray()));
-				rowOne.add(roomChoice);
-				JPanel rowTwo = new JPanel();
-				JLabel person = new JLabel("Person");
-				rowTwo.add(person);
-				ArrayList<String> peeps = new ArrayList<String>();
-				for(Card c: Board.getInstance().getPeople())
-					peeps.add(c.getCardName());
-				JComboBox personChoice = new JComboBox();
-				personChoice.setModel(new DefaultComboBoxModel(peeps.toArray()));
-				rowTwo.add(personChoice);
-				JPanel rowThree = new JPanel();
-				JLabel weapon = new JLabel("Weapon");
-				ArrayList<String> weapons = new ArrayList<String>();
-				for(Card c: Board.getInstance().getWeapons())
-					weapons.add(c.getCardName());
-				JComboBox weaponChoice = new JComboBox();
-				weaponChoice.setModel(new DefaultComboBoxModel(weapons.toArray()));
-				rowThree.add(weapon);
-				rowThree.add(weaponChoice);
-				JPanel rowFour = new JPanel();
-				JButton submit = new JButton("Submit");
-				submit.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent e) {
-						Card tempPerson = null;
-						Card tempWeapon = null;
-						for(Card c: Board.getInstance().getPeople()) {
-							if(personChoice.getSelectedItem().equals(c.getCardName()))
-								tempPerson = c;
+				if(Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()) instanceof HumanPlayer && Board.getInstance().selectedCell == null) {
+					JFrame humanAccusation = new JFrame();
+					humanAccusation.setLayout(new GridLayout(4,0));
+					humanAccusation.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					humanAccusation.setTitle("Make a Guess");
+					humanAccusation.setSize(250,250);
+					JPanel rowOne = new JPanel();
+					JLabel room = new JLabel("Room");
+					rowOne.add(room);
+					JComboBox roomChoice = new JComboBox();
+					ArrayList<String> rooms = new ArrayList<String>();
+					for(Card c: Board.getInstance().getRooms())
+						rooms.add(c.getCardName());
+					roomChoice.setModel(new DefaultComboBoxModel(rooms.toArray()));
+					rowOne.add(roomChoice);
+					JPanel rowTwo = new JPanel();
+					JLabel person = new JLabel("Person");
+					rowTwo.add(person);
+					ArrayList<String> peeps = new ArrayList<String>();
+					for(Card c: Board.getInstance().getPeople())
+						peeps.add(c.getCardName());
+					JComboBox personChoice = new JComboBox();
+					personChoice.setModel(new DefaultComboBoxModel(peeps.toArray()));
+					rowTwo.add(personChoice);
+					JPanel rowThree = new JPanel();
+					JLabel weapon = new JLabel("Weapon");
+					ArrayList<String> weapons = new ArrayList<String>();
+					for(Card c: Board.getInstance().getWeapons())
+						weapons.add(c.getCardName());
+					JComboBox weaponChoice = new JComboBox();
+					weaponChoice.setModel(new DefaultComboBoxModel(weapons.toArray()));
+					rowThree.add(weapon);
+					rowThree.add(weaponChoice);
+					JPanel rowFour = new JPanel();
+					JButton submit = new JButton("Submit");
+					submit.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent e) {
+							Card tempPerson = null;
+							Card tempWeapon = null;
+							Card tempRoom = null;
+							for(Card c: Board.getInstance().getPeople()) {
+								if(personChoice.getSelectedItem().equals(c.getCardName()))
+									tempPerson = c;
+							}
+							for(Card c: Board.getInstance().getWeapons()) {
+								if(weaponChoice.getSelectedItem().equals(c.getCardName()))
+									tempWeapon = c;
+							}
+							for(Card c: Board.getInstance().getRooms()) {
+								if(roomChoice.getSelectedItem().equals(c.getCardName()))
+									tempRoom = c;
+							}
+							Solution accusation = new Solution(tempPerson, tempWeapon, tempRoom);
+							if(Board.getInstance().checkAccusation(accusation)) {
+								JOptionPane winningMessage = new JOptionPane();
+								winningMessage.showMessageDialog(Board.getInstance(), "You Won Clue!", "You Win!", JOptionPane.INFORMATION_MESSAGE);
+								System.exit(0);
+							} else {
+								JOptionPane incorrect = new JOptionPane();
+								incorrect.showMessageDialog(Board.getInstance(), "Your accusation was incorrect", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
+							}
+							humanAccusation.dispose();
 						}
-						for(Card c: Board.getInstance().getWeapons()) {
-							if(weaponChoice.getSelectedItem().equals(c.getCardName()))
-								tempWeapon = c;
+					});
+					JButton cancel = new JButton("Cancel");
+					cancel.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent e) {
+							humanAccusation.dispose();
 						}
-						Solution accusation = new Solution(tempPerson, tempWeapon, Board.getInstance().getRoom(Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()).getRow(), (Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()).getColumn())));
-						if(accusation == Board.getInstance().getSolution()) {
-							JOptionPane winningMessage = new JOptionPane();
-							winningMessage.showMessageDialog(Board.getInstance(), "You Won Clue!", "You Win!", JOptionPane.INFORMATION_MESSAGE);
-						} else {
-							JOptionPane incorrect = new JOptionPane();
-							incorrect.showMessageDialog(Board.getInstance(), "Your accusation was incorrect", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
-						}
-					}
-				});
-				JButton cancel = new JButton("Cancel");
-				rowFour.add(submit);
-				rowFour.add(cancel);
-				humanAccusation.add(rowOne);
-				humanAccusation.add(rowTwo);
-				humanAccusation.add(rowThree);
-				humanAccusation.add(rowFour);
-				humanAccusation.setVisible(true);
+					});
+					rowFour.add(submit);
+					rowFour.add(cancel);
+					humanAccusation.add(rowOne);
+					humanAccusation.add(rowTwo);
+					humanAccusation.add(rowThree);
+					humanAccusation.add(rowFour);
+					humanAccusation.setVisible(true);
 				} else {
 					JOptionPane notHuman = new JOptionPane();
 					notHuman.showMessageDialog(Board.getInstance(), "You can only make an accusation at the begining of your turn!", "Not Your Turn", JOptionPane.INFORMATION_MESSAGE);
