@@ -108,12 +108,12 @@ public class Board extends JPanel {
 			int cellX = y/BoardCell.CELL_SIZE;
 			int cellY = x/BoardCell.CELL_SIZE;
 			selectedCell = getCellAt(cellX, cellY);
-			((HumanPlayer) players[playerPosition % 6]).makeMove(selectedCell);
+			players[playerPosition % 6].makeMove(selectedCell);
 			if(selectedCell.isDoorway()) {
 				Player currentPlayer = players[playerPosition % 6];
-				Solution playerGuess = currentPlayer.createSuggestion();
-				Card returnedCard = handleSuggestion(playerPosition % 6, playerGuess);
-				gameControl.updateResult(returnedCard.getCardName());
+				//Solution playerGuess = currentPlayer.createSuggestion();
+				//Card returnedCard = handleSuggestion(playerPosition % 6, playerGuess);
+				//gameControl.updateResult(returnedCard.getCardName());
 			}
 		}
 	}
@@ -274,9 +274,7 @@ public class Board extends JPanel {
 	public Card getRoom(int row, int col) {
 		BoardCell  b = board[row][col];
 		String roomName = legend.get(b.getInitial());
-		System.out.println(originalDeck.size());
 		for(Card c: originalDeck) {
-			System.out.println(c.getCardName());
 			if(c.getCardName().equals(roomName))
 				return c;
 		}
@@ -466,7 +464,6 @@ public class Board extends JPanel {
 	public void dealDeck() {
 		originalDeck = new ArrayList<Card>();
 		for(Card c : deck) {originalDeck.add(c);}
-		System.out.println(originalDeck.size());
 		Card person = null;
 		Card weapon = null;
 		Card room = null;

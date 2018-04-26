@@ -40,34 +40,6 @@ public class ComputerPlayer extends Player{
 			roomsSeen.add(c);
 	}
 	
-	
-	public void movePlayer(int pathlength) {
-		board.calcTargets(row, column, pathlength);
-		for(BoardCell location : board.getTargets()) {
-			if(location.isDoorway()) {
-				if(lastRoom == null || (lastRoom.getInitial() != location.getInitial() && location != lastRoom)) {
-					row = location.getRow();
-					column = location.getColumn();
-					Solution computerSuggestion = createSuggestion();
-					//System.out.println(computerSuggestion.getPerson().getCardName());
-					//System.out.println(computerSuggestion.getWeapon().getCardName());
-					//System.out.println(computerSuggestion.getRoom().getCardName());
-					Board.getInstance().gameControl.updateGuess(computerSuggestion.getPerson().getCardName(), computerSuggestion.getWeapon().getCardName(), computerSuggestion.getRoom().getCardName());
-					Board.getInstance().handleSuggestion(Board.getInstance().getPlayerPosition(), computerSuggestion);
-					lastRoom = location;
-					return;
-				}
-			}
-		}
-		ArrayList<BoardCell> randomTargetCells = new ArrayList<BoardCell>();
-		for(BoardCell location : board.getTargets()) {
-			randomTargetCells.add(location);
-		}
-		Collections.shuffle(randomTargetCells);
-		row = randomTargetCells.get(0).getRow();
-		column = randomTargetCells.get(0).getColumn();
-	}
-	
 	/**
 	 * creates a suggestion with the room the player is in currently and a random person and random weapon that the player has not yet seen. 
 	 * @return
