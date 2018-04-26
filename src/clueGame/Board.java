@@ -509,7 +509,7 @@ public class Board extends JPanel {
 	}
 	
 	public int getPlayerPosition() {
-		return playerPosition;
+		return playerPosition % 6;
 	}
 	
 	public Boolean checkAccusation(Solution accusation) {

@@ -65,6 +65,7 @@ public class GameControlGUI extends JPanel{
 		JButton accusation = new JButton("Make an accusation");
 		accusation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()) instanceof HumanPlayer) {
 				JFrame humanAccusation = new JFrame();
 				humanAccusation.setLayout(new GridLayout(4,0));
 				humanAccusation.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -111,10 +112,13 @@ public class GameControlGUI extends JPanel{
 							if(weaponChoice.getSelectedItem().equals(c.getCardName()))
 								tempWeapon = c;
 						}
-						Solution suggestion = new Solution(tempPerson, tempWeapon, Board.getInstance().getRoom(Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()).getRow(), (Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()).getColumn())));
-						if(suggestion == Board.getInstance().getSolution()) {
+						Solution accusation = new Solution(tempPerson, tempWeapon, Board.getInstance().getRoom(Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()).getRow(), (Board.getInstance().getPlayer(Board.getInstance().getPlayerPosition()).getColumn())));
+						if(accusation == Board.getInstance().getSolution()) {
 							JOptionPane winningMessage = new JOptionPane();
 							winningMessage.showMessageDialog(Board.getInstance(), "You Won Clue!", "You Win!", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							JOptionPane incorrect = new JOptionPane();
+							incorrect.showMessageDialog(Board.getInstance(), "Your accusation was incorrect", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 				});
@@ -126,6 +130,10 @@ public class GameControlGUI extends JPanel{
 				humanAccusation.add(rowThree);
 				humanAccusation.add(rowFour);
 				humanAccusation.setVisible(true);
+				} else {
+					JOptionPane notHuman = new JOptionPane();
+					notHuman.showMessageDialog(Board.getInstance(), "You can only make an accusation at the begining of your turn!", "Not Your Turn", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		panel.add(next);
